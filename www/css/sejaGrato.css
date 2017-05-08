@@ -1,0 +1,22 @@
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
+.list.padding {
+	margin-bottom: 0;
+}
+.platform-android .bar .title.title-left {
+	text-align: center!important;
+	margin-left: -5%;
+} 
+.item.listaTransparente {
+	background: transparent;
+	color: #fff;
+	/* font-weight: bold; */
+}
+.listaTransparente .data {
+	font-size: .75em;
+	display: block;
+}

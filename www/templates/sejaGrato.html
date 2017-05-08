@@ -1,21 +1,30 @@
-<ion-view title="Seja Grato!" id="page1">
-  <ion-nav-buttons side="right" class="has-header">
-    <button class="button icon ion-camera"></button>
-  </ion-nav-buttons>
-  <ion-content padding="true" class="has-header">
-    <form id="sejaGrato-form1" class="list">
-      <div class="spacer" style="height: 25px;"></div>
-      <label class="item item-input" id="sejaGrato-input1">
-        <input type="text" placeholder="Hoje eu estou grato por...">
-      </label>
-    </form>
-    <button id="sejaGrato-button1" style="color:#FFFFFF;" class="button button-light  button-block button-outline">Sim, estou grato!</button>
-    <div class="spacer" style="height: 25px;"></div>
-    <div id="sejaGrato-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
-      <p style="color:#FFFFFF;font-size:16px;">Frase motivadora</p>
-    </div>
-    <ion-list id="sejaGrato-list3">
-      <ion-item class="energized" id="sejaGrato-list-item11">Item 1</ion-item>
-    </ion-list>
-  </ion-content>
+<ion-view title="Seja Grato!" id="page1" ng-controller="HomeController">
+<ion-nav-buttons side="right" class="has-header">
+<!-- <button class="button icon ion-camera"></button> -->
+<!-- Botão de câmera -->
+</ion-nav-buttons>
+<ion-content class="has-header">
+<form id="sejaGrato-form1" class="list padding">
+  <div class="spacer" style="height: 25px;"></div>
+  <label class="item item-input" id="sejaGrato-input1">
+  <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" rows="2" style="resize: none;"></textarea>
+    <!-- <input type="text" placeholder="Hoje eu estou grato por..." name="texto" ng-model="lista.texto" wrap="hard"> -->
+  </label>
+</form>
+<div class="padding"> 
+  <button id="sejaGrato-button1" style="color:#FFFFFF;" class="button button-light  button-block button-outline" ng-click="salvarTexto()">Sim, estou grato!</button>
+</div>
+<div class="spacer" style="height: 25px;"></div>
+<!-- Exibir essa parada aqui, só quando não tiver itens no repeat -->
+<div id="sejaGrato-markdown1" style="text-align:center; display: none;" class="show-list-numbers-and-dots">
+  <p style="color:#FFFFFF;font-size:16px;">Frase motivadora</p>
+</div>
+<!-- Colocar um ng-repeat aqui -->
+<ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista">
+<ion-item class="listaTransparente" id="sejaGrato-list-item11">
+  <span>{{mensagem.texto}}</span>
+  <span class="data">{{mensagem.data}}</span>
+</ion-item>
+</ion-list>
+</ion-content>
 </ion-view>
