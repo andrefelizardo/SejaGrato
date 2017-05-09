@@ -1,6 +1,10 @@
 angular.module('sejaGrato').controller('HomeController', function($scope){
 	$scope.lista = [];
 	$scope.dadosLocal = '';
+	$scope.motivacao = [
+		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
+	];
+	console.log($scope.motivacao);
 
 	$scope.salvarTexto = function() {
 				// data atual
@@ -12,6 +16,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope){
 				$scope.lista.push({texto: $scope.lista.texto, data: $scope.lista.data});
 				var listaJson = angular.toJson($scope.lista);
 				localStorage.setItem('mensagensSejaGrato', listaJson);
+				$scope.dadosLocal = true;
 				$scope.lista.texto = '';
 			}
 
