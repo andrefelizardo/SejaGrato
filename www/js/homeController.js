@@ -1,10 +1,29 @@
-angular.module('sejaGrato').controller('HomeController', function($scope){
+angular.module('sejaGrato').controller('HomeController', function($scope, $firebaseSimpleLogin){
 	$scope.lista = [];
 	$scope.dadosLocal = '';
-	$scope.motivacao = [
-		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
-	];
-	console.log($scope.motivacao);
+	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+
+	// FIREBASE
+	var firebaseObj = new Firebase('https://seja-grato.firebaseio.com/');
+	var loginObj = $firebaseSimpleLogin(firebaseObj);
+
+	$scope.loginFirebase = function($scope) {
+		event.preventDefault(); //para previnir refresh do form
+		var username = 'eu@andrefelizardo.com.br';
+		var password = 'Engenheiro10';
+
+		loginObj.$login('password', {
+			email: username,
+			password: password
+		})
+		.then(function(user) {
+			// se funcionar
+			console.log('autenticou!')
+		}, function(error) {
+			// se não funcionar
+			console.log('nem autenticou');
+		});
+	}
 
 	$scope.salvarTexto = function() {
 				// data atual
@@ -31,4 +50,5 @@ angular.module('sejaGrato').controller('HomeController', function($scope){
 			}
 
 			$scope.pageLoad();
+			$scope.loginFirebase();
 		});
