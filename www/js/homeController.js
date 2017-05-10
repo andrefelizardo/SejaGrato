@@ -1,27 +1,31 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $firebaseSimpleLogin){
+angular.module('sejaGrato').controller('HomeController', function($scope){
 	$scope.lista = [];
 	$scope.dadosLocal = '';
+	$scope.email = 'eu@andrefelizardo.com.br';
+	$scope.senha = 'Engenheiro10';
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
 	// FIREBASE
-	var firebaseObj = new Firebase('https://seja-grato.firebaseio.com/');
-	var loginObj = $firebaseSimpleLogin(firebaseObj);
+	$scope.loginFirebase = function() {
+		firebase.auth().signInWithEmailAndPassword($scope.email, $scope.senha)
+		.catch(function(error) {
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			if(errorCode === 'auth/wrong-password') {
+				alert('Senha errada.');
+			} else {
+				alert(errorMessage);
+			}
+			console.log(error);
+		});
+		$scope.verificaLogadoFirebase();
+	}
 
-	$scope.loginFirebase = function($scope) {
-		event.preventDefault(); //para previnir refresh do form
-		var username = 'eu@andrefelizardo.com.br';
-		var password = 'Engenheiro10';
-
-		loginObj.$login('password', {
-			email: username,
-			password: password
-		})
-		.then(function(user) {
-			// se funcionar
-			console.log('autenticou!')
-		}, function(error) {
-			// se não funcionar
-			console.log('nem autenticou');
+	$scope.verificaLogadoFirebase = function() {
+		firebase.auth().onAuthStateChanged(function(user) {
+			if(user) {
+				console.log('Usuário logado nenem');
+			}
 		});
 	}
 
