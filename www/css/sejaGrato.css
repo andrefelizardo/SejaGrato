@@ -20,3 +20,9 @@
 	font-size: .75em;
 	display: block;
 }
+.listaTransparente.item-complex .item-content {
+	background: transparent;
+}
+.listaTransparente .icon-accessory {
+    color: #fff;
+}
