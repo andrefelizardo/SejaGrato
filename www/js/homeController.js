@@ -1,6 +1,7 @@
 angular.module('sejaGrato').controller('HomeController', function($scope){
 	$scope.lista = [];
 	$scope.dadosLocal = '';
+	$scope.idUsuario = '1';
 	$scope.email = 'eu@andrefelizardo.com.br';
 	$scope.senha = 'Engenheiro10';
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
@@ -39,6 +40,13 @@ angular.module('sejaGrato').controller('HomeController', function($scope){
 				$scope.lista.push({texto: $scope.lista.texto, data: $scope.lista.data});
 				var listaJson = angular.toJson($scope.lista);
 				localStorage.setItem('mensagensSejaGrato', listaJson);
+				//salvando no Firebase
+				firebase.database().ref('mensagens/' + $scope.idUsuario).set({
+					email: $scope.email,
+					data: $scope.lista.data,
+					texto: $scope.lista.texto
+				});
+
 				$scope.dadosLocal = true;
 				$scope.lista.texto = '';
 			}
@@ -51,8 +59,8 @@ angular.module('sejaGrato').controller('HomeController', function($scope){
 				} else {
 					$scope.dadosLocal = false;
 				}
+				$scope.loginFirebase();
 			}
 
 			$scope.pageLoad();
-			$scope.loginFirebase();
 		});

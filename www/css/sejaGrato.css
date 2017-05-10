@@ -10,7 +10,13 @@
 .platform-android .bar .title.title-left {
 	text-align: center!important;
 	margin-left: -5%;
-} 
+}
+.fontcolor1 {
+	color: #fff!important;
+}
+.text-center {
+	text-align: center;
+}
 .item.listaTransparente {
 	background: transparent;
 	color: #fff;
