@@ -1,19 +1,19 @@
-<ion-view title="Criar Conta" id="criarConta">
+<ion-view title="Criar Conta" id="criarConta" ng-controller="criarContaController">
   <ion-content padding="true" class="has-header">
     <div class="spacer" style="height: 25px;"></div>
     <p class="fontcolor1 text-center">Que tal criar uma conta para sincronizar seus dados na nuvem?</p>
     <div class="spacer" style="height: 25px;"></div>
-    <form id="criarConta-form" class="list">
+    <form id="criarConta-form" class="list" name="criarContaForm">
       <label class="item item-input" id="criarConta-input3">
-        <input type="email" placeholder="Digite seu e-mail preferido" ng-model="conta.email">
+        <input type="email" placeholder="Digite seu e-mail preferido" ng-model="conta.email" name="email" required>
       </label>
       <label class="item item-input" id="criarConta-input4">
-        <input type="password" placeholder="Digite sua senha" ng-model="conta.senha">
+        <input type="password" placeholder="Digite sua senha" ng-model="conta.senha" required>
       </label>
       <label class="item item-input" id="criarConta-input5">
-        <input type="password" placeholder="Confirme sua senha" ng-model=conta.confirmaSenha>
+        <input type="password" placeholder="Confirme sua senha" ng-model=conta.confirmaSenha required>
       </label>
     </form>
-    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline">Criar</button>
+    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline" ng-click="criarConta()">Criar</button>
   </ion-content>
 </ion-view>
