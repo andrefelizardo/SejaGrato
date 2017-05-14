@@ -4,11 +4,10 @@
 <!-- Botão de câmera -->
 </ion-nav-buttons>
 <ion-content class="has-header">
-<form id="sejaGrato-form1" class="list padding">
+<form id="sejaGrato-form1" class="list padding" name='sejaGratoForm'>
   <div class="spacer" style="height: 25px;"></div>
   <label class="item item-input" id="sejaGrato-input1">
-  <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" rows="2" style="resize: none;"></textarea>
-    <!-- <input type="text" placeholder="Hoje eu estou grato por..." name="texto" ng-model="lista.texto" wrap="hard"> -->
+  <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" rows="2" style="resize: none;" required></textarea>
   </label>
 </form>
 <div class="padding"> 
@@ -21,9 +20,24 @@
   <span style="color:#FFFFFF;">{{motivacao[0].autor}}</span>
   <div class="spacer" style="height: 25px;"></div>
 </div>
+<!-- Modal -->
+<script id="templates/modalTextoGratidao.html" type="text/ng-template">
+  <ion-modal-view class="bgcolor1 fontcolor1">
+    <ion-header-bar class="bar-energized">
+    <button class="button" ng-click="modal.hide()">
+      <i class="icon ion-android-arrow-back"></i>
+    </button>
+    <h1 class="title title-center">Editar Mensagem</h1>
+    <button class="button button-clear button-primary" ng-click="">Salvar</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+    <textarea style="resize: none;background: transparent;color: #fff;font-size: 1em;width: 100%;" rows="35"required ng-model="mensagemSelecionada.texto"></textarea>
+    </ion-content>
+  </ion-modal-view>
+</script>
 <!-- Colocar um ng-repeat aqui -->
 <ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista">
-<ion-item class="listaTransparente" id="sejaGrato-list-item11">
+<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="editarTexto(mensagem)">
   <span>{{mensagem.texto}}</span>
   <span class="data">{{mensagem.data}}</span>
 </ion-item>

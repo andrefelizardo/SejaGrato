@@ -11,8 +11,14 @@
 	text-align: center!important;
 	margin-left: -5%;
 }
+body {
+	font-size: 1em;
+}
 .fontcolor1 {
 	color: #fff!important;
+}
+.bgcolor1 {
+	background-color: #FF8441!important;
 }
 .text-center {
 	text-align: center;

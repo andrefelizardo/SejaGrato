@@ -14,6 +14,6 @@
         <input type="password" placeholder="Confirme sua senha" ng-model=conta.confirmaSenha required>
       </label>
     </form>
-    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline" ng-click="criarConta()">Criar</button>
+    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline" ng-click="criarConta()" ng-disabled="!criarContaForm.$valid">Criar</button>
   </ion-content>
 </ion-view>
