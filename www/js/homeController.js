@@ -20,9 +20,18 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.modal.hide();
 	}
 
-	$scope.editarTexto = function(index) {
+	$scope.visualizarTexto = function(mensagem) {
 		$scope.openModal();
-		$scope.mensagemSelecionada = index;
+		$scope.mensagemSelecionada = mensagem;
+		var index = $scope.lista.indexOf(mensagem);
+		console.log(mensagem);
+		console.log(index);
+		$scope.editarTexto = function() {
+			$scope.lista[index].texto = $scope.mensagemSelecionada.texto;
+			var listaJson = angular.toJson($scope.lista);
+				localStorage.setItem('mensagensSejaGrato', listaJson);
+			$scope.modal.hide();
+		}
 	}
 
 	$scope.salvarTexto = function() {

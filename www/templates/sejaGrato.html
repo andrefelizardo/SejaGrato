@@ -28,7 +28,7 @@
       <i class="icon ion-android-arrow-back"></i>
     </button>
     <h1 class="title title-center">Editar Mensagem</h1>
-    <button class="button button-clear button-primary" ng-click="">Salvar</button>
+    <button class="button button-clear button-primary" ng-click="editarTexto()">Salvar</button>
     </ion-header-bar>
     <ion-content class="padding">
     <textarea style="resize: none;background: transparent;color: #fff;font-size: 1em;width: 100%;" rows="35"required ng-model="mensagemSelecionada.texto"></textarea>
@@ -37,7 +37,7 @@
 </script>
 <!-- Colocar um ng-repeat aqui -->
 <ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista">
-<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="editarTexto(mensagem)">
+<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem)">
   <span>{{mensagem.texto}}</span>
   <span class="data">{{mensagem.data}}</span>
 </ion-item>
