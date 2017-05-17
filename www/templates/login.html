@@ -1,0 +1,16 @@
+<ion-view title="Login" id="login" ng-controller="loginController">
+  <ion-content padding="true" class="has-header">
+    <div class="spacer" style="height: 25px;"></div>
+    <p class="fontcolor1 text-center">Já tem uma conta no Seja Grato?</p>
+    <div class="spacer" style="height: 25px;"></div>
+    <form id="criarConta-form" class="list" name="loginForm">
+      <label class="item item-input" id="login-input3">
+        <input type="email" placeholder="Digite seu e-mail" ng-model="conta.email" name="email" required>
+      </label>
+      <label class="item item-input" id="login-input4">
+        <input type="password" placeholder="Digite sua senha" ng-model="conta.senha" required>
+      </label>
+    </form>
+    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline" ng-click="login()" ng-disabled="!loginForm.$valid">Fazer Login</button>
+  </ion-content>
+</ion-view>

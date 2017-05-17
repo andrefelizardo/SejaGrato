@@ -102,7 +102,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 			if(usuarioLocal != null) {
 				$scope.usuario = angular.fromJson(usuarioLocal);
 				$scope.logar($scope.usuario[0].user, $scope.usuario[0].senha);
-				$scope.verificaLogado();
 				if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '') {
 					$rootScope.statusUsuario = true;
 				}

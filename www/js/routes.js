@@ -39,6 +39,15 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.login', {
+    url: '/login',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/login.html'
+      }
+    }
+  })
+
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',
