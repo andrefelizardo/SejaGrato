@@ -1,4 +1,4 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet){
 	$scope.lista = [];
 	$scope.usuario = [];
 	$scope.dadosLocal = '';
@@ -6,6 +6,11 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+
+	$scope.atualizaListaLocal = function() {
+		var listaJson = angular.toJson($scope.lista);
+		localStorage.setItem('mensagensSejaGrato', listaJson);
+	}
 
 	$ionicModal.fromTemplateUrl('templates/modalTextoGratidao.html', {
 		scope: $scope,
@@ -20,6 +25,38 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.modal.hide();
 	}
 
+	$scope.showOpcoes = function(mensagem) {
+		$ionicActionSheet.show({
+			titleText: 'Opções da Mensagem',
+			buttons: [
+			{ text: 'Editar' },
+			],
+			destructiveText: 'Excluir',
+			cancelText: 'Cancelar',
+			cancel: function() {
+				console.log('Cancelado');
+			},
+			buttonClicked: function(index) {
+				$scope.visualizarTexto(mensagem);
+				return true;
+			},
+			destructiveButtonClicked: function() {
+				var index = $scope.lista.indexOf(mensagem);
+				var confirmPopup = $ionicPopup.confirm({
+					title: 'Excluir',
+					template: 'Deseja realmente excluir esta mensagem?'
+				});
+				confirmPopup.then(function(resposta) {
+					if(resposta) {
+						$scope.lista.splice(index, 1);
+						$scope.atualizaListaLocal();
+					}
+				});
+				return true;
+			}
+		});
+	}
+
 	$scope.visualizarTexto = function(mensagem) {
 		$scope.openModal();
 		$scope.mensagemSelecionada = mensagem;
@@ -28,8 +65,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		console.log(index);
 		$scope.editarTexto = function() {
 			$scope.lista[index].texto = $scope.mensagemSelecionada.texto;
-			var listaJson = angular.toJson($scope.lista);
-				localStorage.setItem('mensagensSejaGrato', listaJson);
+			$scope.atualizaListaLocal();
 			$scope.modal.hide();
 		}
 	}
@@ -48,14 +84,13 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				var ano = data.getFullYear();
 				$scope.lista.data = [dia, mes, ano].join('/');
 				$scope.lista.push({texto: $scope.lista.texto, data: $scope.lista.data});
-				var listaJson = angular.toJson($scope.lista);
-				localStorage.setItem('mensagensSejaGrato', listaJson);
+				$scope.atualizaListaLocal();
 				//salvando no Firebase
-				firebase.database().ref('mensagens/' + $scope.idUsuario).set({
-					email: $scope.email,
-					data: $scope.lista.data,
-					texto: $scope.lista.texto
-				});
+				// firebase.database().ref('mensagens/' + $scope.idUsuario).set({
+				// 	email: $scope.email,
+				// 	data: $scope.lista.data,
+				// 	texto: $scope.lista.texto
+				// });
 
 				$scope.dadosLocal = true;
 				$scope.lista.texto = '';
