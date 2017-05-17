@@ -16,6 +16,9 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 	function verificaLogado() {
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {
+				user.getToken().then(function(data) {
+					console.log(data);
+				})
 				return true;
 			}
 		});
