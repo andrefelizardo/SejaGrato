@@ -1,5 +1,5 @@
 angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, $ionicPopup, $state, $ionicHistory, $rootScope) {
+	function logar(email, password, $ionicPopup, $state, $ionicHistory, $rootScope, $scope) {
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.catch(function(error) {
 			var errorCode = error.code;
@@ -34,6 +34,18 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 						disableBack: true
 					});
 					$rootScope.statusUsuario = true;
+					var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
+					$rootScope.usuario = angular.fromJson(usuarioFirebase);
+					var userID = $rootScope.usuario.uid;
+					// Se tem mensagem em LocalStorage
+					if(localStorage.getItem('mensagensSejaGrato')) {
+
+					} else {
+						firebase.database().ref('mensagens/').child(userID).once('value').then(function(snapshot){
+							$rootScope.lista = snapshot.val();
+							console.log($rootScope.lista);
+						});
+					}
 					$state.go('menu.sejaGrato');
 				});
 			}

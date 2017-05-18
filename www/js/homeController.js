@@ -1,6 +1,7 @@
 angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet){
 	$scope.lista = [];
-	$scope.usuario = [];
+	$rootScope.lista = [];
+	$rootScope.usuario = [];
 	$scope.dadosLocal = '';
 	$rootScope.statusUsuario = false;
 	$scope.logar = loginService.logar;
@@ -87,7 +88,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.atualizaListaLocal();
 				//salvando no Firebase
 				if($rootScope.statusUsuario){
-					var usuario = $scope.usuario.uid;
+					var usuario = $rootScope.usuario.uid;
 					var listaBanco = angular.copy($scope.lista);
 					console.log(listaBanco);
 					firebase.database().ref('mensagens/').child(usuario).set({
@@ -104,8 +105,8 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 				$rootScope.statusUsuario = true;
 				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
-				$scope.usuario = angular.fromJson(usuarioFirebase);
-				// console.log($scope.usuario.uid);
+				$rootScope.usuario = angular.fromJson(usuarioFirebase);
+				// console.log($rootScope.usuario.uid);
 			}
 			var listaSalva = localStorage.getItem('mensagensSejaGrato');
 			if(listaSalva != null) {
