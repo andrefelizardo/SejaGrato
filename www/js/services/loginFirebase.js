@@ -1,5 +1,5 @@
 angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, $ionicPopup, $state, $ionicHistory) {
+	function logar(email, password, $ionicPopup, $state, $ionicHistory, $rootScope) {
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.catch(function(error) {
 			var errorCode = error.code;
@@ -33,6 +33,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
+					$rootScope.statusUsuario = true;
 					$state.go('menu.sejaGrato');
 				});
 			}
@@ -58,12 +59,8 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 		});
 	}
 
-	function sair($state, $ionicHistory) {
+	function sair() {
 		firebase.auth().signOut()
-		$ionicHistory.nextViewOptions({
-			disableBack: true
-		});
-		$state.go('menu.sejaGrato');
 	}
 
 	return {

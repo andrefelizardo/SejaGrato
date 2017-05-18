@@ -8,7 +8,11 @@ angular.module('sejaGrato').controller('menuController', function($scope, $state
 		});
 		confirmPopup.then(function(resposta) {
 			if(resposta) {
-				$scope.sairFirebase($state, $ionicHistory);
+				$scope.sairFirebase();
+				$ionicHistory.nextViewOptions({
+					disableBack: true
+				});
+				$state.go('menu.sejaGrato');
 			}
 		});
 	}

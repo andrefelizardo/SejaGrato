@@ -98,7 +98,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		}
 
 		$scope.pageLoad = function() {
-			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '') {
+			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 				$rootScope.statusUsuario = true;
 			}
 			var listaSalva = localStorage.getItem('mensagensSejaGrato');
