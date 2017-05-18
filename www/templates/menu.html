@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" ng-controller="menuController">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-energized">
       <ion-nav-back-button></ion-nav-back-button>
@@ -20,7 +20,7 @@
         <ion-item class="item-icon-right listaTransparente" id="menu-list-criarConta" ui-sref="menu.criarConta" menu-close="" ng-show="!statusUsuario">Cria Conta
           <i class="icon icon-accessory ion-android-person-add"></i>
         </ion-item>
-        <ion-item class="item-icon-right listaTransparente" id="menu-list-fazerLogout" ng-show="statusUsuario">Sair
+        <ion-item class="item-icon-right listaTransparente" id="menu-list-fazerLogout" ng-show="statusUsuario" ng-click="sair()">Sair
         <i class="icon icon-accessory ion-android-exit"></i>
         </ion-item>
         <ion-item class="item-icon-right listaTransparente" id="menu-list-item4" ui-sref="menu.sobre" menu-close="">Sobre

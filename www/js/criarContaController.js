@@ -65,13 +65,9 @@ angular.module('sejaGrato').controller('criarContaController', function($scope, 
 					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
-					
+					$rootScope.statusUsuario = true;
 					$state.go('menu.sejaGrato');
 				});
-				$rootScope.statusUsuario = true;
-				$scope.contaLocal.push({user: $scope.conta.email, senha: $scope.conta.senha})
-				var contaJson = angular.toJson($scope.contaLocal);
-				localStorage.setItem('usuarioSejaGrato', contaJson);
 			}
 		})
 	}
