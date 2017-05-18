@@ -86,11 +86,14 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.lista.push({texto: $scope.lista.texto, data: $scope.lista.data});
 				$scope.atualizaListaLocal();
 				//salvando no Firebase
-				// firebase.database().ref('mensagens/' + $scope.idUsuario).set({
-				// 	email: $scope.email,
-				// 	data: $scope.lista.data,
-				// 	texto: $scope.lista.texto
-				// });
+				if($rootScope.statusUsuario){
+					var usuario = $scope.usuario.uid;
+					var listaBanco = angular.copy($scope.lista);
+					console.log(listaBanco);
+					firebase.database().ref('mensagens/').child(usuario).set({
+							mensagens: listaBanco
+					});
+				}
 
 				$scope.dadosLocal = true;
 				$scope.lista.texto = '';
@@ -100,6 +103,9 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.pageLoad = function() {
 			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 				$rootScope.statusUsuario = true;
+				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
+				$scope.usuario = angular.fromJson(usuarioFirebase);
+				// console.log($scope.usuario.uid);
 			}
 			var listaSalva = localStorage.getItem('mensagensSejaGrato');
 			if(listaSalva != null) {
