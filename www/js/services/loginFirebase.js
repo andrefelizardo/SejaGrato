@@ -1,5 +1,5 @@
 angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, $ionicPopup, $state, $ionicHistory, $rootScope, $scope) {
+	function logar(email, password, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http) {
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.catch(function(error) {
 			var errorCode = error.code;
@@ -36,14 +36,24 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 					$rootScope.statusUsuario = true;
 					var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 					$rootScope.usuario = angular.fromJson(usuarioFirebase);
-					var userID = $rootScope.usuario.uid;
 					// Se tem mensagem em LocalStorage
 					if(localStorage.getItem('mensagensSejaGrato')) {
-
+						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+						.then(function(mensagens){
+							$scope.lista.push(mensagens.data);
+							$scope.atualizaListaLocal();
+						},
+						function(erro) {
+							console.log(erro);
+						});
 					} else {
-						firebase.database().ref('mensagens/').child(userID).once('value').then(function(snapshot){
-							$rootScope.lista = snapshot.val();
-							console.log($rootScope.lista);
+						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+						.then(function(mensagens){
+							$scope.lista = mensagens.data;
+							$scope.atualizaListaLocal();
+						},
+						function(erro) {
+							console.log(erro);
 						});
 					}
 					$state.go('menu.sejaGrato');
@@ -51,14 +61,6 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 			}
 		});
 	}
-
-	// function logarLocalStorage(email, senha) {
-	// 	var contaLocal = [];
-	// 	contaLocal.push({user: email, senha: senha})
-	// 	var contaJson = angular.toJson(contaLocal);
-	// 	localStorage.setItem('usuarioSejaGrato', contaJson);
-	// 	// $rootScope.statusUsuario = true;
-	// }
 
 	function verificaLogado() {
 		firebase.auth().onAuthStateChanged(function(user) {

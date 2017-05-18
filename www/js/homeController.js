@@ -1,6 +1,5 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http){
 	$scope.lista = [];
-	$rootScope.lista = [];
 	$rootScope.usuario = [];
 	$scope.dadosLocal = '';
 	$rootScope.statusUsuario = false;
@@ -92,7 +91,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 					var listaBanco = angular.copy($scope.lista);
 					console.log(listaBanco);
 					firebase.database().ref('mensagens/').child(usuario).set({
-							mensagens: listaBanco
+						mensagens: listaBanco
 					});
 				}
 
@@ -102,18 +101,26 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		}
 
 		$scope.pageLoad = function() {
-			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
+			if(localStorage.getItem('mensagensSejaGrato')) {
+				$scope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
+				$scope.dadosLocal = true;
+				console.log('peguei de localStorage');
+			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
+				$scope.dadosLocal = true;
 				$rootScope.statusUsuario = true;
 				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 				$rootScope.usuario = angular.fromJson(usuarioFirebase);
-				// console.log($rootScope.usuario.uid);
-			}
-			var listaSalva = localStorage.getItem('mensagensSejaGrato');
-			if(listaSalva != null) {
-				$scope.lista = angular.fromJson(listaSalva);
-				$scope.dadosLocal = true;
+				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+				.then(function(mensagens){
+					$scope.lista = mensagens.data;
+					$scope.atualizaListaLocal();
+				},
+				function(erro) {
+					console.log(erro);
+				});
+				console.log('peguei do banco');
 			} else {
-				$scope.dadosLocal = false;
+				$scope.dadosLocal = false;	
 			}
 		}
 
