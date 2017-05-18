@@ -12,6 +12,7 @@ angular.module('sejaGrato').controller('menuController', function($scope, $state
 				$ionicHistory.nextViewOptions({
 					disableBack: true
 				});
+				$rootScope.statusUsuario = false;
 				$state.go('menu.sejaGrato');
 			}
 		});
