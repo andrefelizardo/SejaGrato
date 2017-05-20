@@ -23,55 +23,60 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 			}
 			console.log(error);
 		})
-		.then(function(result) {
-			if(result){
+		.then(function(result){
+			if(result) {
 				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 				$rootScope.usuario = angular.fromJson(usuarioFirebase);
-					// Se tem mensagem em LocalStorage
-					if(!localStorage.getItem('mensagensSejaGrato')) {
-						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
-						.then(function(mensagens){
-							lista = mensagens.data;
-							$scope.atualizaListaLocal();
-							var alertLogado = $ionicPopup.alert({
-								title: 'Conectado',
-								template: 'Sincronizado'
-							});
-							alertLogado.then(function(res){
-								$ionicHistory.nextViewOptions({
-									disableBack: true
-								});
-								$rootScope.statusUsuario = true;
-								$state.go('menu.sejaGrato');
-							});
-						},
-						function(erro) {
-							console.log(erro);
+				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+				.then(function(mensagens){
+					if(localStorage.getItem('mensagensSejaGrato') && mensagens) {
+						var confirmSincronizar = $ionicPopup.confirm({
+							title: 'Você já tem mensagens',
+							template: 'Suas mensagens de gratidão do celular serão substituídas pelas mensagens salvas na sua conta. Beleza?'
 						});
-					} else {
-						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
-						.then(function(mensagens){
-							console.log(lista);
-							// $rootScope.lista.push(mensagens.data);
-							// $scope.atualizaListaLocal();
-							var alertLogado = $ionicPopup.alert({
-								title: 'Conectado',
-								template: 'Sincronizado'
-							});
-							alertLogado.then(function(res){
-								$ionicHistory.nextViewOptions({
-									disableBack: true
+						confirmSincronizar.then(function(resposta) {
+							if(resposta) {
+								localStorage.removeItem('mensagensSejaGrato');
+								$rootScope.lista.splice(0, $rootScope.lista.length);
+								$rootScope.lista = mensagens.data;
+								var listaJson = angular.toJson($rootScope.lista);
+								localStorage.setItem('mensagensSejaGrato', listaJson);
+								var alertLogado = $ionicPopup.alert({
+									title: 'Conectado',
+									template: 'Mensagens sincronizadas'
 								});
-								$rootScope.statusUsuario = true;
-								$state.go('menu.sejaGrato');
+								alertLogado.then(function(res){
+									$ionicHistory.nextViewOptions({
+										disableBack: true
+									});
+									$rootScope.statusUsuario = true;
+									$state.go('menu.sejaGrato');
+								});
+							}
+						});
+					} else if (mensagens) {
+						$rootScope.lista = mensagens.data;
+						var listaJson = angular.toJson($rootScope.lista);
+						localStorage.setItem('mensagensSejaGrato', listaJson);
+						var alertLogado = $ionicPopup.alert({
+							title: 'Conectado',
+							template: 'Mensagens sincronizadas'
+						});
+						alertLogado.then(function(res){
+							$ionicHistory.nextViewOptions({
+								disableBack: true
 							});
-						},
-						function(erro) {
-							console.log(erro);
+							$rootScope.statusUsuario = true;
+							$state.go('menu.sejaGrato');
 						});
 					}
-				}
-			});
+				},
+				function(erro){
+					console.log(erro);
+				});
+			}
+		})
+
 	}
 
 	function atualizaListaLocal() {

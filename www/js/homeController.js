@@ -1,8 +1,7 @@
 angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http){
-	$rootScope.lista = [];
+	// $rootScope.lista = [];
 	$rootScope.usuario = [];
 	$scope.dadosLocal = '';
-	$rootScope.statusUsuario = false;
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
@@ -97,6 +96,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 
 				$scope.dadosLocal = true;
 				$rootScope.lista.texto = '';
+				console.log($rootScope.lista);
 			}
 		}
 
