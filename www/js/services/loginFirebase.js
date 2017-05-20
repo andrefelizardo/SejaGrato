@@ -1,5 +1,5 @@
 angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http, $ionicLoading) {
+	function logar(email, password, lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http, $ionicLoading, $timeout) {
 		$ionicLoading.show({
 			content: 'Carregando dados',
 			animation: 'fade-in',
