@@ -8,7 +8,7 @@
 angular.module('sejaGrato', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider){
-  
+
 
   $sceDelegateProvider.resourceUrlWhitelist([ 'self','*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
@@ -17,6 +17,7 @@ angular.module('sejaGrato', ['ionic', 'app.controllers', 'app.routes', 'app.dire
 .run(function($ionicPlatform, $rootScope) {
   $rootScope.lista = [];
   $rootScope.statusUsuario = false;
+  $rootScope.dadosLocal = '';
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -72,7 +73,7 @@ angular.module('sejaGrato', ['ionic', 'app.controllers', 'app.routes', 'app.dire
         attrs.$observe('hrefInappbrowser', function(val){
           href = val;
         });
-        
+
         element.bind('click', function (event) {
 
           window.open(href, '_system', 'location=yes');

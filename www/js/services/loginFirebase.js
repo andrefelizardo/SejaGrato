@@ -41,6 +41,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 								$rootScope.lista = mensagens.data;
 								var listaJson = angular.toJson($rootScope.lista);
 								localStorage.setItem('mensagensSejaGrato', listaJson);
+								$rootScope.dadosLocal = true;
 								var alertLogado = $ionicPopup.alert({
 									title: 'Conectado',
 									template: 'Mensagens sincronizadas'
@@ -58,6 +59,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 						$rootScope.lista = mensagens.data;
 						var listaJson = angular.toJson($rootScope.lista);
 						localStorage.setItem('mensagensSejaGrato', listaJson);
+						$rootScope.dadosLocal = true;
 						var alertLogado = $ionicPopup.alert({
 							title: 'Conectado',
 							template: 'Mensagens sincronizadas'

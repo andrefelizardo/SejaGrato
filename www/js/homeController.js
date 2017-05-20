@@ -1,7 +1,6 @@
 angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http){
 	// $rootScope.lista = [];
 	$rootScope.usuario = [];
-	$scope.dadosLocal = '';
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
@@ -94,7 +93,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 					});
 				}
 
-				$scope.dadosLocal = true;
+				$rootScope.dadosLocal = true;
 				$rootScope.lista.texto = '';
 				console.log($rootScope.lista);
 			}
@@ -103,10 +102,12 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.pageLoad = function() {
 			if(localStorage.getItem('mensagensSejaGrato')) {
 				$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
-				$scope.dadosLocal = true;
-				console.log('peguei de localStorage');
+				$rootScope.dadosLocal = true;
+				if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
+					$rootScope.statusUsuario = true;
+				}
 			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
-				$scope.dadosLocal = true;
+				$rootScope.dadosLocal = true;
 				$rootScope.statusUsuario = true;
 				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 				$rootScope.usuario = angular.fromJson(usuarioFirebase);
@@ -120,7 +121,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				});
 				console.log('peguei do banco');
 			} else {
-				$scope.dadosLocal = false;	
+				$rootScope.dadosLocal = false;	
 			}
 		}
 
