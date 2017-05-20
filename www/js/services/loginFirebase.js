@@ -1,9 +1,19 @@
 angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http) {
+	function logar(email, password, lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http, $ionicLoading) {
+		$ionicLoading.show({
+			content: 'Carregando dados',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 0
+		});
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.catch(function(error) {
 			var errorCode = error.code;
 			var errorMessage = error.message;
+			$timeout(function(){
+				$ionicLoading.hide();
+			}, 100);
 			if(errorCode === 'auth/wrong-password') {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Erro',
@@ -30,12 +40,18 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
 				.then(function(mensagens){
 					if(localStorage.getItem('mensagensSejaGrato') && mensagens) {
+						$timeout(function(){
+							$ionicLoading.hide();
+						}, 100);
 						var confirmSincronizar = $ionicPopup.confirm({
 							title: 'Você já tem mensagens',
 							template: 'Suas mensagens de gratidão do celular serão substituídas pelas mensagens salvas na sua conta. Beleza?'
 						});
 						confirmSincronizar.then(function(resposta) {
 							if(resposta) {
+								$timeout(function(){
+									$ionicLoading.hide();
+								}, 100);
 								localStorage.removeItem('mensagensSejaGrato');
 								$rootScope.lista.splice(0, $rootScope.lista.length);
 								$rootScope.lista = mensagens.data;
@@ -56,6 +72,9 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 							}
 						});
 					} else if (mensagens) {
+						$timeout(function(){
+							$ionicLoading.hide();
+						}, 100);
 						$rootScope.lista = mensagens.data;
 						var listaJson = angular.toJson($rootScope.lista);
 						localStorage.setItem('mensagensSejaGrato', listaJson);

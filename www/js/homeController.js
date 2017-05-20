@@ -1,9 +1,23 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading){
 	// $rootScope.lista = [];
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+	$scope.entrarLoading = function() {
+		$ionicLoading.show({
+			content: 'Carregando dados',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 0
+		});
+	}
+	$scope.sairLoading = function() {
+		$timeout(function(){
+			$ionicLoading.hide();
+		}, 100);
+	}
 
 	$scope.atualizaListaLocal = function() {
 		var listaJson = angular.toJson($rootScope.lista);
@@ -84,14 +98,14 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
 				$scope.atualizaListaLocal();
 				//salvando no Firebase
-				if($rootScope.statusUsuario){
-					var usuario = $rootScope.usuario.uid;
-					var listaBanco = angular.copy($rootScope.lista);
-					console.log(listaBanco);
-					firebase.database().ref('mensagens/').child(usuario).set({
-						mensagens: listaBanco
-					});
-				}
+				// if($rootScope.statusUsuario){
+				// 	var usuario = $rootScope.usuario.uid;
+				// 	var listaBanco = angular.copy($rootScope.lista);
+				// 	console.log(listaBanco);
+				// 	firebase.database().ref('mensagens/').child(usuario).set({
+				// 		mensagens: listaBanco
+				// 	});
+				// }
 
 				$rootScope.dadosLocal = true;
 				$rootScope.lista.texto = '';
@@ -100,12 +114,14 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		}
 
 		$scope.pageLoad = function() {
+			$scope.entrarLoading();
 			if(localStorage.getItem('mensagensSejaGrato')) {
 				$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 				$rootScope.dadosLocal = true;
 				if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 					$rootScope.statusUsuario = true;
 				}
+				$scope.sairLoading();
 			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
 				$rootScope.dadosLocal = true;
 				$rootScope.statusUsuario = true;
@@ -120,8 +136,11 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 					console.log(erro);
 				});
 				console.log('peguei do banco');
+				$scope.sairLoading();
 			} else {
-				$rootScope.dadosLocal = false;	
+				$rootScope.dadosLocal = false;
+				$scope.sairLoading();	
+
 			}
 		}
 
