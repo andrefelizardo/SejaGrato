@@ -1,5 +1,5 @@
 angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http){
-	$scope.lista = [];
+	$rootScope.lista = [];
 	$rootScope.usuario = [];
 	$scope.dadosLocal = '';
 	$rootScope.statusUsuario = false;
@@ -8,7 +8,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
 	$scope.atualizaListaLocal = function() {
-		var listaJson = angular.toJson($scope.lista);
+		var listaJson = angular.toJson($rootScope.lista);
 		localStorage.setItem('mensagensSejaGrato', listaJson);
 	}
 
@@ -41,14 +41,14 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				return true;
 			},
 			destructiveButtonClicked: function() {
-				var index = $scope.lista.indexOf(mensagem);
+				var index = $rootScope.lista.indexOf(mensagem);
 				var confirmPopup = $ionicPopup.confirm({
 					title: 'Excluir',
 					template: 'Deseja realmente excluir esta mensagem?'
 				});
 				confirmPopup.then(function(resposta) {
 					if(resposta) {
-						$scope.lista.splice(index, 1);
+						$rootScope.lista.splice(index, 1);
 						$scope.atualizaListaLocal();
 					}
 				});
@@ -60,18 +60,18 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.visualizarTexto = function(mensagem) {
 		$scope.openModal();
 		$scope.mensagemSelecionada = mensagem;
-		var index = $scope.lista.indexOf(mensagem);
+		var index = $rootScope.lista.indexOf(mensagem);
 		console.log(mensagem);
 		console.log(index);
 		$scope.editarTexto = function() {
-			$scope.lista[index].texto = $scope.mensagemSelecionada.texto;
+			$rootScope.lista[index].texto = $scope.mensagemSelecionada.texto;
 			$scope.atualizaListaLocal();
 			$scope.modal.hide();
 		}
 	}
 
 	$scope.salvarTexto = function() {
-		if($scope.lista.texto == '' || $scope.lista.texto == undefined) {
+		if($rootScope.lista.texto == '' || $rootScope.lista.texto == undefined) {
 			var alertPopup = $ionicPopup.alert({
 				title: 'Ainda não está grato?',
 				template: 'Deixe um texto dizendo o quanto você está grato.'
@@ -82,13 +82,13 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				var dia = data.getDate();
 				var mes = data.getMonth() + 1;
 				var ano = data.getFullYear();
-				$scope.lista.data = [dia, mes, ano].join('/');
-				$scope.lista.push({texto: $scope.lista.texto, data: $scope.lista.data});
+				$rootScope.lista.data = [dia, mes, ano].join('/');
+				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
 				$scope.atualizaListaLocal();
 				//salvando no Firebase
 				if($rootScope.statusUsuario){
 					var usuario = $rootScope.usuario.uid;
-					var listaBanco = angular.copy($scope.lista);
+					var listaBanco = angular.copy($rootScope.lista);
 					console.log(listaBanco);
 					firebase.database().ref('mensagens/').child(usuario).set({
 						mensagens: listaBanco
@@ -96,13 +96,13 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				}
 
 				$scope.dadosLocal = true;
-				$scope.lista.texto = '';
+				$rootScope.lista.texto = '';
 			}
 		}
 
 		$scope.pageLoad = function() {
 			if(localStorage.getItem('mensagensSejaGrato')) {
-				$scope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
+				$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 				$scope.dadosLocal = true;
 				console.log('peguei de localStorage');
 			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
@@ -112,7 +112,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$rootScope.usuario = angular.fromJson(usuarioFirebase);
 				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
 				.then(function(mensagens){
-					$scope.lista = mensagens.data;
+					$rootScope.lista = mensagens.data;
 					$scope.atualizaListaLocal();
 				},
 				function(erro) {
