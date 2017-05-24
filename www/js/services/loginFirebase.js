@@ -39,11 +39,12 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 				$rootScope.usuario = angular.fromJson(usuarioFirebase);
 				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
 				.then(function(mensagens){
-					if(localStorage.getItem('mensagensSejaGrato') && mensagens) {
+					if(localStorage.getItem('mensagensSejaGrato') && mensagens.data) {
 						var listaBanco = angular.fromJson(mensagens.data);
 						var listaLocal = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 						var listaFinal = listaLocal.concat(listaBanco);
 						$rootScope.lista = listaFinal;
+						listaFinal = angular.toJson(listaFinal);
 						localStorage.setItem('mensagensSejaGrato', listaFinal);
 
 						firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
@@ -66,7 +67,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 							$rootScope.statusUsuario = true;
 							$state.go('menu.sejaGrato');
 						});
-					} else if (mensagens) {
+					} else if (mensagens.data) {
 						$rootScope.lista = mensagens.data;
 						var listaJson = angular.toJson($rootScope.lista);
 						localStorage.setItem('mensagensSejaGrato', listaJson);

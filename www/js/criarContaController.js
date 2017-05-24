@@ -1,4 +1,4 @@
-angular.module('sejaGrato').controller('criarContaController', function($scope, $ionicPopup, $timeout, $ionicLoading, $rootScope, loginService, $state, $ionicHistory) {
+angular.module('sejaGrato').controller('criarContaController', function($scope, $ionicPopup, $timeout, $ionicLoading, $rootScope, loginService, $state, $ionicHistory, $http, $ionicLoading) {
 	$scope.conta = [];
 	$scope.contaLocal = [];
 	$scope.login = loginService.logar;
@@ -55,7 +55,7 @@ angular.module('sejaGrato').controller('criarContaController', function($scope, 
 				$timeout(function(){
 					$ionicLoading.hide();
 				}, 100);
-				$scope.login(email, password);
+				$scope.login(email, password, $rootScope.lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http, $ionicLoading, $timeout);
 				$scope.verificaLogado();
 				var alertSucesso = $ionicPopup.alert({
 					title: 'Conta criada',

@@ -4,6 +4,21 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+
+	$scope.sincronizar = function() {
+		$scope.entrarLoading();
+		// salvando no Firebase
+			if($rootScope.statusUsuario){
+				var usuario = $rootScope.usuario.uid;
+				var listaBanco = angular.copy($rootScope.lista);
+				firebase.database().ref('mensagens/').child(usuario).set({
+					mensagens: listaBanco
+				});
+				$scope.sairLoading();
+			}
+	}
+
+
 	$scope.entrarLoading = function() {
 		$ionicLoading.show({
 			content: 'Carregando dados',
@@ -97,15 +112,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$rootScope.lista.data = [dia, mes, ano].join('/');
 				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
 				$scope.atualizaListaLocal();
-				//salvando no Firebase
-				// if($rootScope.statusUsuario){
-				// 	var usuario = $rootScope.usuario.uid;
-				// 	var listaBanco = angular.copy($rootScope.lista);
-				// 	console.log(listaBanco);
-				// 	firebase.database().ref('mensagens/').child(usuario).set({
-				// 		mensagens: listaBanco
-				// 	});
-				// }
 
 				$rootScope.dadosLocal = true;
 				$rootScope.lista.texto = '';
