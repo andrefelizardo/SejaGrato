@@ -38,3 +38,19 @@ body {
 .listaTransparente .icon-accessory {
 	color: #fff;
 }
+.tutorial .logo {
+	height: 25px;
+	margin: 1em;
+}
+.tutorial .slide1 {
+	background: #27afb7;
+}
+.tutorial .slide2 {
+	background: #f55b5c;
+}
+.tutorial .slide3 {
+	background: #3498db;
+}
+.tutorial .slide4 {
+	background: #3fb34f;
+}

@@ -1,21 +1,28 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout){
-	// $rootScope.lista = [];
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
+	$scope.options = {
+		loop: false,
+		effect: 'fade',
+		speed: 500,
+	}
+
 	$scope.sincronizar = function() {
-		$scope.entrarLoading();
+		var alertPopup = $ionicPopup.alert({
+			title: 'Salvando',
+			template: 'Suas mensagens já estão sendo salvas na nuvem.'
+		});
 		// salvando no Firebase
-			if($rootScope.statusUsuario){
-				var usuario = $rootScope.usuario.uid;
-				var listaBanco = angular.copy($rootScope.lista);
-				firebase.database().ref('mensagens/').child(usuario).set({
-					mensagens: listaBanco
-				});
-				$scope.sairLoading();
-			}
+		if($rootScope.statusUsuario){
+			var usuario = $rootScope.usuario.uid;
+			var listaBanco = angular.copy($rootScope.lista);
+			firebase.database().ref('mensagens/').child(usuario).set({
+				mensagens: listaBanco
+			});
+		}
 	}
 
 
@@ -126,6 +133,8 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$rootScope.dadosLocal = true;
 				if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 					$rootScope.statusUsuario = true;
+					var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
+					$rootScope.usuario = angular.fromJson(usuarioFirebase);
 				}
 				$scope.sairLoading();
 			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){

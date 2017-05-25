@@ -20,6 +20,11 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('tutorial', {
+    url: '/tutorial',
+    templateUrl: 'templates/tutorial.html'
+  })
+
   .state('menu.sobre', {
     url: '/sobre',
     views: {
@@ -54,7 +59,11 @@ angular.module('app.routes', [])
     controller: 'menuCtrl'
   })
 
-  $urlRouterProvider.otherwise('/side-menu21/home')
+  if(localStorage.getItem('mensagensSejaGrato')) {
+    $urlRouterProvider.otherwise('/side-menu21/home')
+  } else {
+    $urlRouterProvider.otherwise('/tutorial')
+  }
 
   
 
