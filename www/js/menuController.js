@@ -4,7 +4,7 @@ angular.module('sejaGrato').controller('menuController', function($scope, $state
 	$scope.sair = function() {
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Sair',
-			template: 'Deseja realmente desconectar da sua conta?'
+			template: 'Deseja realmente desconectar de ' + $rootScope.usuario.email + ' ?'
 		});
 		confirmPopup.then(function(resposta) {
 			if(resposta) {

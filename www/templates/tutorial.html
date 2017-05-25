@@ -1,25 +1,28 @@
-<ion-view hide-nav-bar="true">
-<ion-content scroll="false">
-  <ion-slides  options="options" slider="data.slider" class="tutorial">
-    <ion-slide-page class="slide1">
-      <div class="box">
+<ion-view hide-nav-bar="true" ng-controller="tutorialController">
+  <ion-content scroll="false">
+    <ion-slides  options="options" slider="data.slider" class="tutorial">
+      <ion-slide-page class="slide1">
         <img src="img/seja-grato_logo.png" class="logo">
-        <!-- <span>Próximo</span> -->
-      </div>
-    </ion-slide-page>
-    <ion-slide-page class="slide2">
+        <div class="box">
+          <h1>Bem-vindo ao Seja Grato!</h1>
+          <h3>O seu diário de gratidão</h3>
+        </div>
+        <button class="botaoProximo button button-icon icon ion-chevron-right" ng-click="proximoSlide()"></button>
+      </ion-slide-page>
+<!--       <ion-slide-page class="slide2">
+       <img src="img/seja-grato_logo.png" class="logo">
+       <div class="box">
+       </div>
+     </ion-slide-page> -->
+     <ion-slide-page class="slide3">
+       <img src="img/seja-grato_logo.png" class="logo">
+       <div class="box">
+       </div>
+     </ion-slide-page>
+     <ion-slide-page class="slide4">
+      <img src="img/seja-grato_logo.png" class="logo">
       <div class="box">
-         <img src="img/seja-grato_logo.png" class="logo">
-      </div>
-    </ion-slide-page>
-    <ion-slide-page class="slide3">
-      <div class="box">
-         <img src="img/seja-grato_logo.png" class="logo">
-      </div>
-    </ion-slide-page>
-    <ion-slide-page class="slide4">
-      <div class="box">
-        <img src="img/seja-grato_logo.png" class="logo">
+        <span ng-click="sairSlide()">Ir para o App</span>
       </div>
     </ion-slide-page>
   </ion-slides>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "748225522023",
+    "firebase_url": "https://seja-grato.firebaseio.com",
+    "project_id": "seja-grato",
+    "storage_bucket": "seja-grato.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748225522023:android:c862255894d8b476",
+        "android_client_info": {
+          "package_name": "com.ionicframework.sejagrato715852"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748225522023-ldq6ebb50ngte6ii366eo01kfd65ve9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCz9kNWpVJNENZ0MKlzJ5ai3YIkiO71lw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

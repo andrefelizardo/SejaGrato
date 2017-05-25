@@ -38,12 +38,25 @@ body {
 .listaTransparente .icon-accessory {
 	color: #fff;
 }
+.tutorial {
+	text-align: center;
+}
 .tutorial .logo {
 	height: 25px;
-	margin: 1em;
+	margin: 1.5em;
+}
+.tutorial .box {
+	margin-top:45%;
+	color:#1a1a1a;
+}
+.tutorial .botaoProximo {
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
 }
 .tutorial .slide1 {
-	background: #27afb7;
+	background: url(/img/tutorial-01.png) center center no-repeat;
+	background-size: cover;
 }
 .tutorial .slide2 {
 	background: #f55b5c;
