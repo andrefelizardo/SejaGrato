@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.sejagrato715852" version="0.14.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Seja Grato</name>
-    <description>Uma forma de ficarmos gratos com os acontecimentos do dia-a-dia</description>
+    <description>Uma forma simples de ficar mais feliz a cada dia</description>
     <author email="contato@andrefelizardo.com.br" href="http://www.andrefelizardo.com.br">André Felizardo</author>
     <content src="index.html" />
     <access origin="*" />
