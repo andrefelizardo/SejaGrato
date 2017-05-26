@@ -38,6 +38,13 @@ body {
 .listaTransparente .icon-accessory {
 	color: #fff;
 }
+.scroll-refresher .ionic-refresher-content {
+	color: #fff;
+}
+.scroll-refresher .spinner {
+	fill:#fff;
+	stroke: #fff;
+}
 .tutorial {
 	text-align: center;
 	height: 100%;

@@ -4,6 +4,11 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
+	$scope.onRefresh = function() {
+		console.warn('Puxei pra baixo');
+		$scope.$broadcast('scroll.refreshComplete');
+	}
+
 	$scope.registerPush = function() {
 		$ionicPush.register().then(function(t) {
 			return $ionicPush.saveToken(t);
@@ -24,17 +29,20 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	// }
 
 	$scope.sincronizar = function() {
-		var alertPopup = $ionicPopup.alert({
-			title: 'Salvando',
-			template: 'Suas mensagens já estão sendo salvas na nuvem.'
-		});
+		// var alertPopup = $ionicPopup.alert({
+		// 	title: 'Salvando',
+		// 	template: 'Suas mensagens já estão sendo salvas na nuvem.'
+		// });
 		// salvando no Firebase
 		if($rootScope.statusUsuario){
 			var usuario = $rootScope.usuario.uid;
 			var listaBanco = angular.copy($rootScope.lista);
 			firebase.database().ref('mensagens/').child(usuario).set({
 				mensagens: listaBanco
-			});
+			})
+			.then(function(){
+				$scope.$broadcast('scroll.refreshComplete');
+			})
 		}
 	}
 
