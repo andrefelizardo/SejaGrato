@@ -40,14 +40,16 @@ body {
 }
 .tutorial {
 	text-align: center;
+	height: 100%;
 }
 .tutorial .logo {
-	height: 25px;
+	height: 50px;
 	margin: 1.5em;
 }
 .tutorial .box {
-	margin-top:45%;
+	margin-top:25%;
 	color:#1a1a1a;
+	padding: 0 1em;
 }
 .tutorial .botaoProximo {
 	position: absolute;
@@ -59,11 +61,10 @@ body {
 	background-size: cover;
 }
 .tutorial .slide2 {
-	background: #f55b5c;
+	background: url(/img/tutorial-02.png) center center no-repeat;
+	background-size: cover;
 }
 .tutorial .slide3 {
-	background: #3498db;
-}
-.tutorial .slide4 {
-	background: #3fb34f;
+	background: url(/img/tutorial-03.png) center center no-repeat;
+	background-size: cover;
 }

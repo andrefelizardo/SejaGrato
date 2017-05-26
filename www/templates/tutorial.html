@@ -1,4 +1,4 @@
-<ion-view hide-nav-bar="true" ng-controller="tutorialController">
+<!-- <ion-view hide-nav-bar="true" ng-controller="tutorialController">
   <ion-content scroll="false">
     <ion-slides  options="options" slider="data.slider" class="tutorial">
       <ion-slide-page class="slide1">
@@ -9,11 +9,11 @@
         </div>
         <button class="botaoProximo button button-icon icon ion-chevron-right" ng-click="proximoSlide()"></button>
       </ion-slide-page>
-<!--       <ion-slide-page class="slide2">
+      <ion-slide-page class="slide2">
        <img src="img/seja-grato_logo.png" class="logo">
        <div class="box">
        </div>
-     </ion-slide-page> -->
+     </ion-slide-page>
      <ion-slide-page class="slide3">
        <img src="img/seja-grato_logo.png" class="logo">
        <div class="box">
@@ -28,3 +28,34 @@
   </ion-slides>
 </ion-content>
 </ion-view>
+ -->
+ <ion-view hide-nav-bar="true" ng-controller="tutorialController">
+ <ion-content scroll="false">
+  <ion-slide-box class="tutorial">
+    <ion-slide class="slide1">
+        <img src="img/seja-grato_logo.png" class="logo">
+        <div class="box" padding="true">
+          <h1>Bem-vindo ao Seja Grato!</h1>
+          <h3>O seu diário de gratidão</h3>
+        </div>
+        <button class="botaoProximo button button-icon icon ion-chevron-right" ng-click="proximoSlide()"></button>
+    </ion-slide>
+    <ion-slide class="slide2">
+        <img src="img/seja-grato_logo.png" class="logo">
+        <div class="box" padding="true">
+          <h4 style="margin-bottom: 40px;">Você quer ser mais feliz? Crie o hábito de ser grato por <strong>qualquer coisa!</strong></h4>
+          <h5>Você sabia que as funções cerebrais de uma pessoa com depressão não se parece em nada com o cérebro de uma pessoa que pratica gratidão?</h5>
+        </div>
+        <button class="botaoProximo button button-icon icon ion-chevron-right" ng-click="proximoSlide()"></button>
+    </ion-slide>
+    <ion-slide class="slide3">
+        <img src="img/seja-grato_logo.png" class="logo">
+        <div class="box">
+          <h4 style="margin-bottom: 20px;">Venha com a gente nesse desafio diário. Use o app para celebrar qualquer coisa que tenha te deixado feliz no dia de hoje.</h4>
+          <h5>Chegou no horário no trabalho? Descobriu um restaurante novo? Achou R$ 5 no bolso do casaco? Seu time ganhou? Você tem muito a ser grato todo dia! Que tal começar agora?</h4>
+        </div>
+        <button class="botaoProximo button" ng-click="sairSlide()">Começar!</button>
+    </ion-slide>
+  </ion-slide-box>
+  </ion-content>
+ </ion-view>
