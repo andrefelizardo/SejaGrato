@@ -1,14 +1,27 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
-	$scope.options = {
-		loop: false,
-		effect: 'fade',
-		speed: 500,
+	$scope.registerPush = function() {
+		$ionicPush.register().then(function(t) {
+			return $ionicPush.saveToken(t);
+		}).then(function(t) {
+			console.log('Token saved:', t.token);
+		});
 	}
+
+	$scope.$on('cloud:push:notification', function(event, data) {
+		var msg = data.message;
+		alert(msg.title + ': ' + msg.text);
+	});	
+
+	// $scope.options = {
+	// 	loop: false,
+	// 	effect: 'fade',
+	// 	speed: 500,
+	// }
 
 	$scope.sincronizar = function() {
 		var alertPopup = $ionicPopup.alert({
@@ -157,6 +170,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.sairLoading();	
 
 			}
+			$scope.registerPush();
 		}
 
 		$scope.pageLoad();

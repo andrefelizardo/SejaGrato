@@ -57,14 +57,14 @@ body {
 	right: 20px;
 }
 .tutorial .slide1 {
-	background: url(/img/tutorial-01.png) center center no-repeat;
+	background: url('../img/tutorial-01.png') center center no-repeat;
 	background-size: cover;
 }
 .tutorial .slide2 {
-	background: url(/img/tutorial-02.png) center center no-repeat;
+	background: url('../img/tutorial-02.png') center center no-repeat;
 	background-size: cover;
 }
 .tutorial .slide3 {
-	background: url(/img/tutorial-03.png) center center no-repeat;
+	background: url('../img/tutorial-03.png') center center no-repeat;
 	background-size: cover;
 }

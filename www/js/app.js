@@ -5,10 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sejaGrato', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('sejaGrato', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
-.config(function($ionicConfigProvider, $sceDelegateProvider){
+.config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
 
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "4300131d"
+    },
+    "push": {
+      "sender_id": "748225522023",
+      "pluginConfig": {
+        "android": {
+          "iconColor": "#ff8441"
+        }
+      }
+    }
+  });
 
   $sceDelegateProvider.resourceUrlWhitelist([ 'self','*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
