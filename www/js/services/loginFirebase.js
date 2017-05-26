@@ -91,7 +91,24 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 						firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
 							mensagens: listaLocalJson
 						});
+						$timeout(function(){
+							$ionicLoading.hide();
+						}, 100);
+						var alertLogado = $ionicPopup.alert({
+							title: 'Conectado',
+							template: 'Mensagens sincronizadas'
+						});
+						alertLogado.then(function(res){
+							$ionicHistory.nextViewOptions({
+								disableBack: true
+							});
+							$rootScope.statusUsuario = true;
+							$state.go('menu.sejaGrato');
+						});
 					}
+
+
+
 				},
 				function(erro){
 					console.log(erro);
