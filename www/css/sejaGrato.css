@@ -1,3 +1,18 @@
+.bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before {
+	font-size: 40px;
+}
+textarea::-moz-placeholder {
+	font-size: 110%;
+}
+textarea:-ms-input-placeholder {
+	font-size: 110%;
+}
+textarea::-webkit-input-placeholder {
+	font-size: 110%;
+}
+.side-menu-left ion-item {
+    font-size: 110%;
+}
 .pull-left {
 	float: left;
 }
