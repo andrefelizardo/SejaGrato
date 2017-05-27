@@ -1,14 +1,15 @@
- <ion-view hide-nav-bar="true" ng-controller="tutorialController">
- <ion-content scroll="false">
-  <ion-slide-box class="tutorial">
-    <ion-slide class="slide3">
-        <img src="img/seja-grato_logo.png" class="logo">
-        <div class="box">
-          <h4 style="margin-bottom: 20px;">Venha com a gente nesse desafio diário. Use o app para celebrar qualquer coisa que tenha te deixado feliz no dia de hoje.</h4>
-          <h5>Chegou no horário no trabalho? Descobriu um restaurante novo? Achou R$ 5 no bolso do casaco? Seu time ganhou? Você tem muito a ser grato todo dia! Que tal começar agora?</h4>
+ <ion-view hide-nav-bar="true" ng-controller="tutorialLoginController">
+ <ion-content scroll="false" class="tutorialContent">
+  <div class="tutorialLogin tutorial">
+    <div>
+        <!-- <img src="img/seja-grato_logo.png" class="logo"> -->
+        <div class="box" style="margin-top:20%;">
+          <h3>Excelente!</h3>
+          <h4 style="margin: 1.5em 0 2em;">Agora sempre que você quiser, poderá salvar suas mensagens de gratidão na nuvem. Com isso você pode até trocar de celular, que vai ter continuar com suas lembranças guardadas!</h4>
+          <img src="img/pullToRefresh.gif" style="width: 70%">
         </div>
-        <button class="botaoProximo button" ng-click="sairSlide()">Começar!</button>
-    </ion-slide>
-  </ion-slide-box>
+        <button class="botaoProximo button button-icon icon ion-android-arrow-forward" ng-click="home()"></button>
+    </div>
+  </div>
   </ion-content>
  </ion-view>

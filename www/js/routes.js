@@ -25,6 +25,11 @@ angular.module('app.routes', [])
     templateUrl: 'templates/tutorial.html'
   })
 
+  .state('tutorial-sync', {
+    url: '/tutorial-sync',
+    templateUrl: 'templates/tutorialLogin.html'
+  })
+
   .state('menu.sobre', {
     url: '/sobre',
     views: {

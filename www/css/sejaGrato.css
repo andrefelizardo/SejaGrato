@@ -75,3 +75,9 @@ body {
 	background: url('../img/tutorial-03.png') center center no-repeat;
 	background-size: cover;
 }
+.tutorialContent {
+	background: #50a7f9;
+}
+.tutorialLogin * {
+	color: #1a1a1a;
+}

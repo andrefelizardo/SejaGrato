@@ -65,7 +65,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 								disableBack: true
 							});
 							$rootScope.statusUsuario = true;
-							$state.go('menu.sejaGrato');
+							$state.go('tutorial-sync');
 						});
 					} else if (mensagens.data) {
 						$rootScope.lista = mensagens.data;
@@ -84,7 +84,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 								disableBack: true
 							});
 							$rootScope.statusUsuario = true;
-							$state.go('menu.sejaGrato');
+							$state.go('tutorial-sync');
 						});
 					} else if(localStorage.getItem('mensagensSejaGrato')) {
 						var listaLocalJson = angular.toJson($rootScope.lista);
@@ -103,7 +103,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 								disableBack: true
 							});
 							$rootScope.statusUsuario = true;
-							$state.go('menu.sejaGrato');
+							$state.go('tutorial-sync');
 						});
 					}
 
