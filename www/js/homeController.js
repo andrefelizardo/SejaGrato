@@ -1,32 +1,31 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $ionicListDelegate){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+
+	$scope.hideButtonsOptions = function() {
+		$ionicListDelegate.closeOptionButtons();
+	}
 
 	$scope.onRefresh = function() {
 		console.warn('Puxei pra baixo');
 		$scope.$broadcast('scroll.refreshComplete');
 	}
 
-	$scope.registerPush = function() {
-		$ionicPush.register().then(function(t) {
-			return $ionicPush.saveToken(t);
-		}).then(function(t) {
-			console.log('Token saved:', t.token);
-		});
-	}
-
-	$scope.$on('cloud:push:notification', function(event, data) {
-		var msg = data.message;
-		alert(msg.title + ': ' + msg.text);
-	});	
-
-	// $scope.options = {
-	// 	loop: false,
-	// 	effect: 'fade',
-	// 	speed: 500,
+	// $scope.registerPush = function() {
+	// 	$ionicPush.register().then(function(t) {
+	// 		return $ionicPush.saveToken(t);
+	// 	}).then(function(t) {
+	// 		console.log('Token saved:', t.token);
+	// 	});
 	// }
+
+	// $scope.$on('cloud:push:notification', function(event, data) {
+	// 	var msg = data.message;
+	// 	alert(msg.title + ': ' + msg.text);
+	// });	
+
 
 	$scope.sincronizar = function() {
 		// var alertPopup = $ionicPopup.alert({
@@ -80,39 +79,40 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.modal.hide();
 	}
 
-	$scope.showOpcoes = function(mensagem) {
-		$ionicActionSheet.show({
-			titleText: 'Opções da Mensagem',
-			buttons: [
-			{ text: 'Editar' },
-			],
-			destructiveText: 'Excluir',
-			cancelText: 'Cancelar',
-			cancel: function() {
-				console.log('Cancelado');
-			},
-			buttonClicked: function(index) {
-				$scope.visualizarTexto(mensagem);
-				return true;
-			},
-			destructiveButtonClicked: function() {
-				var index = $rootScope.lista.indexOf(mensagem);
-				var confirmPopup = $ionicPopup.confirm({
-					title: 'Excluir',
-					template: 'Deseja realmente excluir esta mensagem?'
-				});
-				confirmPopup.then(function(resposta) {
-					if(resposta) {
-						$rootScope.lista.splice(index, 1);
-						$scope.atualizaListaLocal();
-					}
-				});
-				return true;
-			}
-		});
-	}
+	// $scope.showOpcoes = function(mensagem) {
+	// 	$ionicActionSheet.show({
+	// 		titleText: 'Opções da Mensagem',
+	// 		buttons: [
+	// 		{ text: 'Editar' },
+	// 		],
+	// 		destructiveText: 'Excluir',
+	// 		cancelText: 'Cancelar',
+	// 		cancel: function() {
+	// 			console.log('Cancelado');
+	// 		},
+	// 		buttonClicked: function(index) {
+	// 			$scope.visualizarTexto(mensagem);
+	// 			return true;
+	// 		},
+	// 		destructiveButtonClicked: function() {
+	// 			var index = $rootScope.lista.indexOf(mensagem);
+	// 			var confirmPopup = $ionicPopup.confirm({
+	// 				title: 'Excluir',
+	// 				template: 'Deseja realmente excluir esta mensagem?'
+	// 			});
+	// 			confirmPopup.then(function(resposta) {
+	// 				if(resposta) {
+	// 					$rootScope.lista.splice(index, 1);
+	// 					$scope.atualizaListaLocal();
+	// 				}
+	// 			});
+	// 			return true;
+	// 		}
+	// 	});
+	// }
 
 	$scope.visualizarTexto = function(mensagem) {
+		$scope.hideButtonsOptions();
 		$scope.openModal();
 		$scope.mensagemSelecionada = mensagem;
 		var index = $rootScope.lista.indexOf(mensagem);
@@ -125,7 +125,24 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		}
 	}
 
+	$scope.excluirTexto = function(mensagem) {
+		$scope.hideButtonsOptions();
+		var index = $rootScope.lista.indexOf(mensagem);
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Excluir',
+			template: 'Deseja realmente excluir esta mensagem (' + mensagem.texto + ') ?'
+		});
+		confirmPopup.then(function(resposta) {
+			if(resposta) {
+				$rootScope.lista.splice(index, 1);
+				$scope.atualizaListaLocal();
+			}
+		});
+		return true;
+	}
+
 	$scope.salvarTexto = function() {
+		$scope.hideButtonsOptions();
 		if($rootScope.lista.texto == '' || $rootScope.lista.texto == undefined) {
 			var alertPopup = $ionicPopup.alert({
 				title: 'Ainda não está grato?',
@@ -178,7 +195,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.sairLoading();	
 
 			}
-			$scope.registerPush();
 		}
 
 		$scope.pageLoad();
