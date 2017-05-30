@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sejaGrato', ['ionic', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
 
@@ -32,33 +32,17 @@ angular.module('sejaGrato', ['ionic', 'ionic.cloud', 'app.controllers', 'app.rou
   $rootScope.statusUsuario = false;
   $rootScope.dadosLocal = '';
   $ionicPlatform.ready(function() {
-    
-    // var push = PushNotification.init({
-    //   android: {
-    //     senderID: '748225522023'
-    //   }
-    // });
 
+    var notificationOpenedCallback = function(jsonData) {
+      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      alert(JSON.stringify(jsonData));
+    };
 
-    // push.on('registration', function(data) {
-    //   //data.registrationId
-    // });
+    window.plugins.OneSignal
+    .startInit("e42d444b-75b3-4cd0-bd7e-4150580f400b")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
 
-    // push.on('notification', function(data) {
-    //   // data.message
-    //   // data.title,
-    //   // data.count
-    //   // data.sound
-    //   // data.image
-    //   // data.additionalData
-    // });
-
-    // push.on('error', function(e) {
-    //   // e.message
-    // });
-
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);

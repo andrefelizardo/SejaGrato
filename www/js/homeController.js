@@ -1,13 +1,33 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
-	$scope.onRefresh = function() {
-		console.warn('Puxei pra baixo');
-		$scope.$broadcast('scroll.refreshComplete');
+	$scope.notificacaoRapida = function() {
+		var now = new Date();
+		var seconds = now.setSeconds(now.getSeconds() +100);
+
+		$cordovaLocalNotification.schedule({
+			id: '1',
+			data: seconds,
+			message: 'Agendado a 10 segundos',
+			title: 'Local Notification!'
+		}).then(function() {
+			console.log('Agendada');
+		});
 	}
+
+	$scope.isScheduled = function(id) {
+		$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
+			alert("Notification "+id+" Scheduled: " + isScheduled);
+		});
+	}
+
+	// $scope.onRefresh = function() {
+	// 	console.warn('Puxei pra baixo');
+	// 	$scope.$broadcast('scroll.refreshComplete');
+	// }
 
 	$scope.registerPush = function() {
 		$ionicPush.register().then(function(t) {
@@ -17,10 +37,10 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		});
 	}
 
-	$scope.$on('cloud:push:notification', function(event, data) {
-		var msg = data.message;
-		alert(msg.title + ': ' + msg.text);
-	});	
+	// $scope.$on('cloud:push:notification', function(event, data) {
+	// 	var msg = data.message;
+	// 	alert(msg.title + ': ' + msg.text);
+	// });	
 
 	// $scope.options = {
 	// 	loop: false,
