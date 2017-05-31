@@ -1,50 +1,48 @@
 <ion-view title="Seja Grato!" id="page1" ng-controller="HomeController">
 <ion-nav-buttons side="right" class="has-header">
-<button class="button icon ion-loop" ng-click="notificacaoRapida()"></button>
+<!-- <button class="button icon ion-loop" ng-click="notificacaoRapida()"></button> -->
 <!-- <button class="button icon ion-camera"></button> -->
 <!-- Botão de câmera -->
 </ion-nav-buttons>
-<ion-content class="has-header" ng-click="hideButtonsOptions()">
+<ion-content class="has-header" ng-click="hideButtonsOptions()" class="contentPrincipal">
 <ion-refresher pulling-text="Sincronizando Mensagens" on-refresh="sincronizar()" ng-if="$root.statusUsuario">
 </ion-refresher>
-  <form id="sejaGrato-form1" class="list padding" name='sejaGratoForm'>
-    <div class="spacer" style="height: 25px;"></div>
-    <label class="item item-input" id="sejaGrato-input1">
-    <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" rows="2" style="resize: none;" required></textarea>
-    </label>
-  </form>
-  <div class="padding"> 
-    <button id="sejaGrato-button1" class="fontcolor1 button button-light  button-block button-outline" ng-click="salvarTexto()">Sim, estou grato!</button>
-  </div>
+<form id="sejaGrato-form1" class="list padding" name='sejaGratoForm'>
   <div class="spacer" style="height: 25px;"></div>
-  <!-- Exibir essa parada aqui, só quando não tiver itens no repeat -->
-  <div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" ng-show="!dadosLocal">
-    <p style="color:#FFFFFF;font-size:16px; padding: 0 1em;"><em>{{motivacao[0].frase}}</em></p>
-    <span style="color:#FFFFFF;">{{motivacao[0].autor}}</span>
-    <div class="spacer" style="height: 25px;"></div>
-  </div>
-  <!-- Modal -->
-  <script id="templates/modalTextoGratidao.html" type="text/ng-template">
-    <ion-modal-view class="bgcolor1 fontcolor1">
-      <ion-header-bar class="bar-energized">
-      <button class="button" ng-click="modal.hide()">
-        <i class="icon ion-android-arrow-back"></i>
-      </button>
-      <h1 class="title title-center">Editar Mensagem</h1>
-      <button class="button button-clear button-primary" ng-click="editarTexto()">Salvar</button>
-      </ion-header-bar>
-      <ion-content class="padding">
-      <textarea style="resize: none;background: transparent;color: #fff;font-size: 1em;width: 100%;" rows="35"required ng-model="mensagemSelecionada.texto"></textarea>
-      </ion-content>
-    </ion-modal-view>
-  </script>
-  <!-- Colocar um ng-repeat aqui -->
-  <ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista | orderBy:data:true">
-  <ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem)">
-    <span>{{mensagem.texto}}</span>
-    <span class="data">{{mensagem.data}}</span>
-    <ion-option-button class="button-assertive" ng-click="excluirTexto(mensagem)"><span class="ion-trash-b" style="font-size:130%;"></span></ion-option-button>
-  </ion-item>
-  </ion-list>
+  <label class="item item-input bgcolor1 no-border" id="sejaGrato-input1">
+    <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" class="bgcolor1 fontcolor1 text-center font-bold no-border" rows="2" style="resize: none; font-size: 120%;" required></textarea>
+  </label>
+</form>
+<button id="sejaGrato-button1" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="salvarTexto()">Sim, estou grato!</button>
+<div class="spacer" style="height: 25px;"></div>
+<!-- Exibir essa parada aqui, só quando não tiver itens no repeat -->
+<div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" ng-show="!dadosLocal">
+  <p style="color:#FFFFFF;font-size:16px; padding: 0 1em;"><em>{{motivacao[0].frase}}</em></p>
+  <span style="color:#FFFFFF;">{{motivacao[0].autor}}</span>
+  <div class="spacer" style="height: 25px;"></div>
+</div>
+<!-- Modal -->
+<script id="templates/modalTextoGratidao.html" type="text/ng-template">
+  <ion-modal-view class="bgcolor1 fontcolor1">
+  <ion-header-bar class="bar-energized">
+  <button class="button" ng-click="modal.hide()">
+    <i class="icon ion-android-arrow-back"></i>
+  </button>
+  <h1 class="title title-center">Editar Mensagem</h1>
+  <button class="button button-clear button-primary" ng-click="editarTexto()">Salvar</button>
+</ion-header-bar>
+<ion-content class="padding">
+<textarea style="resize: none;background: transparent;color: #fff;font-size: 1em;width: 100%;" rows="35"required ng-model="mensagemSelecionada.texto"></textarea>
+</ion-content>
+</ion-modal-view>
+</script>
+<!-- Colocar um ng-repeat aqui -->
+<ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista | orderBy:data:true">
+<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem)">
+<span>{{mensagem.texto}}</span>
+<span class="data">{{mensagem.data}}</span>
+<ion-option-button class="button-assertive" ng-click="excluirTexto(mensagem)"><span class="ion-trash-b" style="font-size:130%;"></span></ion-option-button>
+</ion-item>
+</ion-list>
 </ion-content>
 </ion-view>

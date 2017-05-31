@@ -1,23 +1,18 @@
-<<<<<<< HEAD
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification){
-=======
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $ionicListDelegate){
->>>>>>> 0b4037b81be758a2326ba93e1d760c877b27540f
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
-<<<<<<< HEAD
 	$scope.notificacaoRapida = function() {
 		var now = new Date();
-		var seconds = now.setSeconds(now.getSeconds() +100);
+		var seconds = now.setSeconds(now.getSeconds() + 30);
 
 		$cordovaLocalNotification.schedule({
 			id: '1',
 			data: seconds,
-			message: 'Agendado a 10 segundos',
-			title: 'Local Notification!'
+			message: 'Agendado a 30 segundos',
+			title: 'Notificação Local Braba!'
 		}).then(function() {
 			console.log('Agendada');
 		});
@@ -29,48 +24,12 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		});
 	}
 
-	// $scope.onRefresh = function() {
-	// 	console.warn('Puxei pra baixo');
-	// 	$scope.$broadcast('scroll.refreshComplete');
-	// }
-
-	$scope.registerPush = function() {
-		$ionicPush.register().then(function(t) {
-			return $ionicPush.saveToken(t);
-		}).then(function(t) {
-			console.log('Token saved:', t.token);
-		});
-	}
-=======
 	$scope.hideButtonsOptions = function() {
 		$ionicListDelegate.closeOptionButtons();
 	}
 
-	$scope.onRefresh = function() {
-		console.warn('Puxei pra baixo');
-		$scope.$broadcast('scroll.refreshComplete');
-	}
-
-	// $scope.registerPush = function() {
-	// 	$ionicPush.register().then(function(t) {
-	// 		return $ionicPush.saveToken(t);
-	// 	}).then(function(t) {
-	// 		console.log('Token saved:', t.token);
-	// 	});
-	// }
->>>>>>> 0b4037b81be758a2326ba93e1d760c877b27540f
-
-	// $scope.$on('cloud:push:notification', function(event, data) {
-	// 	var msg = data.message;
-	// 	alert(msg.title + ': ' + msg.text);
-	// });	
-
 
 	$scope.sincronizar = function() {
-		// var alertPopup = $ionicPopup.alert({
-		// 	title: 'Salvando',
-		// 	template: 'Suas mensagens já estão sendo salvas na nuvem.'
-		// });
 		// salvando no Firebase
 		if($rootScope.statusUsuario){
 			var usuario = $rootScope.usuario.uid;
@@ -117,38 +76,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	}
-
-	// $scope.showOpcoes = function(mensagem) {
-	// 	$ionicActionSheet.show({
-	// 		titleText: 'Opções da Mensagem',
-	// 		buttons: [
-	// 		{ text: 'Editar' },
-	// 		],
-	// 		destructiveText: 'Excluir',
-	// 		cancelText: 'Cancelar',
-	// 		cancel: function() {
-	// 			console.log('Cancelado');
-	// 		},
-	// 		buttonClicked: function(index) {
-	// 			$scope.visualizarTexto(mensagem);
-	// 			return true;
-	// 		},
-	// 		destructiveButtonClicked: function() {
-	// 			var index = $rootScope.lista.indexOf(mensagem);
-	// 			var confirmPopup = $ionicPopup.confirm({
-	// 				title: 'Excluir',
-	// 				template: 'Deseja realmente excluir esta mensagem?'
-	// 			});
-	// 			confirmPopup.then(function(resposta) {
-	// 				if(resposta) {
-	// 					$rootScope.lista.splice(index, 1);
-	// 					$scope.atualizaListaLocal();
-	// 				}
-	// 			});
-	// 			return true;
-	// 		}
-	// 	});
-	// }
 
 	$scope.visualizarTexto = function(mensagem) {
 		$scope.hideButtonsOptions();

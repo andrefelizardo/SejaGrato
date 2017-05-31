@@ -1,17 +1,44 @@
 .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before {
 	font-size: 40px;
 }
+ion-header-bar.bar.bar-energized {
+	background: #fff!important;
+	border-bottom: 1px solid;
+}
+ion-header-bar.bar.bar-energized .title {
+	color: #FF8441!important;
+}
+ion-header-bar.bar-energized .button.button-clear {
+	color: #5588ee;
+}
+#page1 .scroll-content {
+	background: url('../img/tela-inicial-white.png') center center no-repeat;
+	background-size: cover;
+}
+.buttonCustom {
+	border-radius: 0;
+	background-color: #5588ee;
+}
 textarea::-moz-placeholder {
-	font-size: 110%;
+	/* font-size: 125%; */
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
 }
 textarea:-ms-input-placeholder {
-	font-size: 110%;
+	/* font-size: 125%; */
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
 }
 textarea::-webkit-input-placeholder {
-	font-size: 110%;
+	/* font-size: 125%; */
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
 }
 .side-menu-left ion-item {
-    font-size: 110%;
+	font-size: 110%;
 }
 .pull-left {
 	float: left;
@@ -29,6 +56,9 @@ textarea::-webkit-input-placeholder {
 body {
 	font-size: 1em;
 }
+.font-bold {
+	font-weight: bold;
+}
 .fontcolor1 {
 	color: #fff!important;
 }
@@ -37,6 +67,12 @@ body {
 }
 .text-center {
 	text-align: center;
+}
+.text-uppercase {
+	text-transform: uppercase;
+}
+.no-border {
+	border: none;
 }
 .item.listaTransparente {
 	background: transparent;
