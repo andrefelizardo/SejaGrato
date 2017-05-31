@@ -1,0 +1,382 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@2.15.5
+3 info using node@v4.4.5
+4 verbose readDependencies loading dependencies from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+5 warn package.json sejagrato@1.1.1 No repository field.
+6 warn package.json sejagrato@1.1.1 No license field.
+7 verbose install where, deps [ 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato',
+7 verbose install   [ '@ionic/cloud',
+7 verbose install     'bluebird',
+7 verbose install     'cordova-android',
+7 verbose install     'cordova-plugin-app-event',
+7 verbose install     'cordova-plugin-console',
+7 verbose install     'cordova-plugin-device',
+7 verbose install     'cordova-plugin-inappbrowser',
+7 verbose install     'cordova-plugin-screen-orientation',
+7 verbose install     'cordova-plugin-splashscreen',
+7 verbose install     'cordova-plugin-statusbar',
+7 verbose install     'cordova-plugin-whitelist',
+7 verbose install     'de.appplant.cordova.plugin.local-notification',
+7 verbose install     'gulp',
+7 verbose install     'gulp-concat',
+7 verbose install     'gulp-minify-css',
+7 verbose install     'gulp-rename',
+7 verbose install     'gulp-sass',
+7 verbose install     'ionic-plugin-keyboard',
+7 verbose install     'onesignal-cordova-plugin',
+7 verbose install     'phonegap-plugin-push',
+7 verbose install     'bower',
+7 verbose install     'gulp-util',
+7 verbose install     'shelljs' ] ]
+8 verbose install where, peers [ 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato',
+8 verbose install   [] ]
+9 verbose installManyTop reading for lifecycle C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+10 info preinstall sejagrato@1.1.1
+11 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bluebird\package.json
+12 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bower\package.json
+13 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-android\package.json
+14 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-console\package.json
+15 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-device\package.json
+16 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-inappbrowser\package.json
+17 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-screen-orientation\package.json
+18 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-splashscreen\package.json
+19 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-statusbar\package.json
+20 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-whitelist\package.json
+21 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp\package.json
+22 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-concat\package.json
+23 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-minify-css\package.json
+24 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-rename\package.json
+25 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-sass\package.json
+26 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-util\package.json
+27 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\ionic-plugin-keyboard\package.json
+28 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\npm-debug.log\package.json
+29 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\phonegap-plugin-push\package.json
+30 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\shelljs\package.json
+31 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic\cloud\package.json
+32 info package.json ionic-plugin-keyboard@2.2.1 license should be a valid SPDX license expression
+33 info package.json shelljs@0.3.0 license should be a valid SPDX license expression
+34 info package.json gulp-minify-css@0.3.13 No license field.
+35 info package.json gulp-rename@1.2.2 No license field.
+36 info package.json cordova-plugin-inappbrowser@0.2.2 license should be a valid SPDX license expression
+37 info package.json gulp-util@2.2.20 No license field.
+38 info package.json phonegap-plugin-push@1.8.1 license should be a valid SPDX license expression
+39 verbose readDependencies loading dependencies from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+40 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bluebird\package.json
+41 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bower\package.json
+42 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-android\package.json
+43 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-console\package.json
+44 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-device\package.json
+45 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-inappbrowser\package.json
+46 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-screen-orientation\package.json
+47 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-splashscreen\package.json
+48 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-statusbar\package.json
+49 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-whitelist\package.json
+50 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp\package.json
+51 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-concat\package.json
+52 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-minify-css\package.json
+53 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-rename\package.json
+54 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-sass\package.json
+55 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-util\package.json
+56 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\ionic-plugin-keyboard\package.json
+57 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\npm-debug.log\package.json
+58 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\phonegap-plugin-push\package.json
+59 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\shelljs\package.json
+60 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic\cloud\package.json
+61 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\bower\package.json
+62 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\bower.cmd\package.json
+63 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\create\package.json
+64 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\create.cmd\package.json
+65 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\gulp\package.json
+66 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\gulp.cmd\package.json
+67 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\shjs\package.json
+68 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\shjs.cmd\package.json
+69 verbose already installed skipping cordova-plugin-inappbrowser@^0.2.2 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+70 verbose already installed skipping cordova-plugin-screen-orientation@^2.0.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+71 verbose already installed skipping cordova-plugin-splashscreen@~4.0.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+72 verbose already installed skipping cordova-plugin-statusbar@2.2.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+73 verbose already installed skipping cordova-plugin-whitelist@1.3.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+74 silly cache add args [ 'de.appplant.cordova.plugin.local-notification@^0.8.5', null ]
+75 verbose cache add spec de.appplant.cordova.plugin.local-notification@^0.8.5
+76 silly cache add parsed spec Result {
+76 silly cache add   raw: 'de.appplant.cordova.plugin.local-notification@^0.8.5',
+76 silly cache add   scope: null,
+76 silly cache add   name: 'de.appplant.cordova.plugin.local-notification',
+76 silly cache add   rawSpec: '^0.8.5',
+76 silly cache add   spec: '>=0.8.5 <0.9.0',
+76 silly cache add   type: 'range' }
+77 silly addNamed de.appplant.cordova.plugin.local-notification@>=0.8.5 <0.9.0
+78 verbose addNamed ">=0.8.5 <0.9.0" is a valid semver range for de.appplant.cordova.plugin.local-notification
+79 silly addNameRange { name: 'de.appplant.cordova.plugin.local-notification',
+79 silly addNameRange   range: '>=0.8.5 <0.9.0',
+79 silly addNameRange   hasData: false }
+80 silly mapToRegistry name de.appplant.cordova.plugin.local-notification
+81 silly mapToRegistry using default registry
+82 silly mapToRegistry registry https://registry.npmjs.org/
+83 silly mapToRegistry data Result {
+83 silly mapToRegistry   raw: 'de.appplant.cordova.plugin.local-notification',
+83 silly mapToRegistry   scope: null,
+83 silly mapToRegistry   name: 'de.appplant.cordova.plugin.local-notification',
+83 silly mapToRegistry   rawSpec: '',
+83 silly mapToRegistry   spec: 'latest',
+83 silly mapToRegistry   type: 'tag' }
+84 silly mapToRegistry uri https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification
+85 verbose addNameRange registry:https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification not in flight; fetching
+86 verbose already installed skipping gulp@^3.5.6 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+87 verbose already installed skipping gulp-concat@^2.2.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+88 verbose already installed skipping gulp-minify-css@^0.3.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+89 verbose already installed skipping gulp-rename@^1.2.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+90 verbose already installed skipping gulp-sass@^2.0.4 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+91 verbose already installed skipping ionic-plugin-keyboard@~2.2.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+92 silly cache add args [ 'onesignal-cordova-plugin@^2.1.1', null ]
+93 verbose cache add spec onesignal-cordova-plugin@^2.1.1
+94 silly cache add parsed spec Result {
+94 silly cache add   raw: 'onesignal-cordova-plugin@^2.1.1',
+94 silly cache add   scope: null,
+94 silly cache add   name: 'onesignal-cordova-plugin',
+94 silly cache add   rawSpec: '^2.1.1',
+94 silly cache add   spec: '>=2.1.1 <3.0.0',
+94 silly cache add   type: 'range' }
+95 silly addNamed onesignal-cordova-plugin@>=2.1.1 <3.0.0
+96 verbose addNamed ">=2.1.1 <3.0.0" is a valid semver range for onesignal-cordova-plugin
+97 silly addNameRange { name: 'onesignal-cordova-plugin',
+97 silly addNameRange   range: '>=2.1.1 <3.0.0',
+97 silly addNameRange   hasData: false }
+98 silly mapToRegistry name onesignal-cordova-plugin
+99 silly mapToRegistry using default registry
+100 silly mapToRegistry registry https://registry.npmjs.org/
+101 silly mapToRegistry data Result {
+101 silly mapToRegistry   raw: 'onesignal-cordova-plugin',
+101 silly mapToRegistry   scope: null,
+101 silly mapToRegistry   name: 'onesignal-cordova-plugin',
+101 silly mapToRegistry   rawSpec: '',
+101 silly mapToRegistry   spec: 'latest',
+101 silly mapToRegistry   type: 'tag' }
+102 silly mapToRegistry uri https://registry.npmjs.org/onesignal-cordova-plugin
+103 verbose addNameRange registry:https://registry.npmjs.org/onesignal-cordova-plugin not in flight; fetching
+104 verbose already installed skipping phonegap-plugin-push@^1.8.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+105 verbose already installed skipping bower@^1.3.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+106 verbose already installed skipping gulp-util@^2.2.14 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+107 verbose already installed skipping shelljs@^0.3.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+108 verbose already installed skipping @ionic/cloud@^0.16.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+109 verbose already installed skipping bluebird@^3.5.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+110 verbose request uri https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification
+111 verbose request no auth needed
+112 info attempt registry request try #1 at 10:55:09 AM
+113 verbose request id 2bae5f225735c923
+114 http request GET https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification
+115 verbose request uri https://registry.npmjs.org/onesignal-cordova-plugin
+116 verbose request no auth needed
+117 info attempt registry request try #1 at 10:55:09 AM
+118 http request GET https://registry.npmjs.org/onesignal-cordova-plugin
+119 verbose already installed skipping cordova-android@^6.2.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+120 silly cache add args [ 'cordova-plugin-app-event@file:node_modules\\cordova-plugin-app-event',
+120 silly cache add   null ]
+121 verbose cache add spec cordova-plugin-app-event@file:node_modules\cordova-plugin-app-event
+122 verbose already installed skipping cordova-plugin-console@1.0.5 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+123 verbose already installed skipping cordova-plugin-device@1.1.4 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+124 silly cache add parsed spec Result {
+124 silly cache add   raw: 'cordova-plugin-app-event@file:node_modules\\cordova-plugin-app-event',
+124 silly cache add   scope: null,
+124 silly cache add   name: 'cordova-plugin-app-event',
+124 silly cache add   rawSpec: 'file:node_modules\\cordova-plugin-app-event',
+124 silly cache add   spec: 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato\\node_modules\\cordova-plugin-app-event',
+124 silly cache add   type: 'local' }
+125 error addLocal Could not install C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event
+126 http 200 https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification
+127 verbose headers { server: 'nginx/1.10.1',
+127 verbose headers   'content-type': 'application/json',
+127 verbose headers   'last-modified': 'Mon, 22 May 2017 11:34:31 GMT',
+127 verbose headers   etag: 'W/"5922ccc7-3758"',
+127 verbose headers   'content-encoding': 'gzip',
+127 verbose headers   'cache-control': 'max-age=300',
+127 verbose headers   'content-length': '3717',
+127 verbose headers   'accept-ranges': 'bytes',
+127 verbose headers   date: 'Tue, 30 May 2017 13:55:10 GMT',
+127 verbose headers   via: '1.1 varnish',
+127 verbose headers   age: '199',
+127 verbose headers   connection: 'keep-alive',
+127 verbose headers   'x-served-by': 'cache-gru7125-GRU',
+127 verbose headers   'x-cache': 'HIT',
+127 verbose headers   'x-cache-hits': '1',
+127 verbose headers   'x-timer': 'S1496152510.026859,VS0,VE3',
+127 verbose headers   vary: 'Accept-Encoding' }
+128 silly get cb [ 200,
+128 silly get   { server: 'nginx/1.10.1',
+128 silly get     'content-type': 'application/json',
+128 silly get     'last-modified': 'Mon, 22 May 2017 11:34:31 GMT',
+128 silly get     etag: 'W/"5922ccc7-3758"',
+128 silly get     'content-encoding': 'gzip',
+128 silly get     'cache-control': 'max-age=300',
+128 silly get     'content-length': '3717',
+128 silly get     'accept-ranges': 'bytes',
+128 silly get     date: 'Tue, 30 May 2017 13:55:10 GMT',
+128 silly get     via: '1.1 varnish',
+128 silly get     age: '199',
+128 silly get     connection: 'keep-alive',
+128 silly get     'x-served-by': 'cache-gru7125-GRU',
+128 silly get     'x-cache': 'HIT',
+128 silly get     'x-cache-hits': '1',
+128 silly get     'x-timer': 'S1496152510.026859,VS0,VE3',
+128 silly get     vary: 'Accept-Encoding' } ]
+129 verbose get saving de.appplant.cordova.plugin.local-notification to C:\Users\andre.felizardo\AppData\Roaming\npm-cache\registry.npmjs.org\de.appplant.cordova.plugin.local-notification\.cache.json
+130 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+131 http 200 https://registry.npmjs.org/onesignal-cordova-plugin
+132 verbose headers { server: 'nginx/1.10.1',
+132 verbose headers   'content-type': 'application/json',
+132 verbose headers   'last-modified': 'Wed, 17 May 2017 05:09:23 GMT',
+132 verbose headers   etag: 'W/"591bdb03-11313"',
+132 verbose headers   'content-encoding': 'gzip',
+132 verbose headers   'cache-control': 'max-age=300',
+132 verbose headers   'content-length': '5799',
+132 verbose headers   'accept-ranges': 'bytes',
+132 verbose headers   date: 'Tue, 30 May 2017 13:55:10 GMT',
+132 verbose headers   via: '1.1 varnish',
+132 verbose headers   age: '240',
+132 verbose headers   connection: 'keep-alive',
+132 verbose headers   'x-served-by': 'cache-gru7122-GRU',
+132 verbose headers   'x-cache': 'HIT',
+132 verbose headers   'x-cache-hits': '2',
+132 verbose headers   'x-timer': 'S1496152510.057005,VS0,VE0',
+132 verbose headers   vary: 'Accept-Encoding' }
+133 silly get cb [ 200,
+133 silly get   { server: 'nginx/1.10.1',
+133 silly get     'content-type': 'application/json',
+133 silly get     'last-modified': 'Wed, 17 May 2017 05:09:23 GMT',
+133 silly get     etag: 'W/"591bdb03-11313"',
+133 silly get     'content-encoding': 'gzip',
+133 silly get     'cache-control': 'max-age=300',
+133 silly get     'content-length': '5799',
+133 silly get     'accept-ranges': 'bytes',
+133 silly get     date: 'Tue, 30 May 2017 13:55:10 GMT',
+133 silly get     via: '1.1 varnish',
+133 silly get     age: '240',
+133 silly get     connection: 'keep-alive',
+133 silly get     'x-served-by': 'cache-gru7122-GRU',
+133 silly get     'x-cache': 'HIT',
+133 silly get     'x-cache-hits': '2',
+133 silly get     'x-timer': 'S1496152510.057005,VS0,VE0',
+133 silly get     vary: 'Accept-Encoding' } ]
+134 verbose get saving onesignal-cordova-plugin to C:\Users\andre.felizardo\AppData\Roaming\npm-cache\registry.npmjs.org\onesignal-cordova-plugin\.cache.json
+135 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+136 silly addNameRange number 2 { name: 'de.appplant.cordova.plugin.local-notification',
+136 silly addNameRange   range: '>=0.8.5 <0.9.0',
+136 silly addNameRange   hasData: true }
+137 silly addNameRange versions [ 'de.appplant.cordova.plugin.local-notification',
+137 silly addNameRange   [ '0.8.2', '0.8.3', '0.8.4', '0.8.5' ] ]
+138 silly addNamed de.appplant.cordova.plugin.local-notification@0.8.5
+139 verbose addNamed "0.8.5" is a plain semver version for de.appplant.cordova.plugin.local-notification
+140 silly addNameRange number 2 { name: 'onesignal-cordova-plugin',
+140 silly addNameRange   range: '>=2.1.1 <3.0.0',
+140 silly addNameRange   hasData: true }
+141 silly addNameRange versions [ 'onesignal-cordova-plugin',
+141 silly addNameRange   [ '1.7.0',
+141 silly addNameRange     '1.7.1',
+141 silly addNameRange     '1.7.3',
+141 silly addNameRange     '1.7.5',
+141 silly addNameRange     '1.7.7',
+141 silly addNameRange     '1.8.0',
+141 silly addNameRange     '1.8.1',
+141 silly addNameRange     '1.9.0',
+141 silly addNameRange     '1.9.1',
+141 silly addNameRange     '1.9.2',
+141 silly addNameRange     '1.9.3',
+141 silly addNameRange     '1.9.4',
+141 silly addNameRange     '1.10.0',
+141 silly addNameRange     '1.10.1',
+141 silly addNameRange     '1.10.2',
+141 silly addNameRange     '1.11.0',
+141 silly addNameRange     '1.11.1',
+141 silly addNameRange     '1.11.2',
+141 silly addNameRange     '1.12.0',
+141 silly addNameRange     '1.12.1',
+141 silly addNameRange     '1.12.2',
+141 silly addNameRange     '1.12.3',
+141 silly addNameRange     '1.12.4',
+141 silly addNameRange     '1.12.5',
+141 silly addNameRange     '1.12.6',
+141 silly addNameRange     '1.13.0',
+141 silly addNameRange     '1.13.1',
+141 silly addNameRange     '1.13.2',
+141 silly addNameRange     '2.0.3',
+141 silly addNameRange     '2.0.4',
+141 silly addNameRange     '2.0.5',
+141 silly addNameRange     '2.0.6',
+141 silly addNameRange     '2.0.7',
+141 silly addNameRange     '2.0.8',
+141 silly addNameRange     '2.0.9',
+141 silly addNameRange     '2.0.10',
+141 silly addNameRange     '2.0.11',
+141 silly addNameRange     '2.1.0',
+141 silly addNameRange     '2.1.1' ] ]
+142 silly addNamed onesignal-cordova-plugin@2.1.1
+143 verbose addNamed "2.1.1" is a plain semver version for onesignal-cordova-plugin
+144 silly mapToRegistry name de.appplant.cordova.plugin.local-notification
+145 silly mapToRegistry using default registry
+146 silly mapToRegistry registry https://registry.npmjs.org/
+147 silly mapToRegistry data Result {
+147 silly mapToRegistry   raw: 'de.appplant.cordova.plugin.local-notification',
+147 silly mapToRegistry   scope: null,
+147 silly mapToRegistry   name: 'de.appplant.cordova.plugin.local-notification',
+147 silly mapToRegistry   rawSpec: '',
+147 silly mapToRegistry   spec: 'latest',
+147 silly mapToRegistry   type: 'tag' }
+148 silly mapToRegistry uri https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification
+149 verbose addRemoteTarball https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification/-/de.appplant.cordova.plugin.local-notification-0.8.5.tgz not in flight; adding
+150 verbose addRemoteTarball [ 'https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification/-/de.appplant.cordova.plugin.local-notification-0.8.5.tgz',
+150 verbose addRemoteTarball   'e0c6a86ea52ac4f41dba67521d91a58a9a42a3bd' ]
+151 silly mapToRegistry name onesignal-cordova-plugin
+152 silly mapToRegistry using default registry
+153 silly mapToRegistry registry https://registry.npmjs.org/
+154 silly mapToRegistry data Result {
+154 silly mapToRegistry   raw: 'onesignal-cordova-plugin',
+154 silly mapToRegistry   scope: null,
+154 silly mapToRegistry   name: 'onesignal-cordova-plugin',
+154 silly mapToRegistry   rawSpec: '',
+154 silly mapToRegistry   spec: 'latest',
+154 silly mapToRegistry   type: 'tag' }
+155 silly mapToRegistry uri https://registry.npmjs.org/onesignal-cordova-plugin
+156 verbose addRemoteTarball https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.1.1.tgz not in flight; adding
+157 verbose addRemoteTarball [ 'https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.1.1.tgz',
+157 verbose addRemoteTarball   '8c6ea566261067f6f0dc54e69d54fc8e2c080105' ]
+158 info retry fetch attempt 1 at 10:55:10 AM
+159 info attempt registry request try #1 at 10:55:10 AM
+160 http fetch GET https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification/-/de.appplant.cordova.plugin.local-notification-0.8.5.tgz
+161 info retry fetch attempt 1 at 10:55:10 AM
+162 info attempt registry request try #1 at 10:55:10 AM
+163 http fetch GET https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.1.1.tgz
+164 http fetch 200 https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.1.1.tgz
+165 http fetch 200 https://registry.npmjs.org/de.appplant.cordova.plugin.local-notification/-/de.appplant.cordova.plugin.local-notification-0.8.5.tgz
+166 silly fetchAndShaCheck shasum e0c6a86ea52ac4f41dba67521d91a58a9a42a3bd
+167 verbose addTmpTarball C:\Users\ANDRE~1.FEL\AppData\Local\Temp\npm-19736-c5fd49eb\registry.npmjs.org\de.appplant.cordova.plugin.local-notification\-\de.appplant.cordova.plugin.local-notification-0.8.5.tgz not in flight; adding
+168 verbose addTmpTarball already have metadata; skipping unpack for de.appplant.cordova.plugin.local-notification@0.8.5
+169 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+170 silly cache afterAdd de.appplant.cordova.plugin.local-notification@0.8.5
+171 verbose afterAdd C:\Users\andre.felizardo\AppData\Roaming\npm-cache\de.appplant.cordova.plugin.local-notification\0.8.5\package\package.json not in flight; writing
+172 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+173 verbose afterAdd C:\Users\andre.felizardo\AppData\Roaming\npm-cache\de.appplant.cordova.plugin.local-notification\0.8.5\package\package.json written
+174 silly fetchAndShaCheck shasum 8c6ea566261067f6f0dc54e69d54fc8e2c080105
+175 verbose addTmpTarball C:\Users\ANDRE~1.FEL\AppData\Local\Temp\npm-19736-c5fd49eb\registry.npmjs.org\onesignal-cordova-plugin\-\onesignal-cordova-plugin-2.1.1.tgz not in flight; adding
+176 verbose addTmpTarball already have metadata; skipping unpack for onesignal-cordova-plugin@2.1.1
+177 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+178 silly cache afterAdd onesignal-cordova-plugin@2.1.1
+179 verbose afterAdd C:\Users\andre.felizardo\AppData\Roaming\npm-cache\onesignal-cordova-plugin\2.1.1\package\package.json not in flight; writing
+180 verbose correctMkdir C:\Users\andre.felizardo\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+181 verbose afterAdd C:\Users\andre.felizardo\AppData\Roaming\npm-cache\onesignal-cordova-plugin\2.1.1\package\package.json written
+182 verbose stack Error: ENOENT: no such file or directory, open 'C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event'
+182 verbose stack     at Error (native)
+183 verbose cwd C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+184 error Windows_NT 10.0.10586
+185 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+186 error node v4.4.5
+187 error npm  v2.15.5
+188 error path C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event
+189 error code ENOENT
+190 error errno -4058
+191 error syscall open
+192 error enoent ENOENT: no such file or directory, open 'C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event'
+192 error enoent This is most likely not a problem with npm itself
+192 error enoent and is related to npm not being able to find a file.
+193 verbose exit [ -4058, true ]
