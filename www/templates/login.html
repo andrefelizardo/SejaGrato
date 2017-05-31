@@ -1,16 +1,18 @@
-<ion-view title="Login" id="login" ng-controller="loginController">
-  <ion-content padding="true" class="has-header">
+<ion-view id="login" ng-controller="loginController" class="bgcolor2">
+  <ion-content class="has-header">
+    <div class="spacer" style="height: 75px;"></div>
+    <h3 class="fontcolor4 text-center" style="font-weight: 300">Login</h3>
     <div class="spacer" style="height: 25px;"></div>
-    <p class="fontcolor1 text-center">Já tem uma conta no Seja Grato?</p>
-    <div class="spacer" style="height: 25px;"></div>
-    <form id="criarConta-form" class="list" name="loginForm">
-      <label class="item item-input" id="login-input3">
-        <input type="email" placeholder="Digite seu e-mail" ng-model="conta.email" name="email" required autofocus>
+    <form id="criarConta-form" class="list bgcolor1" name="loginForm">
+      <label class="item item-input bgcolor1" id="login-input3">
+        <input type="email" placeholder="Digite seu e-mail" class="fontcolor1" ng-model="conta.email" name="email" required autofocus style="font-size:110%; margin-left: 20px;">
       </label>
-      <label class="item item-input" id="login-input4">
-        <input type="password" placeholder="Digite sua senha" ng-model="conta.senha" required>
+      <label class="item item-input bgcolor1" id="login-input4">
+        <input type="password" class="fontcolor1" placeholder="Digite sua senha" ng-model="conta.senha" style="font-size:110%; margin-left: 20px;" required>
       </label>
     </form>
-    <button id="criarConta-button2" class="fontcolor1 button button-light  button-block button-outline" ng-click="login()" ng-disabled="!loginForm.$valid">Fazer Login</button>
+    <button id="criarConta-button2" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="login()" ng-disabled="!loginForm.$valid">Fazer Login</button>
+    <div class="spacer" style="height: 100px;"></div>
+    <a class="fontcolor3 text-center no-decoration" ui-sref="menu.criarConta" style="display: block;">Criar conta</a>
   </ion-content>
 </ion-view>

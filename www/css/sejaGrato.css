@@ -19,6 +19,9 @@ ion-header-bar.bar-energized .button.button-clear {
 	border-radius: 0;
 	background-color: #5588ee;
 }
+input[type=email]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder {
+	color: #fff;
+}
 textarea::-moz-placeholder {
 	/* font-size: 125%; */
 	color: #fff;
@@ -62,8 +65,20 @@ body {
 .fontcolor1 {
 	color: #fff!important;
 }
+.fontcolor2 {
+	color: #53c0da!important;
+}
+.fontcolor3 {
+	color: #5588ee!important
+}
+.fontcolor4 {
+	color: #ff8441!important;
+}
 .bgcolor1 {
 	background-color: #FF8441!important;
+}
+.bgcolor2 {
+	background-color: #fff!important;
 }
 .text-center {
 	text-align: center;
@@ -71,8 +86,20 @@ body {
 .text-uppercase {
 	text-transform: uppercase;
 }
+.no-decoration {
+	text-decoration: none;
+}
 .no-border {
 	border: none;
+}
+#menu-list1 .list {
+    margin-top: 4em;
+}
+#menu-list1 .item.listaTransparente:first-child {
+    border-top: none;
+}
+#menu-list1 .item {
+    line-height: 25px;
 }
 .item.listaTransparente {
 	background: transparent;
@@ -89,13 +116,19 @@ body {
 .listaTransparente .icon-accessory {
 	color: #fff;
 }
+#sejaGrato-list3 .listaTransparente.item-complex .item-content {
+    background: rgba(1, 1, 1, 0.4);
+}
 .scroll-refresher .ionic-refresher-content {
-	color: #fff;
+	/* color: #fff; */
 }
 .scroll-refresher .spinner {
-	fill:#fff;
-	stroke: #fff;
+	/* fill:#fff; */
+	/* stroke: #fff; */
 }
+/* ion-view#login, #login.pane {
+	background: #fff;
+} */
 .tutorial {
 	text-align: center;
 	height: 100%;
@@ -133,8 +166,5 @@ body {
 	background-size: cover;
 }
 .tutorialContent {
-	background: #50a7f9;
-}
-.tutorialLogin * {
-	color: #1a1a1a;
+	background: #5588ee;
 }
