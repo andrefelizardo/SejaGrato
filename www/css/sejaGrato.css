@@ -24,20 +24,17 @@ input[type=email]::-webkit-input-placeholder, input[type=password]::-webkit-inpu
 }
 textarea::-moz-placeholder {
 	/* font-size: 125%; */
-	color: #fff;
-	font-weight: bold;
+	font-weight: lighter;
 	text-align: center;
 }
 textarea:-ms-input-placeholder {
 	/* font-size: 125%; */
-	color: #fff;
-	font-weight: bold;
+	font-weight: lighter;
 	text-align: center;
 }
 textarea::-webkit-input-placeholder {
 	/* font-size: 125%; */
-	color: #fff;
-	font-weight: bold;
+	font-weight: lighter;
 	text-align: center;
 }
 .side-menu-left ion-item {
@@ -53,8 +50,8 @@ textarea::-webkit-input-placeholder {
 	margin-bottom: 0;
 }
 .platform-android .bar .title.title-left {
-	text-align: center!important;
-	margin-left: -5%;
+/*	text-align: center!important;
+	margin-left: -5%;*/
 }
 body {
 	font-size: 1em;
@@ -80,6 +77,12 @@ body {
 .bgcolor2 {
 	background-color: #fff!important;
 }
+.bgcolor3 {
+	background-color: #5588ee!important;
+}
+.bordercolor3 {
+	border-color: #5588ee!important;
+}
 .text-center {
 	text-align: center;
 }
@@ -100,6 +103,12 @@ body {
 }
 #menu-list1 .item {
     line-height: 25px;
+}
+#menu-list1 i.icon {
+    font-size: 25px;
+}
+.buttonSalvarModal:before {
+    font-size: 30px!important;
 }
 .item.listaTransparente {
 	background: transparent;
@@ -129,6 +138,9 @@ body {
 /* ion-view#login, #login.pane {
 	background: #fff;
 } */
+.modalCustom {
+	background-image: url("../img/line-border.png");
+}
 .tutorial {
 	text-align: center;
 	height: 100%;
