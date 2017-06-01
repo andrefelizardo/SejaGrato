@@ -38,7 +38,7 @@
 </script>
 <!-- Colocar um ng-repeat aqui -->
 <ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista | orderBy:data:true">
-<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem)">
+<ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem, $index)">
 <span>{{mensagem.texto}}</span>
 <span class="data">{{mensagem.data}}</span>
 <ion-option-button class="button-assertive" ng-click="excluirTexto(mensagem)"><span class="ion-trash-b" style="font-size:130%;"></span></ion-option-button>

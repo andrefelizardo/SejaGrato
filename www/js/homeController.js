@@ -80,7 +80,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.visualizarTexto = function(mensagem) {
 		$scope.hideButtonsOptions();
 		$scope.openModal();
-		$scope.mensagemSelecionada = mensagem;
+		$scope.mensagemSelecionada = angular.copy(mensagem);
 		var index = $rootScope.lista.indexOf(mensagem);
 		console.log(mensagem);
 		console.log(index);
