@@ -107,7 +107,33 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 						});
 					}
 
+					// Run when the device is ready
+					document.addEventListener('deviceready', function () {
 
+		    // Android customization
+		    // To indicate that the app is executing tasks in background and being paused would disrupt the user.
+		    // The plug-in has to create a notification while in background - like a download progress bar.
+		    cordova.plugins.backgroundMode.setDefaults({ 
+		    	title:  'TheTitleOfYourProcess',
+		    	text:   'Executing background tasks.'
+		    });
+
+		    // Enable background mode
+		    cordova.plugins.backgroundMode.enable();
+
+		    // Called when background mode has been activated
+		    cordova.plugins.backgroundMode.onactivate = function () {
+
+		    	console.log('backgroundMode ativado');
+
+		        // Set an interval of 3 seconds (3000 milliseconds)
+		        setInterval(function () {
+
+		            // The code that you want to run repeatedly
+
+		        }, 3000);
+		    }
+		}, false);
 
 				},
 				function(erro){
