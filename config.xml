@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.sejagrato715852" version="0.14.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.andrefelizardo.sejagrato" version="0.22.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Seja Grato</name>
     <description>Uma forma simples de ficar mais feliz a cada dia</description>
-    <author email="contato@andrefelizardo.com.br" href="http://www.andrefelizardo.com.br">André Felizardo</author>
+    <author email="sejagrato@andrefelizardo.com.br" href="http://www.andrefelizardo.com.br/sejagrato">André Felizardo</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
