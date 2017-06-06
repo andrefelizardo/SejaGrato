@@ -82,6 +82,8 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.openModal();
 		$scope.mensagemSelecionada = angular.copy(mensagem);
 		var index = $rootScope.lista.indexOf(mensagem);
+		console.log(mensagem);
+		console.log(index);
 		$scope.editarTexto = function() {
 			$rootScope.lista[index].texto = $scope.mensagemSelecionada.texto;
 			$scope.atualizaListaLocal();
@@ -113,7 +115,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				template: 'Deixe um texto dizendo o quanto você está grato.'
 			});
 		} else {
-
 				// data atual
 				var data = new Date();
 				var dia = data.getDate();
@@ -125,6 +126,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 
 				$rootScope.dadosLocal = true;
 				$rootScope.lista.texto = '';
+				console.log($rootScope.lista);
 			}
 		}
 
