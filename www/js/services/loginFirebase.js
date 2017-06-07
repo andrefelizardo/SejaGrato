@@ -9,7 +9,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 		});
 		if(window.Connection) {
 			if(navigator.connection.type !== Connection.NONE) {
-				alert(navigator.connection.type);
+				// tem internet
 				firebase.auth().signInWithEmailAndPassword(email, password)
 				.catch(function(error) {
 					var errorCode = error.code;
@@ -43,6 +43,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
 						.then(function(mensagens){
 							if(localStorage.getItem('mensagensSejaGrato') && mensagens.data) {
+								// tem localstorage e banco
 								var listaBanco = angular.fromJson(mensagens.data);
 								var listaLocal = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 								var listaFinal = listaLocal.concat(listaBanco);
@@ -71,6 +72,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 									$state.go('tutorial-sync');
 								});
 							} else if (mensagens.data) {
+								// tem só banco
 								$rootScope.lista = mensagens.data;
 								var listaJson = angular.toJson($rootScope.lista);
 								localStorage.setItem('mensagensSejaGrato', listaJson);
@@ -90,6 +92,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 									$state.go('tutorial-sync');
 								});
 							} else if(localStorage.getItem('mensagensSejaGrato')) {
+								// tem só localstorage
 								var listaLocalJson = angular.toJson($rootScope.lista);
 								firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
 									mensagens: listaLocalJson
@@ -108,6 +111,22 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 									$rootScope.statusUsuario = true;
 									$state.go('tutorial-sync');
 								});
+							} else {
+								// não tem banco nem localstorage
+								$timeout(function(){
+									$ionicLoading.hide();
+								}, 100);
+								var alertLogado = $ionicPopup.alert({
+									title: 'Conectado',
+									template: 'Login feito!'
+								});
+								alertLogado.then(function(res){
+									$ionicHistory.nextViewOptions({
+										disableBack: true
+									});
+									$rootScope.statusUsuario = true;
+									$state.go('tutorial-sync');
+								});
 							}
 
 						},
@@ -117,7 +136,6 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 					}
 				})
 			} else {
-				alert(navigator.connection.type);
 				$timeout(function(){
 					$ionicLoading.hide();
 				}, 100);
