@@ -1,6 +1,5 @@
 angular.module('sejaGrato')
-.controller('gestaoContaController', 
-	['', 
-	function($scope){
+.controller('gestaoContaController',
+ function($scope, loginService){
 	
-}])
+});
