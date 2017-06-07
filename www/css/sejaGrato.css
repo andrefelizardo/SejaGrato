@@ -129,11 +129,14 @@ body {
     background: rgba(1, 1, 1, 0.4);
 }
 .scroll-refresher .ionic-refresher-content {
-	/* color: #fff; */
+	color: #ff8441;
+	font-weight: bold;
+	font-size: 115%;
+	text-shadow: 2px 2px 2px rgba(250, 250, 250, 1);
 }
 .scroll-refresher .spinner {
-	/* fill:#fff; */
-	/* stroke: #fff; */
+	fill:#ff8441;
+	stroke: #ff8441;
 }
 /* ion-view#login, #login.pane {
 	background: #fff;
