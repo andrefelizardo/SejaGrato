@@ -65,7 +65,7 @@ angular.module('sejaGrato')
 								$rootScope.dadosLocal = true;
 								var alertLogado = $ionicPopup.alert({
 									title: 'Conectado',
-									template: 'Mensagens sincronizadas'
+									template: 'Juntamos suas mensagens do celular com as que estavam na nuvem para você não se esquecer de nada.'
 								});
 								alertLogado.then(function(res){
 									$ionicHistory.nextViewOptions({
@@ -85,7 +85,7 @@ angular.module('sejaGrato')
 								}, 100);
 								var alertLogado = $ionicPopup.alert({
 									title: 'Conectado',
-									template: 'Mensagens sincronizadas'
+									template: 'Agora suas mensagens da nuvem também estão no seu celular!'
 								});
 								alertLogado.then(function(res){
 									$ionicHistory.nextViewOptions({
@@ -105,7 +105,7 @@ angular.module('sejaGrato')
 								}, 100);
 								var alertLogado = $ionicPopup.alert({
 									title: 'Conectado',
-									template: 'Mensagens sincronizadas'
+									template: 'Legal. Suas mensagens do celular agora estão na nuvem.'
 								});
 								alertLogado.then(function(res){
 									$ionicHistory.nextViewOptions({
@@ -121,7 +121,7 @@ angular.module('sejaGrato')
 								}, 100);
 								var alertLogado = $ionicPopup.alert({
 									title: 'Conectado',
-									template: 'Login feito!'
+									template: 'Login feito! Aproveite para escrever sua primeira mensagem de gratidão.'
 								});
 								alertLogado.then(function(res){
 									$ionicHistory.nextViewOptions({
