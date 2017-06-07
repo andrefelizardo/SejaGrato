@@ -142,7 +142,8 @@ body {
 	background: #fff;
 } */
 .modalCustom {
-	background-image: url("../img/line-border.png");
+	/* background-image: url("../img/line-border.png"); */
+	background: #5588ee;
 }
 .tutorial {
 	text-align: center;
