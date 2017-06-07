@@ -56,6 +56,15 @@ angular.module('app.routes', [])
         templateUrl: 'templates/login.html'
       }
     }
+  })  
+
+  .state('menu.historico', {
+    url: '/historico',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/historico.html'
+      }
+    }
   })
 
   .state('menu', {

@@ -4,6 +4,15 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 
+	$scope.dataAtual = function() {
+		var data = new Date();
+		var dia = data.getDate();
+		var mes = data.getMonth() + 1;
+		var ano = data.getFullYear();
+		$rootScope.lista.data = [dia, mes, ano].join('/');
+		$scope.dataAtual = $rootScope.lista.data;
+	}
+
 	$scope.tamanhoTextarea = function() {
 		objTextArea = document.querySelector('textarea.textareaModal');
 		$scope.tamanhoScroll = objTextArea.scrollHeight;
@@ -138,11 +147,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 			});
 		} else {
 				// data atual
-				var data = new Date();
-				var dia = data.getDate();
-				var mes = data.getMonth() + 1;
-				var ano = data.getFullYear();
-				$rootScope.lista.data = [dia, mes, ano].join('/');
+				
 				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
 				$scope.atualizaListaLocal();
 
@@ -183,6 +188,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.sairLoading();	
 
 			}
+			$scope.dataAtual();
 		}
 
 		$scope.pageLoad();
