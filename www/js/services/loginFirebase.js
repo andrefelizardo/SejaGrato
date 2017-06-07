@@ -1,5 +1,8 @@
-angular.module('sejaGrato').factory('loginService', [function (email, senha) {
-	function logar(email, password, lista, $ionicPopup, $state, $ionicHistory, $rootScope, $scope, $http, $ionicLoading, $timeout) {
+angular.module('sejaGrato')
+.factory('loginService', ['$ionicPopup', '$ionicLoading', '$state', '$ionicHistory', '$rootScope', '$http', '$timeout',
+	function ($ionicPopup, $ionicLoading, $state, $ionicHistory, $rootScope, $http, $timeout) {
+
+	function logar(email, password) {
 		$ionicLoading.show({
 			content: 'Carregando dados',
 			animation: 'fade-in',
@@ -93,7 +96,7 @@ angular.module('sejaGrato').factory('loginService', [function (email, senha) {
 								});
 							} else if(localStorage.getItem('mensagensSejaGrato')) {
 								// tem só localstorage
-								var listaLocalJson = angular.toJson($rootScope.lista);
+								var listaLocalJson = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 								firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
 									mensagens: listaLocalJson
 								});
