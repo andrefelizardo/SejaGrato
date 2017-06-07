@@ -37,7 +37,7 @@
 </ion-modal-view>
 </script>
 <!-- Colocar um ng-repeat aqui -->
-<ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista | orderBy:data:true track by $index">
+<ion-list id="sejaGrato-list3" ng-repeat="mensagem in lista | orderBy:data:true">
 <ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem, $index)">
 <span>{{mensagem.texto}}</span>
 <span class="data">{{mensagem.data}}</span>
