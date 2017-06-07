@@ -80,6 +80,9 @@ body {
 .bgcolor3 {
 	background-color: #5588ee!important;
 }
+.bordercolor1 {
+	border-color: #1a1a1a;
+}
 .bordercolor3 {
 	border-color: #5588ee!important;
 }
@@ -143,7 +146,7 @@ body {
 } */
 .modalCustom {
 	/* background-image: url("../img/line-border.png"); */
-	background: #5588ee;
+	/* background: #5588ee; */
 }
 .tutorial {
 	text-align: center;

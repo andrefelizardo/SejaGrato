@@ -32,7 +32,7 @@
   <button class="button fontcolor4 button-primary button-icon ion-checkmark-round buttonSalvarModal" ng-click="editarTexto()"></button>
 </ion-header-bar>
 <ion-content class="padding">
-<textarea style="resize: none;background: transparent;font-size: 1em;width: 100%; line-height: 20px; margin-top: 5px;" class="fontcolor1" rows="35" required ng-model="mensagemSelecionada.texto"></textarea>
+<textarea style="resize: none;background: transparent;font-size: 1em;width: 100%; line-height: 20px; border-bottom-width: 1px; border-bottom-style: solid;" rows="1" ng-change="tamanhoTextarea()" class="fontcolor3 bordercolor1 textareaModal" required ng-model="mensagemSelecionada.texto"></textarea>
 </ion-content>
 </ion-modal-view>
 </script>
