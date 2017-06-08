@@ -2,16 +2,16 @@ angular.module('sejaGrato')
 .factory('loginService', ['$ionicPopup', '$ionicLoading', '$state', '$ionicHistory', '$rootScope', '$http', '$timeout',
 	function ($ionicPopup, $ionicLoading, $state, $ionicHistory, $rootScope, $http, $timeout) {
 
-	function logar(email, password) {
-		$ionicLoading.show({
-			content: 'Carregando dados',
-			animation: 'fade-in',
-			showBackdrop: true,
-			maxWidth: 200,
-			showDelay: 0
-		});
-		if(window.Connection) {
-			if(navigator.connection.type !== Connection.NONE) {
+		function logar(email, password) {
+			$ionicLoading.show({
+				content: 'Carregando dados',
+				animation: 'fade-in',
+				showBackdrop: true,
+				maxWidth: 200,
+				showDelay: 0
+			});
+			if(window.Connection) {
+				if(navigator.connection.type !== Connection.NONE) {
 				// tem internet
 				firebase.auth().signInWithEmailAndPassword(email, password)
 				.catch(function(error) {
@@ -137,6 +137,7 @@ angular.module('sejaGrato')
 							console.log(erro);
 						});
 					}
+
 				})
 			} else {
 				$timeout(function(){

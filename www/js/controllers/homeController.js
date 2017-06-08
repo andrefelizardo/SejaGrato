@@ -121,8 +121,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$scope.openModal();
 		$scope.mensagemSelecionada = angular.copy(mensagem);
 		var index = $rootScope.lista.indexOf(mensagem);
-		console.log(mensagem);
-		console.log(index);
 		$scope.editarTexto = function() {
 			$rootScope.lista[index].texto = $scope.mensagemSelecionada.texto;
 			$scope.atualizaListaLocal();
@@ -161,7 +159,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 
 				$rootScope.dadosLocal = true;
 				$rootScope.lista.texto = '';
-				console.log($rootScope.lista);
 			}
 		}
 
@@ -189,7 +186,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				function(erro) {
 					console.log(erro);
 				});
-				console.log('peguei do banco');
 				$scope.sairLoading();
 			} else {
 				$rootScope.dadosLocal = false;
