@@ -3,14 +3,32 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
+	$scope.filtroDia = {
+		opcoes: ['Hoje', 'Ontem', 'Sempre']};
+	$scope.filtroDia.opcao = {
+		opcaoEscolhida: $scope.filtroDia.opcoes[2]
+	}
+	$scope.dataFiltrada = '';
 
-	$scope.dataAtual = function() {
+	$scope.$watch('filtroDia.opcao.opcaoEscolhida', function(valorNovo, valorAntigo){
+		if(valorNovo == 'Hoje') {
+			$scope.dataFiltrada = $scope.dataAtual;
+		} else if (valorNovo == 'Ontem') {
+			$scope.dataFiltrada = $scope.dataOntem;
+		} else {
+			$scope.dataFiltrada = '';
+		}
+	});
+
+	$scope.datas = function() {
 		var data = new Date();
 		var dia = data.getDate();
+		var diaOntem = data.getDate() - 1;
 		var mes = data.getMonth() + 1;
 		var ano = data.getFullYear();
 		$rootScope.lista.data = [dia, mes, ano].join('/');
 		$scope.dataAtual = $rootScope.lista.data;
+		$scope.dataOntem = [diaOntem, mes, ano].join('/');
 	}
 
 	$scope.tamanhoTextarea = function() {
@@ -178,8 +196,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 				$scope.sairLoading();	
 
 			}
-			$scope.dataAtual();
-			console.log($rootScope.lista);
+			$scope.datas();
 		}
 
 		$scope.pageLoad();

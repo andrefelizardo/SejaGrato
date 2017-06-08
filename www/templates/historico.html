@@ -1,8 +1,7 @@
 <ion-view id="historico" ng-controller="HomeController" class="bgcolor2" title="Histórico">
 	<ion-nav-buttons side="right" class="has-header">
-	<!-- <button class="button icon ion-loop" ng-click="notificacaoRapida()"></button> -->
-	<!-- <button class="button icon ion-camera"></button> -->
-	<!-- Botão de câmera -->
+	<select name="filtroMensagens" id="" ng-model="filtroDia.opcao.opcaoEscolhida" ng-options="opcaoEscolhida for opcaoEscolhida in filtroDia.opcoes" class="bgcolor4 fontcolor1 selectFiltro no-border">
+	</select>
 	</ion-nav-buttons>
 	<ion-content ng-click="hideButtonsOptions()">
 		<script id="templates/modalTextoGratidao.html" type="text/ng-template">
@@ -20,7 +19,8 @@
 			</ion-modal-view>
 		</script>
 	<!-- Colocar um ng-repeat aqui -->
-	<ion-list id="" ng-repeat="mensagem in lista | orderBy:data:true">
+	<p ng-show="mensagensFiltradas.length < 1" class="text-center padding fontcolor3" style="margin-top: 25px;">Nenhuma mensagem de gratidão para a data selecionada.</p>
+	<ion-list id="" ng-repeat="mensagem in lista | orderBy:data:true | filter: dataFiltrada as mensagensFiltradas">
 		<ion-item class="listaTransparente bgcolor3" id="" ng-click="visualizarTexto(mensagem, $index)">
 			<span>{{mensagem.texto}}</span>
 			<span class="data">{{mensagem.data}}</span>

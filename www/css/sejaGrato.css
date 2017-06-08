@@ -80,6 +80,9 @@ body {
 .bgcolor3 {
 	background-color: #5588ee!important;
 }
+.bgcolor4 {
+	background-color: #53c0da!important;
+}
 .bordercolor1 {
 	border-color: #1a1a1a;
 }
@@ -186,4 +189,8 @@ body {
 }
 .tutorialContent {
 	background: #5588ee;
+}
+.selectFiltro {
+	font-size: 14px;
+	padding: 5px;
 }
