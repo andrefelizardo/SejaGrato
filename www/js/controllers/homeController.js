@@ -17,16 +17,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		objTextArea = document.querySelector('textarea.textareaModal');
 		$scope.tamanhoScroll = objTextArea.scrollHeight;
 		$scope.tamanhoObjeto = objTextArea.offsetHeight;
-
-		// console.log(objTextArea);
-		// console.log(objTextArea.scrollHeight);
-		// console.log(objTextArea.offsetHeight);
-		// if ((objTextArea.scrollHeight) > objTextArea.offsetHeight) {
-		// 	objTextArea.rows += 1;
-		// } else if (objTextArea.rows > 1) {
-		// 	if((objTextArea.offsetHeight) < (objTextArea.scrollHeight))
-		// 			objTextArea.rows -= 1;
-		// }
 	}
 
 	$scope.$watch('tamanhoScroll', function(valorNovo, valorAntigo){
@@ -189,6 +179,7 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 
 			}
 			$scope.dataAtual();
+			console.log($rootScope.lista);
 		}
 
 		$scope.pageLoad();
