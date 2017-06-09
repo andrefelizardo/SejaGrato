@@ -1,6 +1,6 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, sincronizacaoFirebase, $q, getUsuario){
+	function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, sincronizacaoFirebase, $q, getUsuario, verificaInternet){
 
 		$scope.$on('$ionicView.enter', function(){
 			$scope.datas();
@@ -11,6 +11,7 @@ angular.module('sejaGrato')
 		$scope.logar = loginService.logar;
 		$scope.verificaLogado = loginService.verificaLogado;
 		$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
+		$scope.verificaInternet = verificaInternet.verificar;
 		$scope.statusSincronizacao = '';
 		$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 		$scope.filtroDia = {
@@ -93,91 +94,95 @@ angular.module('sejaGrato')
 
 
 			$scope.sincronizar = function() {
-		// verificar se tem internet
-		if($rootScope.statusUsuario){
-			var usuario = $rootScope.usuario.uid;
-			var listaBanco = angular.copy($rootScope.lista);
-			$scope.sincronizarBanco(usuario, listaBanco)
-			.then(function(resposta){
-				if(resposta == 'Ok'){
-					$scope.datas();
-					localStorage.setItem('ultimaSincronizacao', $scope.dataAtual);
-					$scope.$broadcast('scroll.refreshComplete');
+				var conexao = $scope.verificaInternet();
+				if (conexao) {
+					if($rootScope.statusUsuario){
+						var usuario = $rootScope.usuario.uid;
+						var listaBanco = angular.copy($rootScope.lista);
+						$scope.sincronizarBanco(usuario, listaBanco)
+						.then(function(resposta){
+							if(resposta == 'Ok'){
+								$scope.datas();
+								localStorage.setItem('ultimaSincronizacao', $scope.dataAtual);
+								$scope.$broadcast('scroll.refreshComplete');
+							}
+						})
+					}
+				} else {
+					console.warn('Sem Internet');
 				}
-			})
-		}
-	}
-
-
-	$scope.entrarLoading = function() {
-		$ionicLoading.show({
-			content: 'Carregando dados',
-			animation: 'fade-in',
-			showBackdrop: true,
-			maxWidth: 200,
-			showDelay: 0
-		});
-	}
-	$scope.sairLoading = function() {
-		$timeout(function(){
-			$ionicLoading.hide();
-		}, 100);
-	}
-
-	$scope.atualizaListaLocal = function() {
-		var listaJson = angular.toJson($rootScope.lista);
-		localStorage.setItem('mensagensSejaGrato', listaJson);
-	}
-
-	$ionicModal.fromTemplateUrl('templates/modalTextoGratidao.html', {
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal){
-		$scope.modal = modal;
-	});
-	$scope.openModal = function() {
-		$scope.modal.show();
-	};
-	$scope.closeModal = function() {
-		$scope.modal.hide();
-	}
-
-	$scope.visualizarTexto = function(mensagem) {
-		$scope.hideButtonsOptions();
-		$scope.openModal();
-		$scope.mensagemSelecionada = angular.copy(mensagem);
-		var index = $rootScope.lista.indexOf(mensagem);
-		$scope.editarTexto = function() {
-			$rootScope.lista[index].texto = $scope.mensagemSelecionada.texto;
-			$scope.atualizaListaLocal();
-			$scope.modal.hide();
-		}
-	}
-
-	$scope.excluirTexto = function(mensagem) {
-		$scope.hideButtonsOptions();
-		var index = $rootScope.lista.indexOf(mensagem);
-		var confirmPopup = $ionicPopup.confirm({
-			title: 'Excluir',
-			template: 'Deseja realmente excluir esta mensagem (' + mensagem.texto + ') ?'
-		});
-		confirmPopup.then(function(resposta) {
-			if(resposta) {
-				$rootScope.lista.splice(index, 1);
-				$scope.atualizaListaLocal();
 			}
-		});
-		return true;
-	}
 
-	$scope.salvarTexto = function() {
-		$scope.hideButtonsOptions();
-		if($rootScope.lista.texto == '' || $rootScope.lista.texto == undefined) {
-			var alertPopup = $ionicPopup.alert({
-				title: 'Ainda não está grato?',
-				template: 'Deixe um texto dizendo o quanto você está grato.'
+
+			$scope.entrarLoading = function() {
+				$ionicLoading.show({
+					content: 'Carregando dados',
+					animation: 'fade-in',
+					showBackdrop: true,
+					maxWidth: 200,
+					showDelay: 0
+				});
+			}
+			$scope.sairLoading = function() {
+				$timeout(function(){
+					$ionicLoading.hide();
+				}, 100);
+			}
+
+			$scope.atualizaListaLocal = function() {
+				var listaJson = angular.toJson($rootScope.lista);
+				localStorage.setItem('mensagensSejaGrato', listaJson);
+			}
+
+			$ionicModal.fromTemplateUrl('templates/modalTextoGratidao.html', {
+				scope: $scope,
+				animation: 'slide-in-up'
+			}).then(function(modal){
+				$scope.modal = modal;
 			});
-		} else {
+			$scope.openModal = function() {
+				$scope.modal.show();
+			};
+			$scope.closeModal = function() {
+				$scope.modal.hide();
+			}
+
+			$scope.visualizarTexto = function(mensagem) {
+				$scope.hideButtonsOptions();
+				$scope.openModal();
+				$scope.mensagemSelecionada = angular.copy(mensagem);
+				var index = $rootScope.lista.indexOf(mensagem);
+				$scope.editarTexto = function() {
+					$rootScope.lista[index].texto = $scope.mensagemSelecionada.texto;
+					$scope.atualizaListaLocal();
+					$scope.modal.hide();
+				}
+			}
+
+			$scope.excluirTexto = function(mensagem) {
+				$scope.hideButtonsOptions();
+				var index = $rootScope.lista.indexOf(mensagem);
+				var confirmPopup = $ionicPopup.confirm({
+					title: 'Excluir',
+					template: 'Deseja realmente excluir esta mensagem (' + mensagem.texto + ') ?'
+				});
+				confirmPopup.then(function(resposta) {
+					if(resposta) {
+						$rootScope.lista.splice(index, 1);
+						$scope.atualizaListaLocal();
+					}
+				});
+				return true;
+			}
+
+			$scope.salvarTexto = function() {
+				$scope.hideButtonsOptions();
+				if($rootScope.lista.texto == '' || $rootScope.lista.texto == undefined) {
+					var alertPopup = $ionicPopup.alert({
+						title: 'Ainda não está grato?',
+						template: 'Deixe um texto dizendo o quanto você está grato.'
+					});
+				} else {
 				// data atual
 				
 				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
