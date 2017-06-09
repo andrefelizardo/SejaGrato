@@ -1,7 +1,9 @@
-angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate){
+angular.module('sejaGrato').controller('HomeController', function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, sincronizacaoFirebase, $q){
 	$rootScope.usuario = [];
 	$scope.logar = loginService.logar;
 	$scope.verificaLogado = loginService.verificaLogado;
+	$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
+	$scope.statusSincronizacao = '';
 	$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 	$scope.filtroDia = {
 		opcoes: ['Hoje', 'Ontem', 'Sempre']};
@@ -67,17 +69,22 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$ionicListDelegate.closeOptionButtons();
 	}
 
+	// $scope.$watch('statusSincronizacao', function(valorNovo, valorAntigo){
+	// 	if($rootScope.statusSincronizacao){
+	// 			$scope.$broadcast('scroll.refreshComplete');
+	// 		}
+	// });
+
 
 	$scope.sincronizar = function() {
-		// salvando no Firebase
+		// verificar se tem internet
 		if($rootScope.statusUsuario){
 			var usuario = $rootScope.usuario.uid;
 			var listaBanco = angular.copy($rootScope.lista);
-			firebase.database().ref('mensagens/').child(usuario).set({
-				mensagens: listaBanco
-			})
-			.then(function(){
-				$scope.$broadcast('scroll.refreshComplete');
+			$scope.sincronizarBanco(usuario, listaBanco)
+			.then(function(resposta){
+				if(resposta == 'Ok')
+					$scope.$broadcast('scroll.refreshComplete');
 			})
 		}
 	}

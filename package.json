@@ -7,7 +7,6 @@
         "bluebird": "^3.5.0",
         "cordova-android": "^6.2.3",
         "cordova-plugin-app-event": "file:node_modules\\cordova-plugin-app-event",
-        "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-inappbrowser": "^0.2.2",
@@ -53,8 +52,7 @@
             },
             "de.appplant.cordova.plugin.local-notification": {},
             "onesignal-cordova-plugin": {},
-            "cordova-plugin-network-information": {},
-            "cordova-plugin-background-mode": {}
+            "cordova-plugin-network-information": {}
         },
         "platforms": [
             "android"

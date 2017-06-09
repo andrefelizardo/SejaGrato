@@ -51,30 +51,6 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controlle
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    document.addEventListener('deviceready', function () {
-      console.log('device tá ready');
-
-      cordova.plugins.backgroundMode.setDefaults({ 
-        title:  'Por favor',
-        text:   'Me ajuda!'
-      });
-
-              // backgroundmode
-              cordova.plugins.backgroundMode.enable();
-
-              cordova.plugins.backgroundMode.onactivate = function() {
-                console.log('BackgroundMode ativado');
-
-                setInterval(function () {
-
-                  console.log('Pau no cu do first');
-
-                }, 30000);
-              }
-
-            }, false);
-
   });
 })
 
