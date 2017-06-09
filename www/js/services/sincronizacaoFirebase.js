@@ -13,7 +13,7 @@ angular.module('sejaGrato')
 				deferred.resolve('Ok');
 			})
 			.catch(function(error){
-				deferred.reject('Erro ao salvar' + error);
+				deferred.reject(error);
 			})
 
 			return deferred.promise;
