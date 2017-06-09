@@ -109,7 +109,8 @@ angular.module('sejaGrato')
 						})
 					}
 				} else {
-					console.warn('Sem Internet');
+					$scope.$broadcast('scroll.refreshComplete');
+					$ionicLoading.show({ template: 'Sem internet', noBackdrop: true, duration: 2000 });
 				}
 			}
 
