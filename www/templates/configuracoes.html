@@ -1,6 +1,14 @@
-<ion-view title="Configurações" id="configuracoes" ng-controller="configuracoesController" class="bgcolor2">
+<ion-view title="Configurações" id="configuracoes" ng-controller="configuracoesController" class="bgcolor2" ng-init="getDataSincronizacao()">
   <ion-content class="has-header">
-    <div class="spacer" style="height: 50px;"></div>
-    <p class="text-center">Última sincronizacao: {{dataSincronizacao}}</p>
+    <!-- <div class="spacer" style="height: 50px;"></div>
+    <p class="text-center">Última sincronizacao: {{dataSincronizacao}}</p> -->
+    <div class="list">
+      <p class="item">Usuário:
+        <span class="item-note">{{usuario.email}}</span>
+      </p>
+      <p class="item">Última sincronização:
+        <span class="item-note">{{dataSincronizacao}}</span>
+      </p>
+    </div>
   </ion-content>
 </ion-view>

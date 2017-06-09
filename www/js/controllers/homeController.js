@@ -72,12 +72,6 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		$ionicListDelegate.closeOptionButtons();
 	}
 
-	// $scope.$watch('statusSincronizacao', function(valorNovo, valorAntigo){
-	// 	if($rootScope.statusSincronizacao){
-	// 			$scope.$broadcast('scroll.refreshComplete');
-	// 		}
-	// });
-
 
 	$scope.sincronizar = function() {
 		// verificar se tem internet
