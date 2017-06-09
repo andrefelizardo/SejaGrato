@@ -28,9 +28,12 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 		var diaOntem = data.getDate() - 1;
 		var mes = data.getMonth() + 1;
 		var ano = data.getFullYear();
+		var hora = data.getHours();
+		var minuto = data.getMinutes();
 		$rootScope.lista.data = [dia, mes, ano].join('/');
 		$scope.dataAtual = $rootScope.lista.data;
 		$scope.dataOntem = [diaOntem, mes, ano].join('/');
+		$scope.horaAtual = [hora, minuto].join(':');
 	}
 
 	$scope.tamanhoTextarea = function() {
@@ -83,8 +86,11 @@ angular.module('sejaGrato').controller('HomeController', function($scope, $rootS
 			var listaBanco = angular.copy($rootScope.lista);
 			$scope.sincronizarBanco(usuario, listaBanco)
 			.then(function(resposta){
-				if(resposta == 'Ok')
+				if(resposta == 'Ok'){
+					$scope.datas();
+					localStorage.setItem('ultimaSincronizacao', $scope.dataAtual + ' ' + $scope.horaAtual);
 					$scope.$broadcast('scroll.refreshComplete');
+				}
 			})
 		}
 	}

@@ -67,6 +67,15 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.configuracoes', {
+    url: '/configuracoes',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/configuracoes.html'
+      }
+    }
+  })
+
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',
