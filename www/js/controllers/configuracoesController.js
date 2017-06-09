@@ -2,6 +2,7 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 
 	$scope.$on('$ionicView.enter', function(){
 		$scope.getDataSincronizacao();
+		$scope.usuario = $scope.getUsuario();
 	});
 
 	$scope.getUsuario = getUsuario.usuarioLocal;
@@ -9,6 +10,4 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 	$scope.getDataSincronizacao = function() {
 		$scope.dataSincronizacao = localStorage.getItem('ultimaSincronizacao');
 	}
-
-	$scope.usuario = $scope.getUsuario();
 })
