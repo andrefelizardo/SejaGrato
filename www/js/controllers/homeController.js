@@ -1,6 +1,15 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+	function($scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+
+		$cordovaNativeAudio
+		.preloadSimple('click', 'sounds/ambient.mp3')
+		.then(function (msg) {
+			alert(msg);
+		}, function (error) {
+			alert(error);
+		});
+
 
 		$scope.getUsuario = getUsuario.usuarioLocal;
 		$scope.logar = loginService.logar;
@@ -14,20 +23,20 @@ angular.module('sejaGrato')
 		$scope.getDataLimiteSincronizacao = datasService.dataLimiteSincronizacao;
 		$scope.getHoraAtual = datasService.horaAtual;
 		$scope.motivacao = [
-			{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
-			{frase: 'Não ofereça a Deus apenas a dor de suas penitências, ofereça também suas alegrias.', autor: 'Paulo Coelho'},
-			{frase: 'O quão feliz é uma pessoa depende da profundidade de sua gratidão.', autor: 'Autor Desconhecido'},
-			{frase: 'Aos incapazes de gratidão nunca faltam pretextos para não a ter.', autor: 'Autor Desconhecido'},
-			{frase: 'A gratidão é um fruto de grande cultura; não se encontra entre gente vulgar.', autor: 'Autor Desconhecido'},
-			{frase: 'A única pessoa que você está destinado a se tornar é a pessoa que você decide ser.', autor: 'Ralph Waldo Emerson'},
-			{frase: 'O dia de hoje não foi como você planejou? Ainda assim, agradeça.', autor: 'Fábrica de Mentes'},
-			{frase: 'As pessoas não decidem seu futuro, elas decidem seus hábitos, e seus hábitos decidem seu futuro.', autor: 'F.M. Alexander'},
-			{frase: 'Se você quer algo que nunca teve, faça algo que nunca fez.', autor: 'Thomas Jefferson'},
-			{frase: 'Cada vez que você dá uma desculpa, há alguém que tem o mesmo problema, mas passa por cima.', autor: 'Sonhe Grande'},
-			{frase: 'Sucesso é uma ciência exata que todos podem aprender.', autor: 'Flávio Augusto'},
-			{frase: 'Não é o que nos acontece que mais importa, e sim o que nós fazemos com o que nos acontece.', autor: 'Paulo Vieira'},
-			{frase: 'Não espere por uma crise para descobrir o que é importante em sua vida.', autor: 'Platão'}
-			];
+		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
+		{frase: 'Não ofereça a Deus apenas a dor de suas penitências, ofereça também suas alegrias.', autor: 'Paulo Coelho'},
+		{frase: 'O quão feliz é uma pessoa depende da profundidade de sua gratidão.', autor: 'Autor Desconhecido'},
+		{frase: 'Aos incapazes de gratidão nunca faltam pretextos para não a ter.', autor: 'Autor Desconhecido'},
+		{frase: 'A gratidão é um fruto de grande cultura; não se encontra entre gente vulgar.', autor: 'Autor Desconhecido'},
+		{frase: 'A única pessoa que você está destinado a se tornar é a pessoa que você decide ser.', autor: 'Ralph Waldo Emerson'},
+		{frase: 'O dia de hoje não foi como você planejou? Ainda assim, agradeça.', autor: 'Fábrica de Mentes'},
+		{frase: 'As pessoas não decidem seu futuro, elas decidem seus hábitos, e seus hábitos decidem seu futuro.', autor: 'F.M. Alexander'},
+		{frase: 'Se você quer algo que nunca teve, faça algo que nunca fez.', autor: 'Thomas Jefferson'},
+		{frase: 'Cada vez que você dá uma desculpa, há alguém que tem o mesmo problema, mas passa por cima.', autor: 'Sonhe Grande'},
+		{frase: 'Sucesso é uma ciência exata que todos podem aprender.', autor: 'Flávio Augusto'},
+		{frase: 'Não é o que nos acontece que mais importa, e sim o que nós fazemos com o que nos acontece.', autor: 'Paulo Vieira'},
+		{frase: 'Não espere por uma crise para descobrir o que é importante em sua vida.', autor: 'Platão'}
+		];
 
 		$scope.imagens = ['img/tela-inicial-white.png', 'img/tutorial-01.png', 'img/tutorial-02.png', 'img/tutorial-03.png'];
 
@@ -195,64 +204,68 @@ angular.module('sejaGrato')
 						template: 'Deixe um texto dizendo o quanto você está grato.'
 					});
 				} else {
-				$scope.dataAtual = $scope.getDataAtual();
-				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $scope.dataAtual});
-				$scope.atualizaListaLocal();
+					$scope.dataAtual = $scope.getDataAtual();
+					$rootScope.lista.push({texto: $rootScope.lista.texto, data: $scope.dataAtual});
+					$scope.atualizaListaLocal();
 
-				$rootScope.dadosLocal = true;
-				$rootScope.lista.texto = '';
+					$rootScope.dadosLocal = true;
+					$rootScope.lista.texto = '';
+					$cordovaNativeAudio.play('click');
+					$timeout(function () {
+						$cordovaNativeAudio.stop('click');
+					}, 2000);
+				}
 			}
-		}
 
-		$scope.sincronizacaoAutomatica = function() {
-			var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
-			var dataSincronizacao = ultimaSincronizacao[0].data;
-			if (!dataSincronizacao) {
-				$scope.sincronizar();
-				return;
+			$scope.sincronizacaoAutomatica = function() {
+				var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
+				var dataSincronizacao = ultimaSincronizacao[0].data;
+				if (!dataSincronizacao) {
+					$scope.sincronizar();
+					return;
+				}
+				var dataLimite = $scope.getDataLimiteSincronizacao();
+				var arrayTemp = dataSincronizacao.split('/');
+				var auxiliar = arrayTemp[1];
+				arrayTemp[1] = arrayTemp[0];
+				arrayTemp[0] = auxiliar;
+				dataLimite = new Date(dataLimite);
+				dataSincronizacao = new Date(arrayTemp.join('/'));
+				if(dataLimite > dataSincronizacao)
+					$scope.sincronizar();
 			}
-			var dataLimite = $scope.getDataLimiteSincronizacao();
-			var arrayTemp = dataSincronizacao.split('/');
-			var auxiliar = arrayTemp[1];
-			arrayTemp[1] = arrayTemp[0];
-			arrayTemp[0] = auxiliar;
-			dataLimite = new Date(dataLimite);
-			dataSincronizacao = new Date(arrayTemp.join('/'));
-			if(dataLimite > dataSincronizacao)
-				$scope.sincronizar();
-		}
 
-		$scope.pageLoad = function() {
-			$scope.sorteios();
-			$scope.entrarLoading();
-			if(localStorage.getItem('mensagensSejaGrato')) {
-				$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
-				$rootScope.dadosLocal = true;
-				if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
+			$scope.pageLoad = function() {
+				$scope.sorteios();
+				$scope.entrarLoading();
+				if(localStorage.getItem('mensagensSejaGrato')) {
+					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
+					$rootScope.dadosLocal = true;
+					if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
+						$rootScope.statusUsuario = true;
+						$rootScope.usuario = $scope.getUsuario();
+						$scope.sincronizacaoAutomatica();
+					}
+					$scope.sairLoading();
+				} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
+					$rootScope.dadosLocal = true;
 					$rootScope.statusUsuario = true;
 					$rootScope.usuario = $scope.getUsuario();
-					$scope.sincronizacaoAutomatica();
+					$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+					.then(function(mensagens){
+						$rootScope.lista = mensagens.data;
+						$scope.atualizaListaLocal();
+					},
+					function(erro) {
+						console.log(erro);
+					});
+					$scope.sairLoading();
+				} else {
+					$rootScope.dadosLocal = false;
+					$scope.sairLoading();	
+
 				}
-				$scope.sairLoading();
-			} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
-				$rootScope.dadosLocal = true;
-				$rootScope.statusUsuario = true;
-				$rootScope.usuario = $scope.getUsuario();
-				$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
-				.then(function(mensagens){
-					$rootScope.lista = mensagens.data;
-					$scope.atualizaListaLocal();
-				},
-				function(erro) {
-					console.log(erro);
-				});
-				$scope.sairLoading();
-			} else {
-				$rootScope.dadosLocal = false;
-				$scope.sairLoading();	
-
 			}
-		}
 
-		$scope.pageLoad();
-	});
+			$scope.pageLoad();
+		});
