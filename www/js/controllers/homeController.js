@@ -1,15 +1,16 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
-		$cordovaNativeAudio
-		.preloadSimple('click', 'sounds/ambient.mp3')
-		.then(function (msg) {
-			alert(msg);
-		}, function (error) {
-			alert(error);
-		});
-
+		$ionicPlatform.ready(function(){
+			$cordovaNativeAudio
+			.preloadSimple('click', 'sounds/ambient.mp3')
+			.then(function (msg) {
+				alert(msg);
+			}, function (error) {
+				alert(error);
+			});
+		})
 
 		$scope.getUsuario = getUsuario.usuarioLocal;
 		$scope.logar = loginService.logar;
