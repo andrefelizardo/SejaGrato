@@ -1,155 +1,18 @@
 angular.module('sejaGrato')
-.factory('loginService', ['$ionicPopup', '$ionicLoading', '$state', '$ionicHistory', '$rootScope', '$http', '$timeout',
-	function ($ionicPopup, $ionicLoading, $state, $ionicHistory, $rootScope, $http, $timeout) {
+.factory('loginService', ['$q',
+	function ($q) {
 
 		function logar(email, password) {
-			$ionicLoading.show({
-				content: 'Carregando dados',
-				animation: 'fade-in',
-				showBackdrop: true,
-				maxWidth: 200,
-				showDelay: 0
-			});
-			if(window.Connection) {
-				if(navigator.connection.type !== Connection.NONE) {
-				// tem internet
-				firebase.auth().signInWithEmailAndPassword(email, password)
-				.catch(function(error) {
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					$timeout(function(){
-						$ionicLoading.hide();
-					}, 100);
-					if(errorCode === 'auth/wrong-password') {
-						var alertPopup = $ionicPopup.alert({
-							title: 'Erro',
-							template: 'Senha incorreta.'
-						});
-					} else if(errorCode === 'auth/user-not-found') {
-						var alertPopup = $ionicPopup.alert({
-							title: 'Erro',
-							template: 'Usuário não encontrado'
-						});
-					} else {
-						var alertPopup = $ionicPopup.alert({
-							title: 'Erro',
-							template: errorMessage
-						});
+			var deferred = $q.defer();
 
-					}
-					console.log(error);
-				})
-				.then(function(result){
-					if(result) {
-						var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
-						$rootScope.usuario = angular.fromJson(usuarioFirebase);
-						$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
-						.then(function(mensagens){
-							if(localStorage.getItem('mensagensSejaGrato') && mensagens.data) {
-								// tem localstorage e banco
-								var listaBanco = angular.fromJson(mensagens.data);
-								var listaLocal = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
-								var listaFinal = listaLocal.concat(listaBanco);
-								$rootScope.lista = listaFinal;
-								listaFinal = angular.toJson(listaFinal);
-								localStorage.setItem('mensagensSejaGrato', listaFinal);
-
-								firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
-									mensagens: listaFinal
-								});
-
-								$timeout(function(){
-									$ionicLoading.hide();
-								}, 100);
-
-								$rootScope.dadosLocal = true;
-								var alertLogado = $ionicPopup.alert({
-									title: 'Conectado',
-									template: 'Juntamos suas mensagens do celular com as que estavam na nuvem para você não se esquecer de nada.'
-								});
-								alertLogado.then(function(res){
-									$ionicHistory.nextViewOptions({
-										disableBack: true
-									});
-									$rootScope.statusUsuario = true;
-									$state.go('tutorial-sync');
-								});
-							} else if (mensagens.data) {
-								// tem só banco
-								$rootScope.lista = mensagens.data;
-								var listaJson = angular.toJson($rootScope.lista);
-								localStorage.setItem('mensagensSejaGrato', listaJson);
-								$rootScope.dadosLocal = true;
-								$timeout(function(){
-									$ionicLoading.hide();
-								}, 100);
-								var alertLogado = $ionicPopup.alert({
-									title: 'Conectado',
-									template: 'Agora suas mensagens da nuvem também estão no seu celular!'
-								});
-								alertLogado.then(function(res){
-									$ionicHistory.nextViewOptions({
-										disableBack: true
-									});
-									$rootScope.statusUsuario = true;
-									$state.go('tutorial-sync');
-								});
-							} else if(localStorage.getItem('mensagensSejaGrato')) {
-								// tem só localstorage
-								var listaLocalJson = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
-								firebase.database().ref('mensagens/').child($rootScope.usuario.uid).set({
-									mensagens: listaLocalJson
-								});
-								$timeout(function(){
-									$ionicLoading.hide();
-								}, 100);
-								var alertLogado = $ionicPopup.alert({
-									title: 'Conectado',
-									template: 'Legal. Suas mensagens do celular agora estão na nuvem.'
-								});
-								alertLogado.then(function(res){
-									$ionicHistory.nextViewOptions({
-										disableBack: true
-									});
-									$rootScope.statusUsuario = true;
-									$state.go('tutorial-sync');
-								});
-							} else {
-								// não tem banco nem localstorage
-								$timeout(function(){
-									$ionicLoading.hide();
-								}, 100);
-								var alertLogado = $ionicPopup.alert({
-									title: 'Conectado',
-									template: 'Login feito! Aproveite para escrever sua primeira mensagem de gratidão.'
-								});
-								alertLogado.then(function(res){
-									$ionicHistory.nextViewOptions({
-										disableBack: true
-									});
-									$rootScope.statusUsuario = true;
-									$state.go('tutorial-sync');
-								});
-							}
-
-						},
-						function(erro){
-							console.log(erro);
-						});
-					}
-
-				})
-			} else {
-				$timeout(function(){
-					$ionicLoading.hide();
-				}, 100);
-				var alertPopup = $ionicPopup.alert({
-					title: 'Sem Internet',
-					template: 'Para executar esta ação você precisa de conexão a internet!'
-				});
-			}
-		}
-
+			firebase.auth().signInWithEmailAndPassword(email, password)
+			.then(function(result) {
+				deferred.resolve(result);
+			})
+			.catch(function(error) {
+				deferred.reject(error);
+			})
+			return deferred.promise;
 	}
 
 	function atualizaListaLocal() {
@@ -169,7 +32,17 @@ angular.module('sejaGrato')
 	}
 
 	function sair() {
+		var deferred = $q.defer();
+
 		firebase.auth().signOut()
+		.then(function(){
+			deferred.resolve('Ok');
+		})
+		.catch(function(error) {
+			deferred.reject(error);
+		})
+
+		return deferred.promise;
 	}
 
 	return {

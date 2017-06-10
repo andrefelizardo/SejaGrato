@@ -6,11 +6,11 @@ angular.module('sejaGrato')
 			var deferred = $q.defer();
 
 			firebase.auth().createUserWithEmailAndPassword(email, password)
-			.catch(function(error){
-				deferred.reject(error);
-			})
 			.then(function(result){
 				deferred.resolve(result);
+			})
+			.catch(function(error){
+				deferred.reject(error);
 			})
 
 			return deferred.promise;

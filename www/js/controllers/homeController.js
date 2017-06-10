@@ -1,18 +1,17 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($scope, $rootScope, loginService, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, sincronizacaoFirebase, $q, getUsuario, verificaInternet){
-
-		$scope.$on('$ionicView.enter', function(){
-			$scope.datas();
-		});
-
+	function($scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
 		$scope.getUsuario = getUsuario.usuarioLocal;
 		$scope.logar = loginService.logar;
 		$scope.verificaLogado = loginService.verificaLogado;
 		$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
+		$scope.getMensagens = sincronizacaoFirebase.getMensagens;
 		$scope.verificaInternet = verificaInternet.verificar;
 		$scope.statusSincronizacao = '';
+		$scope.getDataAtual = datasService.dataAtual;
+		$scope.getDataOntem = datasService.dataOntem;
+		$scope.getDataLimiteSincronizacao = datasService.dataLimiteSincronizacao;
 		$scope.motivacao = [{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},];
 		$scope.filtroDia = {
 			opcoes: ['Hoje', 'Ontem', 'Sempre']};
@@ -22,6 +21,8 @@ angular.module('sejaGrato')
 			$scope.dataFiltrada = '';
 
 			$scope.$watch('filtroDia.opcao.opcaoEscolhida', function(valorNovo, valorAntigo){
+				$scope.dataAtual = $scope.getDataAtual();
+				$scope.dataOntem = $scope.getDataOntem();
 				if(valorNovo == 'Hoje') {
 					$scope.dataFiltrada = $scope.dataAtual;
 				} else if (valorNovo == 'Ontem') {
@@ -30,31 +31,6 @@ angular.module('sejaGrato')
 					$scope.dataFiltrada = '';
 				}
 			});
-
-			$scope.datas = function() {
-				var data = new Date();
-				var dia = data.getDate();
-				var diaOntem = dia - 1;
-				var mes = data.getMonth() + 1;
-				var ano = data.getFullYear();
-				var hora = data.getHours();
-				var minuto = data.getMinutes();
-				if(dia > 6){
-					var diaLimite = dia - 5;
-					var mesLimite = mes;
-				} else if (mes <= 2) {
-					var mesLimite = 12;
-					var diaLimite = 28;
-				} else {
-					var diaLimite = 28;
-					var mesLimite = mes - 1;
-				}
-				$rootScope.lista.data = [dia, mes, ano].join('/');
-				$scope.dataAtual = $rootScope.lista.data;
-				$scope.dataOntem = [diaOntem, mes, ano].join('/');
-				$scope.dataLimiteSincronizacao = [mesLimite, diaLimite, ano].join('/');
-				$scope.horaAtual = [hora, minuto].join(':');
-			}
 
 			$scope.tamanhoTextarea = function() {
 				objTextArea = document.querySelector('textarea.textareaModal');
@@ -68,25 +44,25 @@ angular.module('sejaGrato')
 				}
 			});
 
-			$scope.notificacaoRapida = function() {
-				var now = new Date();
-				var seconds = now.setSeconds(now.getSeconds() + 30);
+			// $scope.notificacaoRapida = function() {
+			// 	var now = new Date();
+			// 	var seconds = now.setSeconds(now.getSeconds() + 30);
 
-				$cordovaLocalNotification.schedule({
-					id: '1',
-					data: seconds,
-					message: 'Agendado a 30 segundos',
-					title: 'Notificação Local Braba!'
-				}).then(function() {
-					console.log('Agendada');
-				});
-			}
+			// 	$cordovaLocalNotification.schedule({
+			// 		id: '1',
+			// 		data: seconds,
+			// 		message: 'Agendado a 30 segundos',
+			// 		title: 'Notificação Local Braba!'
+			// 	}).then(function() {
+			// 		console.log('Agendada');
+			// 	});
+			// }
 
-			$scope.isScheduled = function(id) {
-				$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
-					alert("Notification "+id+" Scheduled: " + isScheduled);
-				});
-			}
+			// $scope.isScheduled = function(id) {
+			// 	$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
+			// 		alert("Notification "+id+" Scheduled: " + isScheduled);
+			// 	});
+			// }
 
 			$scope.hideButtonsOptions = function() {
 				$ionicListDelegate.closeOptionButtons();
@@ -102,7 +78,7 @@ angular.module('sejaGrato')
 						$scope.sincronizarBanco(usuario, listaBanco)
 						.then(function(resposta){
 							if(resposta == 'Ok'){
-								$scope.datas();
+								$scope.dataAtual = $scope.getDataAtual();
 								localStorage.setItem('ultimaSincronizacao', $scope.dataAtual);
 								$scope.$broadcast('scroll.refreshComplete');
 							}
@@ -184,9 +160,8 @@ angular.module('sejaGrato')
 						template: 'Deixe um texto dizendo o quanto você está grato.'
 					});
 				} else {
-				// data atual
-				
-				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $rootScope.lista.data});
+				$scope.dataAtual = $scope.getDataAtual();
+				$rootScope.lista.push({texto: $rootScope.lista.texto, data: $scope.dataAtual});
 				$scope.atualizaListaLocal();
 
 				$rootScope.dadosLocal = true;
@@ -196,7 +171,11 @@ angular.module('sejaGrato')
 
 		$scope.sincronizacaoAutomatica = function() {
 			var dataSincronizacao = localStorage.getItem('ultimaSincronizacao');
-			var dataLimite = $scope.dataLimiteSincronizacao;
+			if (!dataSincronizacao) {
+				$scope.sincronizar();
+				return;
+			}
+			var dataLimite = $scope.getDataLimiteSincronizacao();
 			var arrayTemp = dataSincronizacao.split('/');
 			var auxiliar = arrayTemp[1];
 			arrayTemp[1] = arrayTemp[0];
@@ -209,7 +188,6 @@ angular.module('sejaGrato')
 
 		$scope.pageLoad = function() {
 			$scope.entrarLoading();
-			$scope.datas();
 			if(localStorage.getItem('mensagensSejaGrato')) {
 				$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 				$rootScope.dadosLocal = true;
@@ -231,7 +209,6 @@ angular.module('sejaGrato')
 				function(erro) {
 					console.log(erro);
 				});
-				$scope.sincronizacaoAutomatica();
 				$scope.sairLoading();
 			} else {
 				$rootScope.dadosLocal = false;

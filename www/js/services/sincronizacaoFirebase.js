@@ -18,7 +18,24 @@ angular.module('sejaGrato')
 
 			return deferred.promise;
 	}
+
+	function get(usuario) {
+
+		var deferred = $q.defer();
+
+		$http.get('https://seja-grato.firebaseio.com/mensagens/' + usuario + '/mensagens.json')
+		.then(function(mensagens) {
+			deferred.resolve(mensagens);
+		})
+		.catch(function(error) {
+			deferred.reject(error);
+		})
+
+		return deferred.promise;
+	}
+
 	return {
-		sincronizar: sincronizar
+		sincronizar: sincronizar,
+		getMensagens: get
 	};
 }])
