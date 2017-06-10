@@ -1,9 +1,8 @@
 angular.module('sejaGrato')
 .factory('datasService', ['$q', 
 	function($q) {
-
+		var data = new Date();
 		function dataAtual() {
-			var data = new Date();
 				var dia = data.getDate();
 				var mes = data.getMonth() + 1;
 				var ano = data.getFullYear();
@@ -12,7 +11,6 @@ angular.module('sejaGrato')
 		}
 
 		function dataOntem() {
-			var data = new Date();
 			var dia = data.getDate() - 1;
 			var mes = data.getMonth() + 1;
 			var ano = data.getFullYear();
@@ -21,7 +19,6 @@ angular.module('sejaGrato')
 		}
 
 		function dataLimiteSincronizacao() {
-			var data = new Date();
 			var dia = data.getDate();
 			var mes = data.getMonth() + 1;
 			if(dia > 6){
@@ -38,9 +35,17 @@ angular.module('sejaGrato')
 			return dataLimiteSincronizacao;
 		}
 
+		function horaAtual() {
+			var hora = data.getHours();
+			var minutos = data.getMinutes();
+			var horaAtual = [hora, minutos].join(':');
+			return horaAtual;
+		}
+
 		return {
 			dataAtual: dataAtual,
 			dataOntem: dataOntem,
-			dataLimiteSincronizacao: dataLimiteSincronizacao
+			dataLimiteSincronizacao: dataLimiteSincronizacao,
+			horaAtual: horaAtual
 		}
 	}]);

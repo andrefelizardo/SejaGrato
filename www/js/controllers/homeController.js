@@ -12,6 +12,7 @@ angular.module('sejaGrato')
 		$scope.getDataAtual = datasService.dataAtual;
 		$scope.getDataOntem = datasService.dataOntem;
 		$scope.getDataLimiteSincronizacao = datasService.dataLimiteSincronizacao;
+		$scope.getHoraAtual = datasService.horaAtual;
 		$scope.motivacao = [
 			{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
 			{frase: 'Não ofereça a Deus apenas a dor de suas penitências, ofereça também suas alegrias.', autor: 'Paulo Coelho'},
@@ -108,8 +109,12 @@ angular.module('sejaGrato')
 						$scope.sincronizarBanco(usuario, listaBanco)
 						.then(function(resposta){
 							if(resposta == 'Ok'){
-								$scope.dataAtual = $scope.getDataAtual();
-								localStorage.setItem('ultimaSincronizacao', $scope.dataAtual);
+								var hora = $scope.getHoraAtual();
+								var data = $scope.getDataAtual();
+								var horarioSincronizacao = [];
+								horarioSincronizacao.push({data: data, hora: hora});
+								horarioSincronizacao = angular.toJson(horarioSincronizacao);
+								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
 								$scope.$broadcast('scroll.refreshComplete');
 							}
 						})
@@ -200,7 +205,8 @@ angular.module('sejaGrato')
 		}
 
 		$scope.sincronizacaoAutomatica = function() {
-			var dataSincronizacao = localStorage.getItem('ultimaSincronizacao');
+			var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
+			var dataSincronizacao = ultimaSincronizacao[0].data;
 			if (!dataSincronizacao) {
 				$scope.sincronizar();
 				return;

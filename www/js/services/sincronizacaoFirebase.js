@@ -1,6 +1,6 @@
 angular.module('sejaGrato')
-.factory('sincronizacaoFirebase', ['$q',
-	function ($q) {
+.factory('sincronizacaoFirebase', ['$q', '$http',
+	function ($q, $http) {
 	
 	function sincronizar(usuario, listaBanco) {
 

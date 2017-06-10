@@ -8,6 +8,8 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
 	$scope.getDataSincronizacao = function() {
-		$scope.dataSincronizacao = localStorage.getItem('ultimaSincronizacao');
+		var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
+		$scope.dataSincronizacao = ultimaSincronizacao[0].data;
+		$scope.horaSincronizacao = ultimaSincronizacao[0].hora;
 	}
 })
