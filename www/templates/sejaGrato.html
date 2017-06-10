@@ -6,7 +6,7 @@
 <!-- <button class="button icon ion-camera"></button> -->
 <!-- Botão de câmera -->
 </ion-nav-buttons>
-<ion-content class="has-header" ng-click="hideButtonsOptions()" class="contentPrincipal">
+<ion-content class="has-header" ng-click="hideButtonsOptions()" class="contentPrincipal" ng-style="{'background-image': 'url(' + imagemSorteada + ')'}">
 <ion-refresher pulling-text="Sincronizando Mensagens" on-refresh="sincronizar()" ng-if="$root.statusUsuario">
 </ion-refresher>
 <form id="sejaGrato-form1" class="list padding" name='sejaGratoForm'>
@@ -18,10 +18,9 @@
 <button id="sejaGrato-button1" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="salvarTexto()">Sim, estou grato!</button>
 <div class="spacer" style="height: 25px;"></div>
 <!-- Exibir essa parada aqui, só quando não tiver itens no repeat -->
-<div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" ng-show="mensagensFiltradas.length < 1">
-  <p style="color:#FFFFFF;font-size:16px; padding: 0 1em;"><em>{{motivacao[0].frase}}</em></p>
-  <span style="color:#FFFFFF;">{{motivacao[0].autor}}</span>
-  <div class="spacer" style="height: 25px;"></div>
+<div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" style="background: rgba(1, 1, 1, 0.4); padding: 1em .5em;" ng-show="mensagensFiltradas.length < 1">
+  <p style="color:#FFFFFF;font-size:16px; padding: 0 1em;"><em>{{mensagemSorteada.frase}}</em></p>
+  <span style="color:#FFFFFF;">{{mensagemSorteada.autor}}</span>
 </div>
 <!-- Modal -->
 <script id="templates/modalTextoGratidao.html" type="text/ng-template">

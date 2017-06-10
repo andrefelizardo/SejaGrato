@@ -12,8 +12,10 @@ ion-header-bar.bar-energized .button.button-clear {
 	color: #5588ee;
 }
 #page1 .scroll-content {
-	background: url('../img/tela-inicial-white.png') center center no-repeat;
+	/* background: url('../img/tela-inicial-white.png') center center no-repeat; */
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 .buttonCustom {
 	border-radius: 0;

@@ -58,15 +58,6 @@ angular.module('app.routes', [])
     }
   })  
 
-  .state('menu.historico', {
-    url: '/historico',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/historico.html'
-      }
-    }
-  })
-
   .state('menu.configuracoes', {
     url: '/configuracoes',
     views: {
