@@ -196,6 +196,10 @@ body {
 	background: #5588ee;
 }
 .selectFiltro {
-	font-size: 14px;
-	padding: 5px;
+    font-size: 14px;
+    padding: 5px 5px 5px 0;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
 }

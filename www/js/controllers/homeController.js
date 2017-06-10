@@ -16,7 +16,7 @@ angular.module('sejaGrato')
 		$scope.filtroDia = {
 			opcoes: ['Hoje', 'Ontem', 'Sempre']};
 			$scope.filtroDia.opcao = {
-				opcaoEscolhida: $scope.filtroDia.opcoes[2]
+				opcaoEscolhida: $scope.filtroDia.opcoes[0]
 			}
 			$scope.dataFiltrada = '';
 
