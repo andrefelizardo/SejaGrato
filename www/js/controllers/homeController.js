@@ -4,11 +4,11 @@ angular.module('sejaGrato')
 
 		$ionicPlatform.ready(function(){
 			$cordovaNativeAudio
-			.preloadSimple('click', 'sounds/ambient.mp3')
+			.preloadSimple('click', 'sounds/harpa.mp3')
 			.then(function (msg) {
-				alert(msg);
+				console.log(msg);
 			}, function (error) {
-				alert(error);
+				console.log(error);
 			});
 		})
 
@@ -214,17 +214,17 @@ angular.module('sejaGrato')
 					$cordovaNativeAudio.play('click');
 					$timeout(function () {
 						$cordovaNativeAudio.stop('click');
-					}, 2000);
+					}, 1000);
 				}
 			}
 
 			$scope.sincronizacaoAutomatica = function() {
 				var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
-				var dataSincronizacao = ultimaSincronizacao[0].data;
-				if (!dataSincronizacao) {
+				if(!ultimaSincronizacao){
 					$scope.sincronizar();
 					return;
 				}
+				var dataSincronizacao = ultimaSincronizacao[0].data;
 				var dataLimite = $scope.getDataLimiteSincronizacao();
 				var arrayTemp = dataSincronizacao.split('/');
 				var auxiliar = arrayTemp[1];
@@ -241,7 +241,12 @@ angular.module('sejaGrato')
 				$scope.entrarLoading();
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
-					$rootScope.dadosLocal = true;
+					if(!$rootScope.lista){
+						localStorage.removeItem('mensagensSejaGrato');
+						return;
+					} else {
+						$rootScope.dadosLocal = true;
+					}
 					if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
 						$rootScope.statusUsuario = true;
 						$rootScope.usuario = $scope.getUsuario();

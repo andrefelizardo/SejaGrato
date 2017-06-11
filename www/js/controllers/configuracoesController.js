@@ -9,6 +9,9 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 
 	$scope.getDataSincronizacao = function() {
 		var ultimaSincronizacao = angular.fromJson(localStorage.getItem('ultimaSincronizacao'));
+		if(!ultimaSincronizacao) {
+			return;
+		}
 		$scope.dataSincronizacao = ultimaSincronizacao[0].data;
 		$scope.horaSincronizacao = ultimaSincronizacao[0].hora;
 	}

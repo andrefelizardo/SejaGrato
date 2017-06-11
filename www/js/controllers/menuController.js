@@ -2,6 +2,11 @@ angular.module('sejaGrato').controller('menuController', function($scope, $state
 	$scope.sairFirebase = loginService.sair;
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
+	$scope.$on('$ionicView.enter', function(){
+		$scope.statusUsuario = verificaStatusUsuario();
+		// console.log('verificando menu');
+	});
+
 	var verificaStatusUsuario = function() {
 		var usuario = $scope.getUsuario();
 		if (usuario) {
@@ -23,12 +28,12 @@ angular.module('sejaGrato').controller('menuController', function($scope, $state
 				$scope.sairFirebase()
 				.then(function(response) {
 					if(response == 'Ok') {
+						$ionicLoading.show({ template: 'Usuário desconectado', noBackdrop: true, duration: 2000 });
 						$ionicHistory.nextViewOptions({
 							disableBack: true
 						});
-						$rootScope.statusUsuario = false;
+						$scope.statusUsuario = false;
 						$state.go('menu.sejaGrato');
-						$ionicLoading.show({ template: 'Usuário desconectado', noBackdrop: true, duration: 2000 });
 					}
 				})
 				.catch(function(error) {
