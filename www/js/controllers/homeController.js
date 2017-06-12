@@ -128,7 +128,6 @@ angular.module('sejaGrato')
 								var horarioSincronizacao = [];
 								horarioSincronizacao.push({data: data, hora: hora});
 								horarioSincronizacao = angular.toJson(horarioSincronizacao);
-								console.log('mudei a data de sincronização ' + horarioSincronizacao);
 								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
 								$scope.$broadcast('scroll.refreshComplete');
 							}
