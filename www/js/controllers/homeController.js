@@ -2,27 +2,6 @@ angular.module('sejaGrato')
 .controller('HomeController',
 	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
-		$ionicPlatform.ready(function(){
-			$cordovaNativeAudio
-			.preloadSimple('click', 'sounds/harpa.mp3')
-			.then(function (msg) {
-				console.log(msg);
-			}, function (error) {
-				console.log(error);
-			});
-		})
-
-		$scope.getUsuario = getUsuario.usuarioLocal;
-		$scope.logar = loginService.logar;
-		$scope.verificaLogado = loginService.verificaLogado;
-		$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
-		$scope.getMensagens = sincronizacaoFirebase.getMensagens;
-		$scope.verificaInternet = verificaInternet.verificar;
-		$scope.statusSincronizacao = '';
-		$scope.getDataAtual = datasService.dataAtual;
-		$scope.getDataOntem = datasService.dataOntem;
-		$scope.getDataLimiteSincronizacao = datasService.dataLimiteSincronizacao;
-		$scope.getHoraAtual = datasService.horaAtual;
 		$scope.motivacao = [
 		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
 		{frase: 'Não ofereça a Deus apenas a dor de suas penitências, ofereça também suas alegrias.', autor: 'Paulo Coelho'},
@@ -44,6 +23,7 @@ angular.module('sejaGrato')
 		$scope.sorteios = function() {
 			var total = $scope.motivacao.length;
 			var numero = Math.floor((Math.random()*total)+1);
+			numero = numero - 1;
 			$scope.mensagemSorteada = {
 				frase: $scope.motivacao[numero].frase,
 				autor: $scope.motivacao[numero].autor
@@ -51,8 +31,32 @@ angular.module('sejaGrato')
 
 			var totalImagens = $scope.imagens.length;
 			var numeroImagem = Math.floor((Math.random()*totalImagens)+1);
+			numeroImagem = numeroImagem - 1;
 			$scope.imagemSorteada = $scope.imagens[numeroImagem];
 		}
+
+		$ionicPlatform.ready(function(){
+			$scope.sorteios();
+			$cordovaNativeAudio
+			.preloadSimple('click', 'sounds/harpa.mp3')
+			.then(function (msg) {
+				console.log(msg);
+			}, function (error) {
+				console.log(error);
+			});
+		})
+
+		$scope.getUsuario = getUsuario.usuarioLocal;
+		$scope.logar = loginService.logar;
+		$scope.verificaLogado = loginService.verificaLogado;
+		$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
+		$scope.getMensagens = sincronizacaoFirebase.getMensagens;
+		$scope.verificaInternet = verificaInternet.verificar;
+		$scope.statusSincronizacao = '';
+		$scope.getDataAtual = datasService.dataAtual;
+		$scope.getDataOntem = datasService.dataOntem;
+		$scope.getDataLimiteSincronizacao = datasService.dataLimiteSincronizacao;
+		$scope.getHoraAtual = datasService.horaAtual;
 
 		$scope.filtroDia = {
 			opcoes: ['Hoje', 'Ontem', 'Todas']};
@@ -237,7 +241,6 @@ angular.module('sejaGrato')
 			}
 
 			$scope.pageLoad = function() {
-				$scope.sorteios();
 				$scope.entrarLoading();
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
