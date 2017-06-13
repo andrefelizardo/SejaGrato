@@ -103,6 +103,9 @@ body {
 .no-border {
 	border: none;
 }
+.no-background {
+	background: none;
+}
 #menu-list1 .list {
     margin-top: 4em;
 }
