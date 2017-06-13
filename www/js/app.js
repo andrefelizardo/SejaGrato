@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad', 'app.routes'])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
 

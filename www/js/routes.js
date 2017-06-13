@@ -1,6 +1,6 @@
 angular.module('app.routes', [])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -15,27 +15,53 @@ angular.module('app.routes', [])
     views: {
       'side-menu21': {
         templateUrl: 'templates/sejaGrato.html',
-        controller: 'sejaGratoCtrl'
+        resolve: {
+          loadDependencies: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+            {
+              serie: true,
+              files: ['js/services/sincronizacaoFirebase.js', 'js/services/getUsuario.js', 'js/services/verificaInternet.js', 'js/services/datasService.js', 'js/services/loginFirebase.js', 'js/controllers/homeController.js']
+            }
+            ]);
+          }
+        }
       }
     }
   })
 
   .state('tutorial', {
     url: '/tutorial',
-    templateUrl: 'templates/tutorial.html'
+    templateUrl: 'templates/tutorial.html',
+    resolve: {
+      loadController: function($ocLazyLoad) {
+        return $ocLazyLoad.load([
+        {
+          files: ['js/controllers/tutorialController.js']
+        }
+        ]);
+      }
+    }
   })
 
   .state('tutorial-sync', {
     url: '/tutorial-sync',
-    templateUrl: 'templates/tutorialLogin.html'
+    templateUrl: 'templates/tutorialLogin.html',
+    resolve: {
+      loadController: function($ocLazyLoad) {
+        return $ocLazyLoad.load([
+        {
+          files: ['js/controllers/tutorialLoginController.js']
+        }
+        ]);
+      }
+    }
   })
 
   .state('menu.sobre', {
     url: '/sobre',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/sobre.html',
-        controller: 'sobreCtrl'
+        templateUrl: 'templates/sobre.html'
       }
     }
   })
@@ -44,7 +70,17 @@ angular.module('app.routes', [])
     url: '/criarConta',
     views: {
       'side-menu21':{
-        templateUrl: 'templates/criarConta.html'
+        templateUrl: 'templates/criarConta.html',
+        resolve: {
+          loadDependencies: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+                {
+                  serie: true,
+                  files: ['js/services/criarContaFirebase.js', 'js/services/verificaInternet.js', 'js/controllers/criarContaController.js']
+                }
+              ]);
+          }
+        }
       }
     }
   })
@@ -53,7 +89,17 @@ angular.module('app.routes', [])
     url: '/login',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/login.html'
+        templateUrl: 'templates/login.html',
+        resolve: {
+          loadDependecies: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+               serie: true,
+               files: ['js/services/loginFirebase.js', 'js/services/verificaInternet.js', 'js/services/getUsuario.js', 'js/services/sincronizacaoFirebase.js', 'js/services/datasService.js', 'js/controllers/loginController.js'] 
+              }
+            ]);
+          }
+        }
       }
     }
   })  
@@ -62,7 +108,17 @@ angular.module('app.routes', [])
     url: '/configuracoes',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/configuracoes.html'
+        templateUrl: 'templates/configuracoes.html',
+        resolve: {
+          loadDependencies: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+                {
+                  serie: true,
+                  files: ['js/services/getUsuario.js', 'js/controllers/configuracoesController.js']
+                }
+              ]);
+          }
+        }
       }
     }
   })
@@ -70,7 +126,16 @@ angular.module('app.routes', [])
   .state('menu', {
     url: '/side-menu21',
     templateUrl: 'templates/menu.html',
-    controller: 'menuCtrl'
+    resolve: {
+      loadDependencies: function($ocLazyLoad) {
+        return $ocLazyLoad.load([
+            {
+              serie: true,
+              files: ['js/services/loginFirebase.js', 'js/services/getUsuario.js', 'js/controllers/menuController.js']
+            }
+          ])
+      }
+    }
   })
 
   if(localStorage.getItem('mensagensSejaGrato')) {

@@ -4,7 +4,7 @@ angular.module('sejaGrato')
 
 		function getUsuario() {
 
-			if(localStorage.getItem('mensagensSejaGrato')) {
+			if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]')) {
 				var usuarioFirebase = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 				var usuarioLocal = angular.fromJson(usuarioFirebase);
 
