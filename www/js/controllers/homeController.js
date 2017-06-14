@@ -1,6 +1,6 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, $state, $ionicHistory, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
 		$scope.motivacao = [
 		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
@@ -46,6 +46,10 @@ angular.module('sejaGrato')
 			});
 		})
 
+		if(typeof analytics !== undefined) {
+			analytics.trackView('Página Inicial');
+		}
+
 		$scope.getUsuario = getUsuario.usuarioLocal;
 		$scope.logar = loginService.logar;
 		$scope.verificaLogado = loginService.verificaLogado;
@@ -89,19 +93,35 @@ angular.module('sejaGrato')
 				}
 			});
 
-			// $scope.notificacaoRapida = function() {
-			// 	var now = new Date();
-			// 	var seconds = now.setSeconds(now.getSeconds() + 30);
+			$scope.notificacaoPrimeiraMensagem = function() {
+				if($rootScope.lista.length > 1) {
+					return;
+				}
+				var now = new Date();
+				var seconds = now.setSeconds(now.getSeconds() + 60);
 
-			// 	$cordovaLocalNotification.schedule({
-			// 		id: '1',
-			// 		data: seconds,
-			// 		message: 'Agendado a 30 segundos',
-			// 		title: 'Notificação Local Braba!'
-			// 	}).then(function() {
-			// 		console.log('Agendada');
-			// 	});
-			// }
+				$cordovaLocalNotification.schedule({
+					id: '1',
+					data: seconds,
+					message: 'Que tal adicionar sua primeira mensagem de gratidão?',
+					title: 'Seja Grato!'
+				}).then(function() {
+					console.log('Agendada');
+				});
+
+				$rootScope.$on("$cordovaLocalNotification:click", function(notification, state) {
+					if(state.id == 1) {
+						var alertPopup = $ionicPopup.alert({
+							title: 'Seja Grato!',
+							template: 'Que tal adicionar sua primeira mensagem de gratidão?'
+						});
+						$ionicHistory.nextViewOptions({
+							disableBack: true
+						});
+						$state.go('menu.sejaGrato');
+					}
+				});
+			}
 
 			// $scope.isScheduled = function(id) {
 			// 	$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
@@ -130,6 +150,9 @@ angular.module('sejaGrato')
 								horarioSincronizacao = angular.toJson(horarioSincronizacao);
 								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
 								$scope.$broadcast('scroll.refreshComplete');
+								if(typeof analytics !== undefined) {
+									analytics.trackEvent('Sincronização', 'Sincronização de Mensagens', 'Sincronizando mensagens manualmente', 30);
+								}
 							}
 						})
 					}
@@ -219,6 +242,9 @@ angular.module('sejaGrato')
 					$timeout(function () {
 						$cordovaNativeAudio.stop('click');
 					}, 1000);
+					if(typeof analytics !== undefined) {
+						analytics.trackEvent('Mensagem', 'Adicionar Mensagem', 'Adicionando na tela inicial', 10);
+					}
 				}
 			}
 
@@ -241,6 +267,7 @@ angular.module('sejaGrato')
 			}
 
 			$scope.pageLoad = function() {
+				$scope.notificacaoPrimeiraMensagem(); //só pra testar. depois tira daqui filhão
 				$scope.entrarLoading();
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
@@ -271,7 +298,8 @@ angular.module('sejaGrato')
 					$scope.sairLoading();
 				} else {
 					$rootScope.dadosLocal = false;
-					$scope.sairLoading();	
+					$scope.sairLoading();
+					$scope.notificacaoPrimeiraMensagem();	
 
 				}
 			}

@@ -51,6 +51,13 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    // Google Analytics
+    if (typeof analytics !== undefined) {
+      analytics.startTrackerWithId('UA-101037639-1');
+    } else {
+     console.log('Google Analytics indisponível') ;
+    }
   });
 })
 

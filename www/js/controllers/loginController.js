@@ -12,6 +12,10 @@ angular.module('sejaGrato').controller('loginController', function($scope, $root
 		}, 100);
 	}
 
+	if(typeof analytics !== undefined) {
+			analytics.trackView('Login');
+		}
+
 	$scope.login = function() {
 		var conexao = $scope.verificaInternet();
 		if(conexao) {

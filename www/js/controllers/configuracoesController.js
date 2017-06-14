@@ -1,5 +1,9 @@
 angular.module('sejaGrato').controller('configuracoesController',  function($scope, $rootScope, getUsuario){
 
+	if(typeof analytics !== undefined) {
+			analytics.trackView('Configurações');
+		}
+
 	$scope.$on('$ionicView.enter', function(){
 		$scope.getDataSincronizacao();
 		$scope.usuario = $scope.getUsuario();

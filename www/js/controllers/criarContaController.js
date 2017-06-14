@@ -4,6 +4,9 @@ angular.module('sejaGrato').controller('criarContaController', function($scope, 
 	$scope.criarContaFirebase = criarContaService.criarConta;
 	$scope.verificaInternet = verificaInternet.verificar;
 
+	if(typeof analytics !== undefined) {
+			analytics.trackView('Criar Conta');
+		}
 
 	$scope.criarConta = function() {
 		if($scope.conta.senha != $scope.conta.confirmaSenha) {
@@ -40,7 +43,9 @@ angular.module('sejaGrato').controller('criarContaController', function($scope, 
 							$rootScope.statusUsuario = true;
 							$state.go('menu.sejaGrato');
 						});
-					// $scope.conta = '';
+					if(typeof analytics !== undefined) {
+						analytics.trackEvent('Conta', 'Criar Conta');
+					}
 				}
 			})
 				.catch(function(error){
