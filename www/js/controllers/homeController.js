@@ -98,7 +98,7 @@ angular.module('sejaGrato')
 					return;
 				}
 				var now = new Date();
-				var seconds = now.setSeconds(now.getSeconds() + 60);
+				var seconds = now.setSeconds(now.getSeconds() + 300);
 
 				$cordovaLocalNotification.schedule({
 					id: '1',
@@ -122,12 +122,6 @@ angular.module('sejaGrato')
 					}
 				});
 			}
-
-			// $scope.isScheduled = function(id) {
-			// 	$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
-			// 		alert("Notification "+id+" Scheduled: " + isScheduled);
-			// 	});
-			// }
 
 			$scope.hideButtonsOptions = function() {
 				$ionicListDelegate.closeOptionButtons();
@@ -267,7 +261,6 @@ angular.module('sejaGrato')
 			}
 
 			$scope.pageLoad = function() {
-				$scope.notificacaoPrimeiraMensagem(); //só pra testar. depois tira daqui filhão
 				$scope.entrarLoading();
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
