@@ -24,6 +24,16 @@ angular.module('sejaGrato')
 			return dataNotificacaoNoturna;
 		}
 
+		function dataLembrancaSemanal() {
+			var data = new Date();
+			data.setDate(data.getDate() + 5);
+			data.setHours(19);
+			data.setMinutes(0);
+			data.setSeconds(0);
+			var dataLembrancaSemanal = new Date(data);
+			return dataLembrancaSemanal;
+		}
+
 		function dataOntem() {
 			var data = new Date();
 			var dia = data.getDate() - 1;
@@ -64,6 +74,7 @@ angular.module('sejaGrato')
 			dataOntem: dataOntem,
 			dataLimiteSincronizacao: dataLimiteSincronizacao,
 			horaAtual: horaAtual,
-			dataNotificacao: dataNotificacaoNoturna
+			dataNotificacao: dataNotificacaoNoturna,
+			dataLembranca: dataLembrancaSemanal
 		}
 	}]);

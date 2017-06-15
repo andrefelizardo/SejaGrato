@@ -27,14 +27,42 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
 })
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, $cordovaLocalNotification, $ionicPopup) {
   $rootScope.lista = [];
   $rootScope.statusUsuario = false;
   $rootScope.dadosLocal = '';
+
   $ionicPlatform.ready(function() {
 
     if(!localStorage.getItem('configuracoes')) {
-      var configuracoes = {notificacaoNoturna: true};
+
+      function dataNotificacaoNoturna() {
+        var data = new Date();
+        if(data.getHours() < 21) {
+          data.setDate(data.getDate());
+        } else {
+          data.setDate(data.getDate() + 1);
+        }
+        data.setHours(21);
+        data.setMinutes(0);
+        data.setSeconds(0);
+        var dataNotificacaoNoturna = new Date(data);
+        return dataNotificacaoNoturna;
+      }
+
+      var hoje_as_9_pm = new Date(dataNotificacaoNoturna());
+
+      $cordovaLocalNotification.schedule({
+        id: 2,
+        title: 'Seja Grato!',
+        text: "Pelo que você se sentiu grato hoje?",
+        firstAt: hoje_as_9_pm,
+        every: 'day'
+      });
+
+      var configuracoes = {
+        notificacaoNoturna: true
+      };
 
       configuracoes = angular.toJson(configuracoes);
 
@@ -43,7 +71,10 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
     var notificationOpenedCallback = function(jsonData) {
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      alert(JSON.stringify(jsonData));
+      var alertPopup = $ionicPopup.alert({
+              title: jsonData.title,
+              template: jsonData.body
+            });
     };
 
     window.plugins.OneSignal
