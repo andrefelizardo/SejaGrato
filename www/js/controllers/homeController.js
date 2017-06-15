@@ -1,6 +1,6 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, $state, $ionicHistory, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, $state, $ionicHistory, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
 		$scope.motivacao = [
 		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},

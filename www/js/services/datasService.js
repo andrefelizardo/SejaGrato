@@ -10,6 +10,20 @@ angular.module('sejaGrato')
 			return dataAtual;
 		}
 
+		function dataNotificacaoNoturna() {
+			var data = new Date();
+			if(data.getHours() < 21) {
+				data.setDate(data.getDate());
+			} else {
+				data.setDate(data.getDate() + 1);
+			}
+			data.setHours(21);
+			data.setMinutes(0);
+			data.setSeconds(0);
+			var dataNotificacaoNoturna = new Date(data);
+			return dataNotificacaoNoturna;
+		}
+
 		function dataOntem() {
 			var data = new Date();
 			var dia = data.getDate() - 1;
@@ -49,6 +63,7 @@ angular.module('sejaGrato')
 			dataAtual: dataAtual,
 			dataOntem: dataOntem,
 			dataLimiteSincronizacao: dataLimiteSincronizacao,
-			horaAtual: horaAtual
+			horaAtual: horaAtual,
+			dataNotificacao: dataNotificacaoNoturna
 		}
 	}]);

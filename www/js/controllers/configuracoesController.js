@@ -1,4 +1,6 @@
-angular.module('sejaGrato').controller('configuracoesController',  function($scope, $rootScope, $cordovaLocalNotification, getUsuario){
+angular.module('sejaGrato').controller('configuracoesController',  function($scope, $rootScope, $cordovaLocalNotification, getUsuario, datasService){
+
+	$scope.dataNotificacao = datasService.dataNotificacao;
 
 	if(typeof analytics !== undefined) {
 		analytics.trackView('Configurações');
@@ -9,20 +11,21 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 		$scope.usuario = $scope.getUsuario();
 	});
 
-	// colocar essa parada aqui pra verificar se o cara já salvou essa configuração
-	// se já, ele não seta como true, seta o que salvou
-	$scope.lembreteNoturno = true;
-
 	$scope.agendarLembreteNoturno = function() {
 		$scope.lembreteNoturno = !$scope.lembreteNoturno;
+		var configuracoes = {notificacaoNoturna: $scope.lembreteNoturno};
+		configuracoes = angular.toJson(configuracoes);
+		localStorage.setItem('configuracoes', configuracoes);
 		if($scope.lembreteNoturno) {
+			var hoje_as_9_pm = new Date($scope.dataNotificacao());
 			$cordovaLocalNotification.schedule({
 				id: 2,
-				text: "Taporra!",
-				firstAt: tomorrow_at_8_am,
-				every: 'day' // every 30 minutes
+				title: 'Seja Grato!',
+				text: "Pelo que você se sentiu grato hoje?",
+				firstAt: hoje_as_9_pm,
+				every: 'day'
 			}).then(function(result) {
-				alert(result);
+				console.log(result);
 			});
 		}
 	}
@@ -38,5 +41,10 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 		}
 		$scope.dataSincronizacao = ultimaSincronizacao[0].data;
 		$scope.horaSincronizacao = ultimaSincronizacao[0].hora;
+	}
+
+	$scope.getConfiguracoes = function() {
+		var configuracoes = angular.fromJson(localStorage.getItem('configuracoes'));
+		$scope.lembreteNoturno = configuracoes.notificacaoNoturna;
 	}
 })

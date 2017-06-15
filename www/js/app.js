@@ -5,23 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad', 'app.routes'])
+angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
-.config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
+.config(function($ionicConfigProvider, $sceDelegateProvider){
 
-  $ionicCloudProvider.init({
-    "core": {
-      "app_id": "4300131d"
-    },
-    "push": {
-      "sender_id": "748225522023",
-      "pluginConfig": {
-        "android": {
-          "iconColor": "#ff8441"
-        }
-      }
-    }
-  });
+  // $ionicCloudProvider.init({
+  //   "core": {
+  //     "app_id": "4300131d"
+  //   },
+  //   "push": {
+  //     "sender_id": "748225522023",
+  //     "pluginConfig": {
+  //       "android": {
+  //         "iconColor": "#ff8441"
+  //       }
+  //     }
+  //   }
+  // });
 
   $sceDelegateProvider.resourceUrlWhitelist([ 'self','*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
@@ -32,6 +32,14 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
   $rootScope.statusUsuario = false;
   $rootScope.dadosLocal = '';
   $ionicPlatform.ready(function() {
+
+    if(!localStorage.getItem('configuracoes')) {
+      var configuracoes = {notificacaoNoturna: true};
+
+      configuracoes = angular.toJson(configuracoes);
+
+      localStorage.setItem('configuracoes', configuracoes);
+    }
 
     var notificationOpenedCallback = function(jsonData) {
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
@@ -57,8 +65,8 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
       analytics.startTrackerWithId('UA-101037639-1');
     } else {
      console.log('Google Analytics indisponível') ;
-    }
-  });
+   }
+ });
 })
 
 /*

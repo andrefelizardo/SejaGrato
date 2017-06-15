@@ -114,7 +114,7 @@ angular.module('app.routes', [])
             return $ocLazyLoad.load([
                 {
                   serie: true,
-                  files: ['js/services/getUsuario.js', 'js/controllers/configuracoesController.js']
+                  files: ['js/services/getUsuario.js', 'js/services/datasService.js', 'js/controllers/configuracoesController.js']
                 }
               ]);
           }
