@@ -33,6 +33,10 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
   $rootScope.dadosLocal = '';
   $ionicPlatform.ready(function() {
 
+    if(typeof analytics !== undefined) {
+      analytics.startTrackerWithId('UA-101037639-1');
+    }
+
     var notificationOpenedCallback = function(jsonData) {
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       alert(JSON.stringify(jsonData));
