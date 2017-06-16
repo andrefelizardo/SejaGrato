@@ -7,12 +7,6 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 		analytics.trackView('Configurações');
 	}
 
-	// $scope.$on('$ionicView.loaded', function(){
-	// 	// primeira vez que carregar a view
-	// 	$scope.getConfiguracoes();
-	// 	console.log('porra');
-	// });
-
 	$scope.$on('$ionicView.enter', function(){
 		// toda vez que abrir
 		$scope.getDataSincronizacao();

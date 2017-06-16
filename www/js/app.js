@@ -71,9 +71,10 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
     var notificationOpenedCallback = function(jsonData) {
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      jsonData = angular.fromJson(jsonData);
       var alertPopup = $ionicPopup.alert({
               title: jsonData.title,
-              template: jsonData.body
+              template: jsonData
             });
     };
 

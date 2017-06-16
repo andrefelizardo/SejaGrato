@@ -7,7 +7,6 @@
         "bluebird": "^3.5.0",
         "cordova-android": "^6.2.3",
         "cordova-plugin-app-event": "file:node_modules\\cordova-plugin-app-event",
-        "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-google-analytics": "^1.8.2",
         "cordova-plugin-inappbrowser": "^0.2.2",
@@ -43,7 +42,6 @@
     "cordovaPlatforms": [],
     "cordova": {
         "plugins": {
-            "cordova-plugin-console": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},

@@ -127,36 +127,6 @@ angular.module('sejaGrato')
 				$ionicListDelegate.closeOptionButtons();
 			}
 
-
-			$scope.sincronizar = function() {
-				var conexao = $scope.verificaInternet();
-				if (conexao) {
-					if($rootScope.statusUsuario){
-						var usuario = $rootScope.usuario.uid;
-						var listaBanco = angular.copy($rootScope.lista);
-						$scope.sincronizarBanco(usuario, listaBanco)
-						.then(function(resposta){
-							if(resposta == 'Ok'){
-								var hora = $scope.getHoraAtual();
-								var data = $scope.getDataAtual();
-								var horarioSincronizacao = [];
-								horarioSincronizacao.push({data: data, hora: hora});
-								horarioSincronizacao = angular.toJson(horarioSincronizacao);
-								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
-								$scope.$broadcast('scroll.refreshComplete');
-								if(typeof analytics !== undefined) {
-									analytics.trackEvent('Sincronização', 'Sincronização de Mensagens', 'Sincronizando mensagens manualmente', 30);
-								}
-							}
-						})
-					}
-				} else {
-					$scope.$broadcast('scroll.refreshComplete');
-					$ionicLoading.show({ template: 'Sem internet', noBackdrop: true, duration: 2000 });
-				}
-			}
-
-
 			$scope.entrarLoading = function() {
 				$ionicLoading.show({
 					content: 'Carregando dados',
@@ -188,6 +158,35 @@ angular.module('sejaGrato')
 			};
 			$scope.closeModal = function() {
 				$scope.modal.hide();
+			}
+
+
+			$scope.sincronizar = function() {
+				var conexao = $scope.verificaInternet();
+				if (conexao) {
+					if($rootScope.statusUsuario){
+						var usuario = $rootScope.usuario.uid;
+						var listaBanco = angular.copy($rootScope.lista);
+						$scope.sincronizarBanco(usuario, listaBanco)
+						.then(function(resposta){
+							if(resposta == 'Ok'){
+								var hora = $scope.getHoraAtual();
+								var data = $scope.getDataAtual();
+								var horarioSincronizacao = [];
+								horarioSincronizacao.push({data: data, hora: hora});
+								horarioSincronizacao = angular.toJson(horarioSincronizacao);
+								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
+								$scope.$broadcast('scroll.refreshComplete');
+								if(typeof analytics !== undefined) {
+									analytics.trackEvent('Sincronização', 'Sincronização de Mensagens', 'Sincronizando mensagens manualmente', 30);
+								}
+							}
+						})
+					}
+				} else {
+					$scope.$broadcast('scroll.refreshComplete');
+					$ionicLoading.show({ template: 'Sem internet', noBackdrop: true, duration: 2000 });
+				}
 			}
 
 			$scope.visualizarTexto = function(mensagem) {
@@ -280,7 +279,7 @@ angular.module('sejaGrato')
 					$rootScope.dadosLocal = true;
 					$rootScope.statusUsuario = true;
 					$rootScope.usuario = $scope.getUsuario();
-					$http.get('https://seja-grato.firebaseio.com/mensagens/' + $rootScope.usuario.uid + '/mensagens.json')
+					$scope.getMensagens($$rootScope.usuario.uid)
 					.then(function(mensagens){
 						$rootScope.lista = mensagens.data;
 						$scope.atualizaListaLocal();
