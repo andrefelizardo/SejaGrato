@@ -2,6 +2,10 @@ angular.module('sejaGrato')
 .controller('HomeController',
 	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
+		if(typeof analytics !== undefined) {
+			analytics.trackView('Página Inicial');
+		}
+
 		$scope.motivacao = [
 		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
 		{frase: 'Não ofereça a Deus apenas a dor de suas penitências, ofereça também suas alegrias.', autor: 'Paulo Coelho'},
@@ -130,6 +134,10 @@ angular.module('sejaGrato')
 								horarioSincronizacao = angular.toJson(horarioSincronizacao);
 								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
 								$scope.$broadcast('scroll.refreshComplete');
+
+								if(typeof analytics !== undefined) {
+									analytics.trackEvent('Sincronização', 'Sincronização de Mensagens', 'Sincronizando mensagens manualmente', 30);
+								}
 							}
 						})
 					}
@@ -219,6 +227,10 @@ angular.module('sejaGrato')
 					$timeout(function () {
 						$cordovaNativeAudio.stop('click');
 					}, 1000);
+
+					if(typeof analytics !== undefined) {
+						analytics.trackEvent('Mensagem', 'Adicionar Mensagem', 'Adicionando na tela inicial', 10);
+					}
 				}
 			}
 
