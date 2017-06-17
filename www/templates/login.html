@@ -1,18 +1,18 @@
 <ion-view id="login" ng-controller="loginController" class="bgcolor2" title="">
   <ion-content>
-    <div class="spacer" style="height: 75px;"></div>
-    <h3 class="fontcolor4 text-center" style="font-weight: 300">Login</h3>
-    <div class="spacer" style="height: 25px;"></div>
+    <div class="spacer spacer-75"></div>
+    <h3 class="fontcolor4 text-center">Login</h3>
+    <div class="spacer spacer-25"></div>
     <form id="criarConta-form" class="list bgcolor1" name="loginForm">
       <label class="item item-input bgcolor1" id="login-input3">
-        <input type="email" placeholder="Digite seu e-mail" class="fontcolor1" ng-model="conta.email" name="email" required autofocus style="font-size:110%; margin-left: 20px;">
+        <input type="email" placeholder="Digite seu e-mail" class="fontcolor1" ng-model="conta.email" name="email" required autofocus>
       </label>
       <label class="item item-input bgcolor1" id="login-input4">
-        <input type="password" class="fontcolor1" placeholder="Digite sua senha" ng-model="conta.senha" style="font-size:110%; margin-left: 20px;" required>
+        <input type="password" class="fontcolor1" placeholder="Digite sua senha" ng-model="conta.senha" required>
       </label>
     </form>
     <button id="criarConta-button2" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="login()" ng-disabled="!loginForm.$valid">Fazer Login</button>
-    <div class="spacer" style="height: 100px;"></div>
-    <a class="fontcolor3 text-center no-decoration" ui-sref="menu.criarConta" style="display: block;">Criar conta</a>
+    <div class="spacer spacer-100"></div>
+    <a class="fontcolor3 text-center no-decoration d-block" ui-sref="menu.criarConta">Criar conta</a>
   </ion-content>
 </ion-view>

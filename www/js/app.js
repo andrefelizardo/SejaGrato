@@ -1,11 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
+angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad', 'app.routes'])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider){
 
@@ -27,55 +20,20 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
 })
 
-.run(function($ionicPlatform, $rootScope, $cordovaLocalNotification, $ionicPopup) {
+.run(function($ionicPlatform, $rootScope) {
   $rootScope.lista = [];
   $rootScope.statusUsuario = false;
   $rootScope.dadosLocal = '';
 
   $ionicPlatform.ready(function() {
 
-    if(!localStorage.getItem('configuracoes')) {
-
-      function dataNotificacaoNoturna() {
-        var data = new Date();
-        if(data.getHours() < 21) {
-          data.setDate(data.getDate());
-        } else {
-          data.setDate(data.getDate() + 1);
-        }
-        data.setHours(21);
-        data.setMinutes(0);
-        data.setSeconds(0);
-        var dataNotificacaoNoturna = new Date(data);
-        return dataNotificacaoNoturna;
-      }
-
-      var hoje_as_9_pm = new Date(dataNotificacaoNoturna());
-
-      $cordovaLocalNotification.schedule({
-        id: 2,
-        title: 'Seja Grato!',
-        text: "Pelo que você se sentiu grato hoje?",
-        firstAt: hoje_as_9_pm,
-        every: 'day'
-      });
-
-      var configuracoes = {
-        notificacaoNoturna: true
-      };
-
-      configuracoes = angular.toJson(configuracoes);
-
-      localStorage.setItem('configuracoes', configuracoes);
+    if(typeof analytics !== undefined) {
+      analytics.startTrackerWithId('UA-101037639-1');
+      // alert('tem analytics');
     }
 
     var notificationOpenedCallback = function(jsonData) {
-      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      jsonData = angular.fromJson(jsonData);
-      var alertPopup = $ionicPopup.alert({
-              title: jsonData.title,
-              template: jsonData
-            });
+      alert(JSON.stringify(jsonData.payload.title));
     };
 
     window.plugins.OneSignal
@@ -87,18 +45,13 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
+
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
 
-    // Google Analytics
-    if (typeof analytics !== undefined) {
-      analytics.startTrackerWithId('UA-101037639-1');
-    } else {
-     console.log('Google Analytics indisponível') ;
-   }
- });
+  });
 })
 
 /*

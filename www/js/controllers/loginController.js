@@ -1,4 +1,9 @@
 angular.module('sejaGrato').controller('loginController', function($scope, $rootScope, $ionicLoading, $timeout, $ionicPopup, $http, $ionicHistory, $state, $q, loginService, verificaInternet, getUsuario, sincronizacaoFirebase, datasService){
+
+	if(typeof analytics !== undefined) {
+		analytics.trackView('Login');
+	}
+
 	$scope.logar = loginService.logar;
 	$scope.conta = [{email: '', senha: ''}];
 	$scope.verificaInternet = verificaInternet.verificar;

@@ -1,0 +1,28 @@
+form textarea {
+	resize: none;
+	font-size: 120%;
+}
+#sejaGrato-markdown1 {
+	background: rgba(1, 1, 1, 0.4);
+	padding: 1em .5em;
+}
+#sejaGrato-markdown1 p {
+	font-size:16px;
+	padding: 0 1em;
+}
+textarea.textareaModal {
+	resize: none;
+	background: transparent;
+	font-size: 1em;
+	width: 100%;
+	line-height: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+.buttonExcluir {
+	padding: 0 .25em;
+}
+.buttonExcluir span {
+	font-size:180%;
+	padding-left: .4em;
+}

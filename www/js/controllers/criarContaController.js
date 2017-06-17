@@ -1,4 +1,9 @@
 angular.module('sejaGrato').controller('criarContaController', function($scope, $ionicPopup, $timeout, $ionicLoading, $rootScope, criarContaService, verificaInternet, $q) {
+
+	if(typeof analytics !== undefined) {
+		analytics.trackView('Criar Conta');
+	}
+
 	$scope.conta = [];
 	$scope.contaLocal = [];
 	$scope.criarContaFirebase = criarContaService.criarConta;

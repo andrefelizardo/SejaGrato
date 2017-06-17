@@ -1,19 +1,19 @@
 <ion-view id="criarConta" ng-controller="criarContaController" class="bgcolor2" title="">
   <ion-content>
-    <div class="spacer" style="height: 75px;"></div>
-    <h3 class="fontcolor4 text-center" style="font-weight: 300">Criar conta</h3>
-    <div class="spacer" style="height: 25px;"></div>
+    <div class="spacer spacer-75"></div>
+    <h3 class="fontcolor4 text-center">Criar conta</h3>
+    <div class="spacer spacer-25"></div>
     <form id="criarConta-form" class="list bgcolor1" name="criarContaForm">
        <label class="item item-input bgcolor1" id="criarConta-input3">
-        <input type="email" class="fontcolor1" placeholder="Digite seu e-mail preferido" ng-model="conta.email" name="email" required autofocus style="font-size:110%; margin-left: 20px;">
+        <input type="email" class="fontcolor1" placeholder="Digite seu e-mail preferido" ng-model="conta.email" name="email" required autofocus>
       </label>
       <label class="item item-input bgcolor1" id="criarConta-input4">
-        <input type="password" class="fontcolor1" placeholder="Digite sua senha" ng-model="conta.senha" required style="font-size:110%; margin-left: 20px;">
+        <input type="password" class="fontcolor1" placeholder="Digite sua senha" ng-model="conta.senha" required>
       </label>
       <label class="item item-input bgcolor1" id="criarConta-input5">
-        <input type="password" class="fontcolor1" placeholder="Confirme sua senha" ng-model=conta.confirmaSenha required style="font-size:110%; margin-left: 20px;">
+        <input type="password" class="fontcolor1" placeholder="Confirme sua senha" ng-model=conta.confirmaSenha required>
       </label>
     </form>
-    <button id="criarConta-button2" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="criarConta()" ng-disabled="!criarContaForm.$valid" style="margin-top: 3em">Criar</button>
+    <button id="criarConta-button2" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="criarConta()" ng-disabled="!criarContaForm.$valid">Criar</button>
   </ion-content>
 </ion-view>

@@ -24,7 +24,7 @@ angular.module('sejaGrato')
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {
 				user.getToken().then(function(data) {
-					console.log(data);
+					// console.log(data);
 				})
 				return true;
 			}

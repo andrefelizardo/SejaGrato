@@ -1,11 +1,11 @@
 angular.module('sejaGrato').controller('configuracoesController',  function($scope, $rootScope, $cordovaLocalNotification, $ionicLoading, getUsuario, datasService){
 
-	$scope.dataNotificacao = datasService.dataNotificacao;
-	$scope.dataLembranca = datasService.dataLembranca;
-
 	if(typeof analytics !== undefined) {
 		analytics.trackView('Configurações');
 	}
+
+	$scope.dataNotificacao = datasService.dataNotificacao;
+	$scope.dataLembranca = datasService.dataLembranca;
 
 	$scope.$on('$ionicView.enter', function(){
 		// toda vez que abrir

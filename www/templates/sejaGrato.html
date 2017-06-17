@@ -10,17 +10,17 @@
 <ion-refresher pulling-text="Sincronizando Mensagens" on-refresh="sincronizar()" ng-if="$root.statusUsuario">
 </ion-refresher>
 <form id="sejaGrato-form1" class="list padding" name='sejaGratoForm'>
-  <div class="spacer" style="height: 25px;"></div>
+  <div class="spacer spacer-25"></div>
   <label class="item item-input no-border" id="sejaGrato-input1">
-    <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" class="text-center font-bold no-border" rows="2" style="resize: none; font-size: 120%;" required></textarea>
+    <textarea placeholder="Hoje eu estou grato por..." ng-model="lista.texto" class="text-center font-bold no-border" rows="2" required></textarea>
   </label>
 </form>
 <button id="sejaGrato-button1" class="fontcolor1 button buttonCustom button-block text-uppercase" ng-click="salvarTexto()">Sim, estou grato!</button>
-<div class="spacer" style="height: 25px;"></div>
+<div class="spacer spacer-25"></div>
 <!-- Exibir essa parada aqui, só quando não tiver itens no repeat -->
-<div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" style="background: rgba(1, 1, 1, 0.4); padding: 1em .5em;" ng-show="mensagensFiltradas.length < 1">
-  <p style="color:#FFFFFF;font-size:16px; padding: 0 1em;"><em>{{mensagemSorteada.frase}}</em></p>
-  <span style="color:#FFFFFF;">{{mensagemSorteada.autor}}</span>
+<div id="sejaGrato-markdown1" class="show-list-numbers-and-dots text-center" ng-show="mensagensFiltradas.length < 1">
+  <p class="fontcolor1"><em>{{mensagemSorteada.frase}}</em></p>
+  <span class="fontcolor1">{{mensagemSorteada.autor}}</span>
 </div>
 <!-- Modal -->
 <script id="templates/modalTextoGratidao.html" type="text/ng-template">
@@ -33,7 +33,7 @@
   <button class="button fontcolor4 button-primary button-icon ion-checkmark-round buttonSalvarModal" ng-click="editarTexto()"></button>
 </ion-header-bar>
 <ion-content class="padding">
-<textarea style="resize: none;background: transparent;font-size: 1em;width: 100%; line-height: 20px; border-bottom-width: 1px; border-bottom-style: solid;" rows="1" ng-change="tamanhoTextarea()" class="fontcolor3 bordercolor1 textareaModal" required ng-model="mensagemSelecionada.texto"></textarea>
+<textarea rows="1" ng-change="tamanhoTextarea()" class="fontcolor3 bordercolor1 textareaModal" required ng-model="mensagemSelecionada.texto"></textarea>
 </ion-content>
 </ion-modal-view>
 </script>
@@ -42,7 +42,7 @@
 <ion-item class="listaTransparente" id="sejaGrato-list-item11" ng-click="visualizarTexto(mensagem, $index)">
 <span>{{mensagem.texto}}</span>
 <span class="data">{{mensagem.data}}</span>
-<ion-option-button class="button-assertive" ng-click="excluirTexto(mensagem)" style="padding: 0 .25em;"><span class="ion-trash-a" style="font-size:180%; padding-left: .4em;"></span></ion-option-button>
+<ion-option-button class="button-assertive buttonExcluir" ng-click="excluirTexto(mensagem)"><span class="ion-trash-a"></span></ion-option-button>
 </ion-item>
 </ion-list>
 </ion-content>

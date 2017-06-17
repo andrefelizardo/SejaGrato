@@ -20,7 +20,7 @@ angular.module('app.routes', [])
             return $ocLazyLoad.load([
             {
               serie: true,
-              files: ['js/services/sincronizacaoFirebase.js', 'js/services/getUsuario.js', 'js/services/verificaInternet.js', 'js/services/datasService.js', 'js/services/loginFirebase.js', 'js/controllers/homeController.js']
+              files: ['js/services/sincronizacaoFirebase.js', 'js/services/getUsuario.js', 'js/services/verificaInternet.js', 'js/services/datasService.js', 'js/services/loginFirebase.js', 'js/controllers/homeController.js', 'css/home.css']
             }
             ]);
           }
@@ -36,7 +36,7 @@ angular.module('app.routes', [])
       loadController: function($ocLazyLoad) {
         return $ocLazyLoad.load([
         {
-          files: ['js/controllers/tutorialController.js']
+          files: ['js/controllers/tutorialController.js', 'css/tutorial.css']
         }
         ]);
       }
@@ -50,7 +50,7 @@ angular.module('app.routes', [])
       loadController: function($ocLazyLoad) {
         return $ocLazyLoad.load([
         {
-          files: ['js/controllers/tutorialLoginController.js']
+          files: ['js/controllers/tutorialLoginController.js', 'css/tutorialLogin.css']
         }
         ]);
       }
@@ -61,7 +61,16 @@ angular.module('app.routes', [])
     url: '/sobre',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/sobre.html'
+        templateUrl: 'templates/sobre.html',
+        resolve: {
+          loadDependencies: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+            {
+              files: ['css/sobre.css']              
+            }
+            ]);
+          }
+        }
       }
     }
   })
@@ -74,11 +83,11 @@ angular.module('app.routes', [])
         resolve: {
           loadDependencies: function($ocLazyLoad) {
             return $ocLazyLoad.load([
-                {
-                  serie: true,
-                  files: ['js/services/criarContaFirebase.js', 'js/services/verificaInternet.js', 'js/controllers/criarContaController.js']
-                }
-              ]);
+            {
+              serie: true,
+              files: ['js/services/criarContaFirebase.js', 'js/services/verificaInternet.js', 'js/controllers/criarContaController.js', 'css/criarConta.css']
+            }
+            ]);
           }
         }
       }
@@ -93,11 +102,11 @@ angular.module('app.routes', [])
         resolve: {
           loadDependecies: function($ocLazyLoad) {
             return $ocLazyLoad.load([
-              {
-               serie: true,
-               files: ['js/services/loginFirebase.js', 'js/services/verificaInternet.js', 'js/services/getUsuario.js', 'js/services/sincronizacaoFirebase.js', 'js/services/datasService.js', 'js/controllers/loginController.js'] 
-              }
-            ]);
+            {
+             serie: true,
+             files: ['js/services/loginFirebase.js', 'js/services/verificaInternet.js', 'js/services/getUsuario.js', 'js/services/sincronizacaoFirebase.js', 'js/services/datasService.js', 'js/controllers/loginController.js', 'css/login.css'] 
+           }
+           ]);
           }
         }
       }
@@ -112,11 +121,11 @@ angular.module('app.routes', [])
         resolve: {
           loadDependencies: function($ocLazyLoad) {
             return $ocLazyLoad.load([
-                {
-                  serie: true,
-                  files: ['js/services/getUsuario.js', 'js/services/datasService.js', 'js/controllers/configuracoesController.js']
-                }
-              ]);
+            {
+              serie: true,
+              files: ['js/services/getUsuario.js', 'js/services/datasService.js', 'js/controllers/configuracoesController.js']
+            }
+            ]);
           }
         }
       }
@@ -129,11 +138,11 @@ angular.module('app.routes', [])
     resolve: {
       loadDependencies: function($ocLazyLoad) {
         return $ocLazyLoad.load([
-            {
-              serie: true,
-              files: ['js/services/loginFirebase.js', 'js/services/getUsuario.js', 'js/controllers/menuController.js']
-            }
-          ])
+        {
+          serie: true,
+          files: ['js/services/loginFirebase.js', 'js/services/getUsuario.js', 'js/controllers/menuController.js', 'css/menu.css']
+        }
+        ])
       }
     }
   })
