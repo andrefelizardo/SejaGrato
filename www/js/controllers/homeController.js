@@ -2,12 +2,11 @@ angular.module('sejaGrato')
 .controller('HomeController',
 	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, $state, $ionicHistory, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
-		alert('entrei na home');
-
-		if(typeof analytics !== undefined) {
-			analytics.trackView('Página Inicial');
-			alert('analytics na home ok');
-		}
+		$scope.$on('$ionicView.beforeEnter', function() {
+			if(typeof analytics !== undefined) {
+				analytics.trackView('Página Inicial');
+			}
+		});
 
 		$scope.motivacao = [
 		{frase: 'A gratidão é a memória do coração.', autor: 'Autor Desconhecido'},
@@ -47,13 +46,12 @@ angular.module('sejaGrato')
 			$cordovaNativeAudio
 			.preloadSimple('click', 'sounds/harpa.mp3')
 			.then(function (msg) {
-				alert('audio ok');
+				// alert('audio ok');
 			}, function (error) {
 				// console.log(error);
 			});
 
 			if(!localStorage.getItem('configuracoes')) {
-				alert('não tem configurações');
 				function dataNotificacaoNoturna() {
 					var data = new Date();
 					if(data.getHours() < 21) {
@@ -65,7 +63,6 @@ angular.module('sejaGrato')
 					data.setMinutes(0);
 					data.setSeconds(0);
 					var dataNotificacaoNoturna = new Date(data);
-					alert(dataNotificacaoNoturna);
 					return dataNotificacaoNoturna;
 				}
 				var hoje_as_9_pm = new Date(dataNotificacaoNoturna());
@@ -75,8 +72,6 @@ angular.module('sejaGrato')
 					text: 'Pelo que você se sentiu grato hoje?',
 					firstAt: hoje_as_9_pm,
 					every: 'day'
-				}).then(function(){
-					alert('notificação das 9 da noite agendada');
 				});
 
 				var configuracoes = {
