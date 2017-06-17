@@ -1,6 +1,6 @@
 angular.module('sejaGrato')
 .controller('HomeController',
-	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $timeout, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
+	function($ionicPlatform, $scope, $rootScope, $ionicPopup, $timeout, $ionicModal, $ionicActionSheet, $http, $ionicLoading, $ionicSlideBoxDelegate, $ionicPush, $cordovaLocalNotification, $ionicListDelegate, $q, $cordovaNativeAudio, $state, $ionicHistory, sincronizacaoFirebase, getUsuario, verificaInternet, datasService, loginService){
 
 		if(typeof analytics !== undefined) {
 			analytics.trackView('Página Inicial');
@@ -93,25 +93,34 @@ angular.module('sejaGrato')
 				}
 			});
 
-			// $scope.notificacaoRapida = function() {
-			// 	var now = new Date();
-			// 	var seconds = now.setSeconds(now.getSeconds() + 30);
+			$scope.notificacaoPrimeiraMensagem = function() {
+				if($rootScope.lista.length > 1) {
+					return;
+				}
 
-			// 	$cordovaLocalNotification.schedule({
-			// 		id: '1',
-			// 		data: seconds,
-			// 		message: 'Agendado a 30 segundos',
-			// 		title: 'Notificação Local Braba!'
-			// 	}).then(function() {
-			// 		console.log('Agendada');
-			// 	});
-			// }
+				var now = new Date();
+				var seconds = now.setSeconds(now.getSeconds() + 3000);
 
-			// $scope.isScheduled = function(id) {
-			// 	$cordovaLocalNotification.isScheduled(id).then(function(isScheduled) {
-			// 		alert("Notification "+id+" Scheduled: " + isScheduled);
-			// 	});
-			// }
+				$cordovaLocalNotification.schedule({
+					id: '1',
+					data: seconds,
+					message: 'Que tal adicionar sua primeira mensagem de gratidão?',
+					title: 'Seja Grato!'
+				});
+
+				$rootScope.$on('$cordovaLocalNotification:click', function(notification, state) {
+					if(state.id == 1) {
+						var alertPopup = $ionicPopup.alert({
+							title: 'Seja Grato!',
+							template: 'Que tal adicionar sua primeira mensagem de gratidão?'
+						});
+						$ionicHistory.nexViewOptions({
+							disableBack: true
+						});
+						$state.go('menu.sejaGrato');
+					}
+				});
+			}
 
 			$scope.hideButtonsOptions = function() {
 				$ionicListDelegate.closeOptionButtons();
@@ -253,6 +262,7 @@ angular.module('sejaGrato')
 			}
 
 			$scope.pageLoad = function() {
+				$scope.notificacaoPrimeiraMensagem();
 				$scope.entrarLoading();
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));

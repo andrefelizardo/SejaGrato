@@ -1,10 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
 angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad', 'app.routes'])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider, $ionicCloudProvider){
@@ -27,7 +20,7 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
 
 })
 
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, $cordovaLocalNotification, $ionicPopup) {
   $rootScope.lista = [];
   $rootScope.statusUsuario = false;
   $rootScope.dadosLocal = '';
@@ -37,9 +30,55 @@ angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad',
       analytics.startTrackerWithId('UA-101037639-1');
     }
 
+    if(!localStorage.getItem('configuracoes')) {
+      alert('não tem configurações');
+      function dataNotificacaoNoturna() {
+        var data = new Date();
+        if(data.getHours() < 21) {
+          data.setDate(data.getDate());
+        } else {
+          data.setDate(data.getDate() + 1);
+        }
+        data.setHours(21);
+        data.setMinutes(0);
+        data.setSeconds(0);
+        var dataNotificacaoNoturna = new Date(data);
+        alert(dataNotificacaoNoturna);
+        return dataNotificacaoNoturna;
+      }
+      var hoje_as_9_pm = new Date(dataNotificacaoNoturna());
+      $cordovaLocalNotification.schedule({
+        id: 2,
+        title: 'Seja Grato!',
+        text: 'Pelo que você se sentiu grato hoje?',
+        firstAt: hoje_as_9_pm,
+        every: 'day'
+      }).then(function(){
+        alert('agendada para ' + hoje_as_9_pm);
+      });
+      var configuracoes = {
+        notificacaoNoturna: true
+      };
+      configuracoes = angular.toJson(configuracoes);
+      localStorage.setItem('configuracoes', configuracoes);
+    }
+
+    $rootScope.$on('$cordovaLocalNotification:click', function(notification, state) {
+      if(state.id == 2 || state.id == 3) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Seja Grato todos os dias',
+          template: 'Pelo que você se sentiu grato hoje?'
+        });
+        $ionicHistory.nexViewOptions({
+          disableBack: true
+        });
+        $state.go('menu.sejaGrato');
+      }
+    });
+
     var notificationOpenedCallback = function(jsonData) {
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      alert(JSON.stringify(jsonData));
+      alert(JSON.stringify(jsonData.payload.title));
     };
 
     window.plugins.OneSignal

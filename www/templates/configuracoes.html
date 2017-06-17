@@ -1,12 +1,15 @@
 <ion-view title="Configurações" id="configuracoes" ng-controller="configuracoesController" class="bgcolor2" ng-init="getDataSincronizacao()">
   <ion-content class="has-header">
-    <div class="list">
-      <p class="item">Usuário:
+    <ul class="list">
+      <li class="item">Usuário:
         <span class="item-note">{{usuario.email}}</span>
-      </p>
-      <p class="item">Última sincronização:
+      </li>
+      <li class="item">Última sincronização:
         <span class="item-note">{{dataSincronizacao}} {{horaSincronizacao}}</span>
-      </p>
-    </div>
+      </li>
+      <li>
+        <ion-toggle ng-model="lembreteNoturno" toggle-class="toggle-calm" ng-change="agendarLembreteNoturno()">Lembrete noturno: </ion-toggle>
+      </li>
+    </ul>
   </ion-content>
 </ion-view>
