@@ -45,26 +45,6 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 		}
 	}
 
-	// $scope.agendarLembrancaSemanal = function() {
-	// 	$scope.lembrancaSemanal = !$scope.lembrancaSemanal;
-	// 	if($scope.lembrancaSemanal) {
-	// 		var primeira_lembranca = new Date($scope.dataLembranca());
-	// 		$cordovaLocalNotification.schedule({
-	// 			id: 3,
-	// 			title: 'Se lembra desse dia?',
-	// 			text: "Pelo que você se sentiu grato hoje?",
-	// 			firstAt: primeira_lembranca,
-	// 			every: 'week'
-	// 		}).then(function(result) {
-	// 			$ionicLoading.show({ template: 'Lembrança agendado', noBackdrop: true, duration: 2000 });
-	// 		});
-	// 	} else {
-	// 		$cordovaLocalNotification.cancel(2, function () {
-	// 			$ionicLoading.show({ template: 'Lembrança cancelada', noBackdrop: true, duration: 2000 });
-	// 		}, scope);
-	// 	}
-	// }
-
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
 	$scope.getDataSincronizacao = function() {

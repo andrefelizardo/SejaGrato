@@ -1,4 +1,4 @@
-angular.module('sejaGrato', ['ionic', 'ngCordova', 'ionic.cloud', 'oc.lazyLoad', 'app.routes'])
+angular.module('sejaGrato', ['ionic', 'ngCordova', 'oc.lazyLoad', 'app.routes'])
 
 .config(function($ionicConfigProvider, $sceDelegateProvider){
 
