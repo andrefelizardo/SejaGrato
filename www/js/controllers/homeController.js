@@ -84,7 +84,7 @@ angular.module('sejaGrato')
 		$ionicPlatform.ready(function(){
 			$scope.sorteios();
 			$cordovaNativeAudio
-			.preloadSimple('click', 'sounds/harpa.mp3')
+			.preloadSimple('click', 'sounds/sampler.mp3')
 			.then(function (msg) {
 				// alert('audio ok');
 			}, function (error) {
@@ -357,7 +357,7 @@ angular.module('sejaGrato')
 					$cordovaNativeAudio.play('click');
 					$timeout(function () {
 						$cordovaNativeAudio.stop('click');
-					}, 1000);
+					}, 4000);
 
 					if(typeof analytics !== undefined) {
 						analytics.trackEvent('Mensagem', 'Adicionar Mensagem', 'Adicionando na tela inicial', 10);
@@ -388,6 +388,9 @@ angular.module('sejaGrato')
 
 			$scope.pageLoad = function() {
 				$scope.entrarLoading();
+				$scope.dadosLocais = localStorage.getItem('mensagensSejaGrato');
+				$scope.configuracoes = localStorage.getItem('configuracoes');
+				$scope.usuarioLogado = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
 				if(localStorage.getItem('mensagensSejaGrato')) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 					if(!$rootScope.lista){

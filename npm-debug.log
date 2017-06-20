@@ -1,0 +1,180 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@2.15.5
+3 info using node@v4.4.5
+4 verbose readDependencies loading dependencies from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+5 warn package.json sejagrato@1.1.1 No repository field.
+6 warn package.json sejagrato@1.1.1 No license field.
+7 verbose install where, deps [ 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato',
+7 verbose install   [ '@angular/core',
+7 verbose install     '@ionic-native/core',
+7 verbose install     '@ionic-native/native-audio',
+7 verbose install     '@ionic/cloud',
+7 verbose install     'bluebird',
+7 verbose install     'cordova-android',
+7 verbose install     'cordova-plugin-app-event',
+7 verbose install     'cordova-plugin-console',
+7 verbose install     'cordova-plugin-device',
+7 verbose install     'cordova-plugin-google-analytics',
+7 verbose install     'cordova-plugin-inappbrowser',
+7 verbose install     'cordova-plugin-nativeaudio',
+7 verbose install     'cordova-plugin-network-information',
+7 verbose install     'cordova-plugin-screen-orientation',
+7 verbose install     'cordova-plugin-splashscreen',
+7 verbose install     'cordova-plugin-statusbar',
+7 verbose install     'cordova-plugin-whitelist',
+7 verbose install     'de.appplant.cordova.plugin.local-notification',
+7 verbose install     'gulp',
+7 verbose install     'gulp-concat',
+7 verbose install     'gulp-minify-css',
+7 verbose install     'gulp-rename',
+7 verbose install     'gulp-sass',
+7 verbose install     'ionic-plugin-keyboard',
+7 verbose install     'onesignal-cordova-plugin',
+7 verbose install     'phonegap-plugin-push',
+7 verbose install     'rxjs',
+7 verbose install     'zone.js',
+7 verbose install     'bower',
+7 verbose install     'gulp-util',
+7 verbose install     'shelljs' ] ]
+8 verbose install where, peers [ 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato',
+8 verbose install   [] ]
+9 verbose installManyTop reading for lifecycle C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+10 info preinstall sejagrato@1.1.1
+11 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bluebird\package.json
+12 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bower\package.json
+13 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-android\package.json
+14 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-background-mode\package.json
+15 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-console\package.json
+16 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-device\package.json
+17 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-google-analytics\package.json
+18 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-inappbrowser\package.json
+19 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-nativeaudio\package.json
+20 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-network-information\package.json
+21 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-screen-orientation\package.json
+22 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-splashscreen\package.json
+23 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-statusbar\package.json
+24 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-whitelist\package.json
+25 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\de.appplant.cordova.plugin.local-notification\package.json
+26 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp\package.json
+27 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-concat\package.json
+28 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-minify-css\package.json
+29 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-rename\package.json
+30 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-sass\package.json
+31 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-util\package.json
+32 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\ionic-plugin-keyboard\package.json
+33 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\onesignal-cordova-plugin\package.json
+34 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\phonegap-plugin-push\package.json
+35 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\rxjs\package.json
+36 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\shelljs\package.json
+37 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\zone.js\package.json
+38 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@angular\core\package.json
+39 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic\cloud\package.json
+40 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic-native\core\package.json
+41 verbose installManyTop reading scoped package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic-native\native-audio\package.json
+42 info package.json ionic-plugin-keyboard@2.2.1 license should be a valid SPDX license expression
+43 info package.json shelljs@0.3.0 license should be a valid SPDX license expression
+44 info package.json cordova-plugin-inappbrowser@0.2.2 license should be a valid SPDX license expression
+45 info package.json cordova-plugin-background-mode@0.7.2 license should be a valid SPDX license expression
+46 info package.json gulp-minify-css@0.3.13 No license field.
+47 info package.json gulp-rename@1.2.2 No license field.
+48 info package.json phonegap-plugin-push@1.8.1 license should be a valid SPDX license expression
+49 info package.json gulp-util@2.2.20 No license field.
+50 verbose readDependencies loading dependencies from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\package.json
+51 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bluebird\package.json
+52 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\bower\package.json
+53 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-android\package.json
+54 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-background-mode\package.json
+55 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-console\package.json
+56 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-device\package.json
+57 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-google-analytics\package.json
+58 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-inappbrowser\package.json
+59 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-nativeaudio\package.json
+60 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-network-information\package.json
+61 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-screen-orientation\package.json
+62 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-splashscreen\package.json
+63 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-statusbar\package.json
+64 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-whitelist\package.json
+65 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\de.appplant.cordova.plugin.local-notification\package.json
+66 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp\package.json
+67 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-concat\package.json
+68 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-minify-css\package.json
+69 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-rename\package.json
+70 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-sass\package.json
+71 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\gulp-util\package.json
+72 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\ionic-plugin-keyboard\package.json
+73 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\onesignal-cordova-plugin\package.json
+74 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\phonegap-plugin-push\package.json
+75 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\rxjs\package.json
+76 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\shelljs\package.json
+77 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\zone.js\package.json
+78 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@angular\core\package.json
+79 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\bower\package.json
+80 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\bower.cmd\package.json
+81 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\create\package.json
+82 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\create.cmd\package.json
+83 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\gulp\package.json
+84 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\gulp.cmd\package.json
+85 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\shjs\package.json
+86 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\.bin\shjs.cmd\package.json
+87 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic-native\core\package.json
+88 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic-native\native-audio\package.json
+89 verbose targetResolver reading package data from C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\@ionic\cloud\package.json
+90 verbose already installed skipping bluebird@^3.5.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+91 verbose already installed skipping cordova-android@^6.2.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+92 silly cache add args [ 'cordova-plugin-app-event@file:node_modules\\cordova-plugin-app-event',
+92 silly cache add   null ]
+93 verbose cache add spec cordova-plugin-app-event@file:node_modules\cordova-plugin-app-event
+94 silly cache add parsed spec Result {
+94 silly cache add   raw: 'cordova-plugin-app-event@file:node_modules\\cordova-plugin-app-event',
+94 silly cache add   scope: null,
+94 silly cache add   name: 'cordova-plugin-app-event',
+94 silly cache add   rawSpec: 'file:node_modules\\cordova-plugin-app-event',
+94 silly cache add   spec: 'C:\\Users\\andre.felizardo\\Documents\\GitHub\\SejaGrato\\node_modules\\cordova-plugin-app-event',
+94 silly cache add   type: 'local' }
+95 verbose already installed skipping cordova-plugin-console@1.0.5 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+96 verbose already installed skipping cordova-plugin-device@1.1.4 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+97 verbose already installed skipping cordova-plugin-google-analytics@~1.8.2 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+98 verbose already installed skipping cordova-plugin-inappbrowser@^0.2.2 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+99 verbose already installed skipping cordova-plugin-nativeaudio@^3.0.9 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+100 verbose already installed skipping cordova-plugin-network-information@^1.3.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+101 error addLocal Could not install C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event
+102 verbose already installed skipping cordova-plugin-screen-orientation@^2.0.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+103 verbose already installed skipping cordova-plugin-splashscreen@~4.0.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+104 verbose already installed skipping cordova-plugin-statusbar@2.2.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+105 verbose already installed skipping cordova-plugin-whitelist@1.3.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+106 verbose already installed skipping de.appplant.cordova.plugin.local-notification@^0.8.5 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+107 verbose already installed skipping gulp@^3.5.6 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+108 verbose already installed skipping gulp-concat@^2.2.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+109 verbose already installed skipping gulp-minify-css@^0.3.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+110 verbose already installed skipping gulp-rename@^1.2.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+111 verbose already installed skipping gulp-sass@^2.0.4 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+112 verbose already installed skipping ionic-plugin-keyboard@~2.2.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+113 verbose already installed skipping onesignal-cordova-plugin@^2.1.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+114 verbose already installed skipping phonegap-plugin-push@^1.8.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+115 verbose already installed skipping rxjs@^5.4.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+116 verbose already installed skipping zone.js@^0.8.12 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+117 verbose already installed skipping bower@^1.3.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+118 verbose already installed skipping gulp-util@^2.2.14 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+119 verbose already installed skipping shelljs@^0.3.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+120 verbose already installed skipping @angular/core@^4.2.3 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+121 verbose already installed skipping @ionic-native/core@^3.12.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+122 verbose already installed skipping @ionic-native/native-audio@^3.12.1 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+123 verbose already installed skipping @ionic/cloud@^0.16.0 C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+124 verbose stack Error: ENOENT: no such file or directory, open 'C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event'
+124 verbose stack     at Error (native)
+125 verbose cwd C:\Users\andre.felizardo\Documents\GitHub\SejaGrato
+126 error Windows_NT 10.0.10586
+127 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+128 error node v4.4.5
+129 error npm  v2.15.5
+130 error path C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event
+131 error code ENOENT
+132 error errno -4058
+133 error syscall open
+134 error enoent ENOENT: no such file or directory, open 'C:\Users\andre.felizardo\Documents\GitHub\SejaGrato\node_modules\cordova-plugin-app-event'
+134 error enoent This is most likely not a problem with npm itself
+134 error enoent and is related to npm not being able to find a file.
+135 verbose exit [ -4058, true ]
