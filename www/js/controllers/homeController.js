@@ -45,6 +45,12 @@ angular.module('sejaGrato')
 			$scope.imagemSorteada = $scope.imagens[numeroImagem];
 		}
 
+		$scope.getConfiguracoesLocais = function() {
+			$scope.dadosLocais = localStorage.getItem('mensagensSejaGrato');
+			$scope.configuracoes = localStorage.getItem('configuracoes');
+			$scope.usuarioLogado = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
+		}
+
 		$scope.agendarLembranca = function() {
 			if(!localStorage.getItem('lembranca')) {
 				var total = $rootScope.lista.length;
@@ -134,7 +140,7 @@ angular.module('sejaGrato')
 					$state.go('menu.sejaGrato');
 				}
 			});
-		})
+		});
 
 		$scope.getUsuario = getUsuario.usuarioLocal;
 		$scope.logar = loginService.logar;
@@ -388,10 +394,8 @@ angular.module('sejaGrato')
 
 			$scope.pageLoad = function() {
 				$scope.entrarLoading();
-				$scope.dadosLocais = localStorage.getItem('mensagensSejaGrato');
-				$scope.configuracoes = localStorage.getItem('configuracoes');
-				$scope.usuarioLogado = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
-				if(localStorage.getItem('mensagensSejaGrato')) {
+				$scope.getConfiguracoesLocais();
+				if($scope.dadosLocais) {
 					$rootScope.lista = angular.fromJson(localStorage.getItem('mensagensSejaGrato'));
 					if(!$rootScope.lista){
 						localStorage.removeItem('mensagensSejaGrato');
@@ -399,13 +403,13 @@ angular.module('sejaGrato')
 					} else {
 						$rootScope.dadosLocal = true;
 					}
-					if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null) {
+					if($scope.usuarioLogado != '' && $scope.usuarioLogado !== null) {
 						$rootScope.statusUsuario = true;
 						$rootScope.usuario = $scope.getUsuario();
 						$scope.sincronizacaoAutomatica();
 					}
 					$scope.sairLoading();
-				} else if(localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') != '' && localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]') !== null){
+				} else if($scope.usuarioLogado != '' && $scope.usuarioLogado !== null){
 					$rootScope.dadosLocal = true;
 					$rootScope.statusUsuario = true;
 					$rootScope.usuario = $scope.getUsuario();
