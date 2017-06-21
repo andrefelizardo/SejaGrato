@@ -17,7 +17,9 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 	$scope.$on('$ionicView.afterLeave', function() {
 		// sempre que sair da view
 		var configuracoes = {
-			notificacaoNoturna: $scope.lembreteNoturno
+			notificacaoNoturna: $scope.lembreteNoturno,
+			primeiroAcesso: true,
+			sons: $scope.sonsSistema
 		};
 
 		configuracoes = angular.toJson(configuracoes);
@@ -45,6 +47,10 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 		}
 	}
 
+	$scope.configurarSonsSistema = function() {
+		$scope.sonsSistema = !$scope.sonsSistema;
+	}
+
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
 	$scope.getDataSincronizacao = function() {
@@ -59,6 +65,7 @@ angular.module('sejaGrato').controller('configuracoesController',  function($sco
 	$scope.getConfiguracoes = function() {
 		var configuracoes = angular.fromJson(localStorage.getItem('configuracoes'));
 		$scope.lembreteNoturno = configuracoes.notificacaoNoturna;
+		$scope.sonsSistema = configuracoes.sons;
 		// $scope.lembrancaSemanal = configuracoes.lembrancaSemanal;
 	}
 })

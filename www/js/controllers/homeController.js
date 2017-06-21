@@ -90,14 +90,6 @@ angular.module('sejaGrato')
 
 		$ionicPlatform.ready(function(){
 			$scope.sorteios();
-			$cordovaNativeAudio
-			.preloadSimple('click', 'sounds/sampler.mp3')
-			.then(function (msg) {
-				// alert('audio ok');
-			}, function (error) {
-				// console.log(error);
-			});
-
 			if(!localStorage.getItem('configuracoes')) {
 				function dataNotificacaoNoturna() {
 					var data = new Date();
@@ -123,7 +115,8 @@ angular.module('sejaGrato')
 
 				var configuracoes = {
 					notificacaoNoturna: true,
-					primeiroAcesso: true
+					primeiroAcesso: true,
+					sons: true
 				};
 				configuracoes = angular.toJson(configuracoes);
 				localStorage.setItem('configuracoes', configuracoes);
@@ -141,6 +134,16 @@ angular.module('sejaGrato')
 					$state.go('menu.sejaGrato');
 				}
 			});
+
+			$cordovaNativeAudio
+			.preloadSimple('click', 'sounds/sampler.mp3')
+			.then(function (msg) {
+				// alert('audio ok');
+			}, function (error) {
+				// console.log(error);
+			});
+
+
 		});
 
 		$scope.getUsuario = getUsuario.usuarioLocal;
@@ -333,10 +336,15 @@ angular.module('sejaGrato')
 
 					$rootScope.dadosLocal = true;
 					$rootScope.lista.texto = '';
-					$cordovaNativeAudio.play('click');
-					$timeout(function () {
-						$cordovaNativeAudio.stop('click');
-					}, 4000);
+
+					var configuracoesLocais = angular.fromJson(localStorage.getItem('configuracoes'));
+
+					if(configuracoesLocais.sons) {
+						$cordovaNativeAudio.play('click');
+						$timeout(function () {
+							$cordovaNativeAudio.stop('click');
+						}, 4000);
+					}
 
 					if(typeof analytics !== undefined) {
 						analytics.trackEvent('Mensagem', 'Adicionar Mensagem', 'Adicionando na tela inicial', 10);
