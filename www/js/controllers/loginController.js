@@ -11,15 +11,25 @@ angular.module('sejaGrato').controller('loginController', function($scope, $root
 	$scope.sincronizarBanco = sincronizacaoFirebase.sincronizar;
 	$scope.getMensagens = sincronizacaoFirebase.getMensagens;
 	$scope.getDataAtual = datasService.dataAtual;
+	$scope.getHoraAtual = datasService.horaAtual;
 	$scope.sairLoading = function() {
 		$timeout(function(){
 			$ionicLoading.hide();
 		}, 100);
 	}
 
+	$scope.salvaDataSincronizacao = function() {
+		var hora = $scope.getHoraAtual();
+		var data = $scope.getDataAtual();
+		var horarioSincronizacao = [];
+		horarioSincronizacao.push({data: data, hora: hora});
+		horarioSincronizacao = angular.toJson(horarioSincronizacao);
+		localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
+	}
+
 	if(typeof analytics !== undefined) {
-			analytics.trackView('Login');
-		}
+		analytics.trackView('Login');
+	}
 
 	$scope.login = function() {
 		var conexao = $scope.verificaInternet();
@@ -58,6 +68,7 @@ angular.module('sejaGrato').controller('loginController', function($scope, $root
 											title: 'Conectado',
 											template: 'Juntamos suas mensagens do celular com as que estavam na nuvem para você não se esquecer de nada.'
 										});
+										$scope.salvaDataSincronizacao();
 										alertLogado.then(function(res){
 											$ionicHistory.nextViewOptions({
 												disableBack: true
@@ -81,6 +92,7 @@ angular.module('sejaGrato').controller('loginController', function($scope, $root
 									title: 'Conectado',
 									template: 'Agora suas mensagens da nuvem também estão no seu celular!'
 								});
+								$scope.salvaDataSincronizacao();
 								alertLogado.then(function(res){
 									$ionicHistory.nextViewOptions({
 										disableBack: true
@@ -104,6 +116,7 @@ angular.module('sejaGrato').controller('loginController', function($scope, $root
 											title: 'Conectado',
 											template: 'Legal. Suas mensagens do celular agora estão na nuvem.'
 										});
+										$scope.salvaDataSincronizacao();
 										alertLogado.then(function(res){
 											$ionicHistory.nextViewOptions({
 												disableBack: true

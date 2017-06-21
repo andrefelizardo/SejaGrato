@@ -49,10 +49,11 @@ angular.module('sejaGrato')
 			$scope.dadosLocais = localStorage.getItem('mensagensSejaGrato');
 			$scope.configuracoes = localStorage.getItem('configuracoes');
 			$scope.usuarioLogado = localStorage.getItem('firebase:authUser:AIzaSyAl3rNUfKOgzjqyNpSL3JTW_6-0ocaj_FE:[DEFAULT]');
+			$scope.lembranca = localStorage.getItem('lembranca');
 		}
 
 		$scope.agendarLembranca = function() {
-			if(!localStorage.getItem('lembranca')) {
+			if(!$scope.lembranca) {
 				var total = $rootScope.lista.length;
 				var numero = Math.floor((Math.random()*total)+1);
 				numero = numero - 1;
@@ -289,34 +290,6 @@ angular.module('sejaGrato')
 				$scope.modal.hide();
 			}
 
-
-			$scope.sincronizar = function() {
-				var conexao = $scope.verificaInternet();
-				if (conexao) {
-					if($rootScope.statusUsuario){
-						var usuario = $rootScope.usuario.uid;
-						var listaBanco = angular.copy($rootScope.lista);
-						$scope.sincronizarBanco(usuario, listaBanco)
-						.then(function(resposta){
-							if(resposta == 'Ok'){
-								var hora = $scope.getHoraAtual();
-								var data = $scope.getDataAtual();
-								var horarioSincronizacao = [];
-								horarioSincronizacao.push({data: data, hora: hora});
-								horarioSincronizacao = angular.toJson(horarioSincronizacao);
-								localStorage.setItem('ultimaSincronizacao', horarioSincronizacao);
-								$scope.$broadcast('scroll.refreshComplete');
-								if(typeof analytics !== undefined) {
-									analytics.trackEvent('Sincronização', 'Sincronização de Mensagens', 'Sincronizando mensagens manualmente', 30);
-								}
-							}
-						})
-					}
-				} else {
-					$scope.$broadcast('scroll.refreshComplete');
-					$ionicLoading.show({ template: 'Sem internet', noBackdrop: true, duration: 2000 });
-				}
-			}
 
 			$scope.visualizarTexto = function(mensagem) {
 				$scope.hideButtonsOptions();
