@@ -1,14 +1,11 @@
- <ion-view hide-nav-bar="true" ng-controller="motivacionalController">
- <ion-content scroll="false" class="">
-  <div class="">
-    <div>
-        <!-- <img src="img/seja-grato_logo.png" class="logo"> -->
-        <div class="box">
-          <h3 class="fontcolor1">{{mensagemSorteada.autor}}</h3>
-          <h4 class="fontcolor1">{{mensagemSorteada.frase}}</h4>
-        </div>
-        <button class="button button-icon icon ion-android-arrow-forward fontcolor1" ng-click="home()"></button>
+<ion-view hide-nav-bar="true" ng-controller="motivacionalController">
+  <ion-content scroll="false" class="">
+    <div class="">
+      <div class="box text-center">
+        <h3 class="fontcolor1">{{mensagemSorteada.titulo}}</h3>
+        <h4 class="fontcolor1">{{mensagemSorteada.frase}}</h4>
+      </div>
+      <button class="button button-icon icon ion-android-arrow-forward fontcolor1" ng-click="home()"></button>
     </div>
-  </div>
   </ion-content>
- </ion-view>
+</ion-view>

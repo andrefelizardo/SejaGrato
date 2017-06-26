@@ -26,6 +26,21 @@ angular.module('sejaGrato').controller('configuracoesController', function ($sco
 		localStorage.setItem('configuracoes', configuracoes);
 	});
 
+	$ionicPlatform.ready(function () {
+		$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
+			if (state.id == 2) {
+				var alertPopup = $ionicPopup.alert({
+					title: 'Seja Grato todos os dias',
+					template: 'Pelo que você se sentiu grato hoje?'
+				});
+				$ionicHistory.nextViewOptions({
+					disableBack: true
+				});
+				$state.go('menu.sejaGrato');
+			}
+		});
+	});
+
 	$scope.agendarLembreteNoturno = function () {
 		$scope.lembreteNoturno = !$scope.lembreteNoturno;
 		if ($scope.lembreteNoturno) {
@@ -38,19 +53,6 @@ angular.module('sejaGrato').controller('configuracoesController', function ($sco
 				every: 'day'
 			}).then(function (result) {
 				$ionicLoading.show({ template: 'Lembrete agendado', noBackdrop: true, duration: 2000 });
-			});
-
-			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
-				if (state.id == 2) {
-					var alertPopup = $ionicPopup.alert({
-						title: 'Seja Grato todos os dias',
-						template: 'Pelo que você se sentiu grato hoje?'
-					});
-					$ionicHistory.nextViewOptions({
-						disableBack: true
-					});
-					$state.go('menu.sejaGrato');
-				}
 			});
 		} else {
 			$cordovaLocalNotification.cancel(2, function () {

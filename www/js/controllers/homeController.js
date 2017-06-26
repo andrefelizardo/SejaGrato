@@ -89,6 +89,18 @@ angular.module('sejaGrato')
 					localStorage.removeItem('lembranca');
 				}
 			});
+			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
+				if (state.id == 1) {
+					var alertPopup = $ionicPopup.alert({
+						title: 'Seja Grato!',
+						template: 'Que tal adicionar sua primeira mensagem de gratidão?'
+					});
+					$ionicHistory.nextViewOptions({
+						disableBack: true
+					});
+					$state.go('menu.sejaGrato');
+				}
+			});
 			$scope.sorteios();
 			if (!localStorage.getItem('configuracoes')) {
 				function dataNotificacaoNoturna() {
@@ -208,19 +220,6 @@ angular.module('sejaGrato')
 				at: data,
 				message: 'Que tal adicionar sua primeira mensagem de gratidão?',
 				title: 'Seja Grato!'
-			});
-
-			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
-				if (state.id == 1) {
-					var alertPopup = $ionicPopup.alert({
-						title: 'Seja Grato!',
-						template: 'Que tal adicionar sua primeira mensagem de gratidão?'
-					});
-					$ionicHistory.nextViewOptions({
-						disableBack: true
-					});
-					$state.go('menu.sejaGrato');
-				}
 			});
 
 			var configuracoes = angular.fromJson(localStorage.getItem('configuracoes'));
