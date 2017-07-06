@@ -64,8 +64,8 @@ angular.module('sejaGrato')
 				}
 
 				var data = new Date();
-				// var dia = data.setDate(data.getDate() + 3);
-				var minuto = data.setMinutes(data.getMinutes() + 2);
+				var dia = data.setDate(data.getDate() + 3);
+				// var minuto = data.setMinutes(data.getMinutes() + 2);
 				var data = new Date(data);
 
 				$cordovaLocalNotification.schedule({
@@ -75,13 +75,15 @@ angular.module('sejaGrato')
 					text: 'Lembra do que aconteceu em ' + lembranca.data + '?'
 				}).then(function () {
 					localStorage.setItem('lembranca', angular.toJson(lembranca));
-					console.log('agendada');
 				});
 			}
 		}
 
 		$ionicPlatform.ready(function () {
 			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
+				if (typeof analytics !== undefined) {
+					analytics.trackEvent('Notificação Local', 'Motivacional', 'Clique na notificação motivacional', 20);
+				}
 				if (state.id == 10) {
 					$ionicHistory.nextViewOptions({
 						disableBack: true
@@ -91,6 +93,9 @@ angular.module('sejaGrato')
 			});
 			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
 				if (state.id == 1) {
+					if (typeof analytics !== undefined) {
+						analytics.trackEvent('Notificação Local', 'Primeira mensagem', 'Clique na notificação de primeira mensagem', 20);
+					}
 					var alertPopup = $ionicPopup.alert({
 						title: 'Seja Grato!',
 						template: 'Que tal adicionar sua primeira mensagem de gratidão?'
@@ -102,7 +107,8 @@ angular.module('sejaGrato')
 				}
 			});
 			$scope.sorteios();
-			if (!localStorage.getItem('configuracoes')) {
+			var configuracoesLocais = angular.fromJson(localStorage.getItem('configuracoes'));
+			if (!localStorage.getItem('configuracoes') || !configuracoesLocais.lembranca) {
 				function dataNotificacaoNoturna() {
 					var data = new Date();
 					if (data.getHours() < 21) {
@@ -128,7 +134,8 @@ angular.module('sejaGrato')
 				var configuracoes = {
 					notificacaoNoturna: true,
 					primeiroAcesso: true,
-					sons: true
+					sons: true,
+					lembranca: true
 				};
 				configuracoes = angular.toJson(configuracoes);
 				localStorage.setItem('configuracoes', configuracoes);
@@ -136,6 +143,9 @@ angular.module('sejaGrato')
 
 			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
 				if (state.id == 2) {
+					if (typeof analytics !== undefined) {
+						analytics.trackEvent('Notificação Local', 'Lembrete diário', 'Clique na notificação de lembrete diário', 20);
+					}
 					var alertPopup = $ionicPopup.alert({
 						title: 'Seja Grato todos os dias',
 						template: 'Pelo que você se sentiu grato hoje?'
@@ -353,7 +363,7 @@ angular.module('sejaGrato')
 				if (typeof analytics !== undefined) {
 					analytics.trackEvent('Mensagem', 'Adicionar Mensagem', 'Adicionando na tela inicial', 10);
 				}
-				if ($rootScope.lista.length > 20) {
+				if ($rootScope.lista.length > 20 && configuracoesLocais.lembranca == true) {
 					$scope.agendarLembranca();
 				}
 			}

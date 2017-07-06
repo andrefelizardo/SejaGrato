@@ -32,7 +32,8 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 		var configuracoes = {
 			notificacaoNoturna: $scope.lembreteNoturno,
 			primeiroAcesso: true,
-			sons: $scope.sonsSistema
+			sons: $scope.sonsSistema,
+			lembranca: $scope.lembranca
 		};
 
 		configuracoes = angular.toJson(configuracoes);
@@ -42,6 +43,9 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 	$ionicPlatform.ready(function () {
 		$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
 			if (state.id == 2) {
+				if (typeof analytics !== undefined) {
+					analytics.trackEvent('Notificação Local', 'Lembrete diário', 'Clique na notificação de lembrete diário', 20);
+				}
 				var alertPopup = $ionicPopup.alert({
 					title: 'Seja Grato todos os dias',
 					template: 'Pelo que você se sentiu grato hoje?'
@@ -77,7 +81,23 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 
 	$scope.configurarSonsSistema = function () {
 		$scope.sonsSistema = !$scope.sonsSistema;
+		if ($scope.sonsSistema) {
+			$ionicLoading.show({ template: 'Sons ativados', noBackdrop: true, duration: 2000 });
+		} else {
+			$ionicLoading.show({ template: 'Sons desativados', noBackdrop: true, duration: 2000 });
+		}
 	}
+
+	$scope.configurarLembranca = function () {
+		$scope.lembranca = !$scope.lembranca;
+		if ($scope.lembranca) {
+			$ionicLoading.show({ template: 'Mensagens nostálgicas ativadas', noBackdrop: true, duration: 2000 });
+		} else {
+			$ionicLoading.show({ template: 'Mensagens nostálgicas desativadas', noBackdrop: true, duration: 2000 });
+		}
+	}
+
+
 
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
@@ -94,6 +114,7 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 		var configuracoes = angular.fromJson(localStorage.getItem('configuracoes'));
 		$scope.lembreteNoturno = configuracoes.notificacaoNoturna;
 		$scope.sonsSistema = configuracoes.sons;
+		$scope.lembranca = configuracoes.lembranca;
 		// $scope.lembrancaSemanal = configuracoes.lembrancaSemanal;
 	}
 })
