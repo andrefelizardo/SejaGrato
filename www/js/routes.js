@@ -64,7 +64,7 @@ angular.module('app.routes', [])
           loadController: function ($ocLazyLoad) {
             return $ocLazyLoad.load([
               {
-                files: ['js/controllers/motivacionalController.js', 'css/jornadaGratidao.css']
+                files: ['js/controllers/motivacionalController.js', 'css/motivacional.css']
               }
             ]);
           }

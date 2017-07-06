@@ -1,4 +1,4 @@
-angular.module('sejaGrato').controller('tutorialController', function($scope, $state, $ionicHistory, $ionicSlideBoxDelegate){
+angular.module('sejaGrato').controller('tutorialController', function($ionicPlatform, $scope, $state, $ionicHistory, $ionicSlideBoxDelegate, $ionicLoading, $timeout){
 
 	$scope.$on('$ionicView.beforeEnter', function(){
 		if(typeof analytics !== undefined) {

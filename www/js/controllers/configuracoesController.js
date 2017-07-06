@@ -1,4 +1,4 @@
-angular.module('sejaGrato').controller('configuracoesController', function ($scope, $rootScope, $cordovaLocalNotification, $ionicLoading, getUsuario, datasService) {
+angular.module('sejaGrato').controller('configuracoesController', function ($ionicPlatform, $scope, $rootScope, $cordovaLocalNotification, $ionicLoading, getUsuario, datasService, $timeout) {
 
 	if (typeof analytics !== undefined) {
 		analytics.trackView('Configurações');
@@ -7,11 +7,24 @@ angular.module('sejaGrato').controller('configuracoesController', function ($sco
 	$scope.dataNotificacao = datasService.dataNotificacao;
 	$scope.dataLembranca = datasService.dataLembranca;
 
+	$scope.$on('$ionicView.beforeEnter', function () {
+		$ionicLoading.show({
+			content: 'Carregando dados',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 0
+		});
+	});
+
 	$scope.$on('$ionicView.enter', function () {
 		// toda vez que abrir
 		$scope.getDataSincronizacao();
 		$scope.usuario = $scope.getUsuario();
 		$scope.getConfiguracoes();
+		$timeout(function () {
+			$ionicLoading.hide();
+		}, 100);
 	});
 
 	$scope.$on('$ionicView.afterLeave', function () {

@@ -6,6 +6,7 @@ angular.module('sejaGrato')
 			if (typeof analytics !== undefined) {
 				analytics.trackView('Página Inicial');
 			}
+			$scope.getConfiguracoesLocais();
 		});
 
 		$scope.$on('$ionicView.afterLeave', function () {
@@ -73,8 +74,8 @@ angular.module('sejaGrato')
 					title: 'Lembra desse dia?',
 					text: 'Lembra do que aconteceu em ' + lembranca.data + '?'
 				}).then(function () {
-					localStorage.setItem('lembranca', data);
-					alert('agendada');
+					localStorage.setItem('lembranca', angular.toJson(lembranca));
+					console.log('agendada');
 				});
 			}
 		}
@@ -86,7 +87,6 @@ angular.module('sejaGrato')
 						disableBack: true
 					});
 					$state.go('motivacional');
-					localStorage.removeItem('lembranca');
 				}
 			});
 			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
@@ -179,14 +179,18 @@ angular.module('sejaGrato')
 		$scope.dataFiltrada = '';
 
 		$scope.$watch('filtroDia.opcao.opcaoEscolhida', function (valorNovo, valorAntigo) {
+			$scope.entrarLoading();
 			$scope.dataAtual = $scope.getDataAtual();
 			$scope.dataOntem = $scope.getDataOntem();
 			if (valorNovo == 'Hoje') {
 				$scope.dataFiltrada = $scope.dataAtual;
+				$scope.sairLoading();
 			} else if (valorNovo == 'Ontem') {
 				$scope.dataFiltrada = $scope.dataOntem;
+				$scope.sairLoading();
 			} else {
 				$scope.dataFiltrada = '';
+				$scope.sairLoading();
 			}
 		});
 

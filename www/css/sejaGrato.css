@@ -94,6 +94,9 @@ body {
 .bordercolor3 {
 	border-color: #5588ee!important;
 }
+.shadow1 {
+	text-shadow: 2px 2px 1px rgba(1, 1, 1, 0.5);
+}
 .text-center {
 	text-align: center;
 }
