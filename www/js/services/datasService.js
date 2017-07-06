@@ -10,18 +10,18 @@ angular.module('sejaGrato')
 			return dataAtual;
 		}
 
-		function dataNotificacaoNoturna() {
+		function dataJornada(hour) {
 			var data = new Date();
-			if(data.getHours() < 21) {
+			if(data.getHours() < hour) {
 				data.setDate(data.getDate());
 			} else {
 				data.setDate(data.getDate() + 1);
 			}
-			data.setHours(21);
+			data.setHours(hour);
 			data.setMinutes(0);
 			data.setSeconds(0);
-			var dataNotificacaoNoturna = new Date(data);
-			return dataNotificacaoNoturna;
+			var dataJornada = new Date(data);
+			return dataJornada;
 		}
 
 		function dataLembrancaSemanal() {
@@ -74,7 +74,7 @@ angular.module('sejaGrato')
 			dataOntem: dataOntem,
 			dataLimiteSincronizacao: dataLimiteSincronizacao,
 			horaAtual: horaAtual,
-			dataNotificacao: dataNotificacaoNoturna,
+			dataNotificacao: dataJornada,
 			dataLembranca: dataLembrancaSemanal
 		}
 	}]);

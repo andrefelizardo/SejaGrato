@@ -58,13 +58,27 @@ angular.module('app.routes', [])
       })
 
       .state('motivacional', {
-        url: '/jornada-gratidao',
+        url: '/nostalgia',
         templateUrl: 'templates/motivacional.html',
         resolve: {
           loadController: function ($ocLazyLoad) {
             return $ocLazyLoad.load([
               {
                 files: ['js/controllers/motivacionalController.js', 'css/motivacional.css']
+              }
+            ]);
+          }
+        }
+      })
+
+      .state('jornada-gratidao', {
+        url: '/jornada_gratidao',
+        templateUrl: 'templates/jornadaGratidao.html',
+        resolve: {
+          dps: function($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                files: ['js/controllers/jornadaGratidaoController.js', 'css/jornadaGratidao.css']
               }
             ]);
           }

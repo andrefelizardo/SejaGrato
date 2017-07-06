@@ -108,8 +108,8 @@ angular.module('sejaGrato')
 			});
 			$scope.sorteios();
 			var configuracoesLocais = angular.fromJson(localStorage.getItem('configuracoes'));
-			if (!localStorage.getItem('configuracoes') || !configuracoesLocais.lembranca) {
-				function dataNotificacaoNoturna() {
+			if (!localStorage.getItem('configuracoes') || !configuracoesLocais.jornada) {
+				function horarioJornada() {
 					var data = new Date();
 					if (data.getHours() < 21) {
 						data.setDate(data.getDate());
@@ -119,20 +119,22 @@ angular.module('sejaGrato')
 					data.setHours(21);
 					data.setMinutes(0);
 					data.setSeconds(0);
-					var dataNotificacaoNoturna = new Date(data);
-					return dataNotificacaoNoturna;
+					var horarioJornada = new Date(data);
+					return horarioJornada;
 				}
-				var hoje_as_9_pm = new Date(dataNotificacaoNoturna());
+				var data_jornada = new Date(horarioJornada());
 				$cordovaLocalNotification.schedule({
 					id: 2,
 					title: 'Seja Grato!',
 					text: 'Pelo que você se sentiu grato hoje?',
-					firstAt: hoje_as_9_pm,
+					firstAt: data_jornada,
 					every: 'day'
 				});
 
 				var configuracoes = {
-					notificacaoNoturna: true,
+					jornada: true,
+					jornadaDia: 0,
+					jornadaHora: 21,
 					primeiroAcesso: true,
 					sons: true,
 					lembranca: true
@@ -142,18 +144,28 @@ angular.module('sejaGrato')
 			}
 
 			$rootScope.$on('$cordovaLocalNotification:click', function (notification, state) {
+				var configuracoesLocais = angular.fromJson(localStorage.getItem('configuracoes'));
 				if (state.id == 2) {
 					if (typeof analytics !== undefined) {
-						analytics.trackEvent('Notificação Local', 'Lembrete diário', 'Clique na notificação de lembrete diário', 20);
+						analytics.trackEvent('Notificação Local', 'Jornada da Gratidão', 'Clique na notificação da jornada da gratidão', 25);
 					}
-					var alertPopup = $ionicPopup.alert({
-						title: 'Seja Grato todos os dias',
-						template: 'Pelo que você se sentiu grato hoje?'
-					});
+					if (configuracoesLocais.jornadaDia > 0) {
+						var dia = configuracoesLocais.jornadaDia + 1;
+						var alertPopup = $ionicPopup.alert({
+							title: 'Jornada da Gratidão',
+							template: 'Vamos continuar a Jornada da Gratidão? Você está no dia ' + dia + '.'
+						});
+					} else {
+						var alertPopup = $ionicPopup.alert({
+							title: 'Que tal começar um desafio?',
+							template: 'Comece agora a Jornada da Gratidão e vença os desafios!'
+						});
+					}
+
 					$ionicHistory.nextViewOptions({
 						disableBack: true
 					});
-					$state.go('menu.sejaGrato');
+					$state.go('jornada-gratidao');
 				}
 			});
 
@@ -357,7 +369,7 @@ angular.module('sejaGrato')
 					$cordovaNativeAudio.play('click');
 					$timeout(function () {
 						$cordovaNativeAudio.stop('click');
-					}, 3000);
+					}, 2000);
 				}
 
 				if (typeof analytics !== undefined) {

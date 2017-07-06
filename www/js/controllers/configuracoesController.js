@@ -30,12 +30,14 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 	$scope.$on('$ionicView.afterLeave', function () {
 		// sempre que sair da view
 		var configuracoes = {
-			notificacaoNoturna: $scope.lembreteNoturno,
+			jornada: $scope.jornada,
+			jornadaDia: 0,
+			jornadaHora: $scope.horarioJornada.hora.horaEscolhida,
 			primeiroAcesso: true,
 			sons: $scope.sonsSistema,
 			lembranca: $scope.lembranca
 		};
-
+		
 		configuracoes = angular.toJson(configuracoes);
 		localStorage.setItem('configuracoes', configuracoes);
 	});
@@ -58,23 +60,23 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 		});
 	});
 
-	$scope.agendarLembreteNoturno = function () {
-		$scope.lembreteNoturno = !$scope.lembreteNoturno;
-		if ($scope.lembreteNoturno) {
-			var hoje_as_9_pm = new Date($scope.dataNotificacao());
+	$scope.agendarJornada = function () {
+		$scope.jornada = !$scope.jornada;
+		if ($scope.jornada) {
+			var data_jornada = new Date($scope.dataNotificacao($scope.horarioJornada.hora.horaEscolhida));
 			$cordovaLocalNotification.schedule({
 				id: 2,
 				title: 'Seja Grato!',
 				text: "Pelo que você se sentiu grato hoje?",
-				firstAt: hoje_as_9_pm,
+				firstAt: data_jornada,
 				every: 'day'
 			}).then(function (result) {
-				$ionicLoading.show({ template: 'Lembrete agendado', noBackdrop: true, duration: 2000 });
+				$ionicLoading.show({ template: 'Jornada da Gratidão ativada', noBackdrop: true, duration: 2000 });
 			});
 		} else {
 			$cordovaLocalNotification.cancel(2, function () {
 			}).then(function () {
-				$ionicLoading.show({ template: 'Lembrete cancelado', noBackdrop: true, duration: 2000 });
+				$ionicLoading.show({ template: 'Jornada da Gratidão desativada', noBackdrop: true, duration: 2000 });
 			})
 		}
 	}
@@ -97,7 +99,13 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 		}
 	}
 
+	$scope.horarioJornada = {
+		horas: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+	};
 
+	// $scope.$watch('horarioJornada.hora.horaEscolhida', function (valorNovo, valorAntigo) {
+	// 	console.log(valorNovo);
+	// });
 
 	$scope.getUsuario = getUsuario.usuarioLocal;
 
@@ -112,7 +120,10 @@ angular.module('sejaGrato').controller('configuracoesController', function ($ion
 
 	$scope.getConfiguracoes = function () {
 		var configuracoes = angular.fromJson(localStorage.getItem('configuracoes'));
-		$scope.lembreteNoturno = configuracoes.notificacaoNoturna;
+		$scope.jornada = configuracoes.jornada;
+		$scope.horarioJornada.hora = {
+			horaEscolhida: $scope.horarioJornada.horas[configuracoes.jornadaHora]
+		}
 		$scope.sonsSistema = configuracoes.sons;
 		$scope.lembranca = configuracoes.lembranca;
 		// $scope.lembrancaSemanal = configuracoes.lembrancaSemanal;

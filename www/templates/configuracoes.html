@@ -8,13 +8,20 @@
         <span class="item-note">{{dataSincronizacao}} {{horaSincronizacao}}</span>
       </li>
       <li>
-        <ion-toggle ng-model="lembreteNoturno" toggle-class="toggle-calm" ng-change="agendarLembreteNoturno()">Lembrete noturno: </ion-toggle>
+        <ion-toggle ng-model="jornada" toggle-class="toggle-calm" ng-change="agendarJornada()">Jornada da Gratidão: </ion-toggle>
       </li>
-      <li>
-        <ion-toggle ng-model="sonsSistema" toggle-class="toggle-calm" ng-change="configurarSonsSistema()">Sons de sistema: </ion-toggle>
+      <li class="item item-input item-select" ng-disabled="!jornada">
+        <div class="input-label">
+          Hora Jornada da Gratidão
+        </div>
+        <select name="horarioJornadaGratidao" ng-disabled="!jornada" ng-model="horarioJornada.hora.horaEscolhida" ng-options="horaEscolhida for horaEscolhida in horarioJornada.horas">
+        </select>
       </li>
       <li>
         <ion-toggle ng-model="lembranca" toggle-class="toggle-calm" ng-change="configurarLembranca()">Mensagens nostálgicas: </ion-toggle>
+      </li>
+      <li>
+        <ion-toggle ng-model="sonsSistema" toggle-class="toggle-calm" ng-change="configurarSonsSistema()">Sons de sistema: </ion-toggle>
       </li>
     </ul>
   </ion-content>
