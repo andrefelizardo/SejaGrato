@@ -78,7 +78,8 @@ angular.module('app.routes', [])
           dps: function($ocLazyLoad) {
             return $ocLazyLoad.load([
               {
-                files: ['js/controllers/jornadaGratidaoController.js', 'css/jornadaGratidao.css']
+                serie: true,
+                files: ['js/services/datasService.js', 'js/controllers/jornadaGratidaoController.js', 'css/jornadaGratidao.css']
               }
             ]);
           }

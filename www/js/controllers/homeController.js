@@ -109,16 +109,23 @@ angular.module('sejaGrato')
 			$scope.sorteios();
 			var configuracoesLocais = angular.fromJson(localStorage.getItem('configuracoes'));
 			if (!localStorage.getItem('configuracoes') || !configuracoesLocais.jornada) {
+				// function horarioJornada() {
+				// 	var data = new Date();
+				// 	if (data.getHours() < 21) {
+				// 		data.setDate(data.getDate());
+				// 	} else {
+				// 		data.setDate(data.getDate() + 1);
+				// 	}
+				// 	data.setHours(21);
+				// 	data.setMinutes(0);
+				// 	data.setSeconds(0);
+				// 	var horarioJornada = new Date(data);
+				// 	return horarioJornada;
+				// }
+				// FUNÇÃO DE TESTE
 				function horarioJornada() {
 					var data = new Date();
-					if (data.getHours() < 21) {
-						data.setDate(data.getDate());
-					} else {
-						data.setDate(data.getDate() + 1);
-					}
-					data.setHours(21);
-					data.setMinutes(0);
-					data.setSeconds(0);
+					data.setMinutes(data.getMinutes() + 2);
 					var horarioJornada = new Date(data);
 					return horarioJornada;
 				}
@@ -126,9 +133,9 @@ angular.module('sejaGrato')
 				$cordovaLocalNotification.schedule({
 					id: 2,
 					title: 'Seja Grato!',
-					text: 'Pelo que você se sentiu grato hoje?',
-					firstAt: data_jornada,
-					every: 'day'
+					text: 'Não perca sua jornada da Gratidão',
+					at: data_jornada,
+					// every: 'day'
 				});
 
 				var configuracoes = {
@@ -158,7 +165,7 @@ angular.module('sejaGrato')
 					} else {
 						var alertPopup = $ionicPopup.alert({
 							title: 'Que tal começar um desafio?',
-							template: 'Comece agora a Jornada da Gratidão e vença os desafios!'
+							template: 'Comece agora a Jornada da Gratidão e vença os desafios diários!'
 						});
 					}
 

@@ -1,10 +1,13 @@
+ion-view {
+    background-color: #53c0da!important;
+}
 .box {
     margin: 15vh 0 0;
 }
 .box h3, .box h4 {
     margin: 1em 1em;
 }
-button {
+button.button-icon {
     position: absolute!important;
     bottom: 2vh;
     right: 3vw;
